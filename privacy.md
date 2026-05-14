@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Privacy Policy
+title: "Privacy Policy — GitBoba"
+description: "GitBoba collects no data. Credentials stay in the iOS Keychain; all traffic goes directly to your own self-hosted Gitea server."
 ---
 
 # Privacy Policy

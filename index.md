@@ -1,15 +1,24 @@
 ---
 layout: default
-title: GitBoba
+title: "GitBoba — Gitea Client for iPhone & iPad"
+description: "Free, unofficial Gitea iOS app. Browse repos, pull requests, issues, Actions, and notifications from your self-hosted Gitea server in a native SwiftUI app."
+image: /images/screenshot-home.png
+keywords: "Gitea iOS app, Gitea iPhone client, self-hosted Git iOS, Gitea mobile app, SwiftUI Gitea"
 ---
 
-# GitBoba
+# GitBoba — Gitea client for iPhone and iPad
 
-A unofficial Gitea client for iPhone, iPad.
+GitBoba is a free, unofficial [Gitea](https://gitea.io) client for iPhone and iPad. Browse and manage your self-hosted Gitea server — repos, pull requests, issues, Actions, and notifications — from a native SwiftUI app.
 
-Browse and manage your self-hosted [Gitea](https://gitea.io) repositories — repos, pull requests, issues, Actions, and notifications — all from a native SwiftUI app.
+Available on the [App Store](https://apps.apple.com/us/app/gitboba/id6767851416).
 
-Available on the [App Store](https://apps.apple.com).
+## Features
+
+- **Home** — personalized feed of your repos, open PRs, and issues
+- **Notifications** — Gitea notification inbox
+- **Explore** — browse organizations and their repositories
+- **Repos** — repo detail, branches, commits, file tree, PRs, issues
+- **Actions** — workflow run list and job logs
 
 ---
 

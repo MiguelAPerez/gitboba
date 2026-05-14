@@ -1,0 +1,17 @@
+title: GitBoba
+tagline: Gitea iOS Client
+description: >-
+  GitBoba is a free, unofficial Gitea client for iPhone and iPad.
+  Browse repos, pull requests, issues, Actions, and notifications from your
+  self-hosted Gitea server in a native SwiftUI app.
+url: https://miguelaperez.github.io
+baseurl: /gitboba
+author:
+  name: Miguel A. Perez
+  email: contact@miguelaperez.dev
+twitter:
+  card: summary_large_image
+theme: minima
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://miguelaperez.github.io/gitboba/sitemap.xml
