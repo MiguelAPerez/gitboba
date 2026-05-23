@@ -27,3 +27,5 @@ GitBoba may offer a one-time Pro upgrade via Apple's App Store (StoreKit 2). All
 ## Contact
 
 Questions? Open an issue or reach out at [contact@miguelaperez.dev](mailto:contact@miguelaperez.dev).
+
+<sub>iPhone and iPad are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.</sub>
