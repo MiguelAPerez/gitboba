@@ -4,7 +4,7 @@ A unofficial Gitea client for iPhone, iPad.
 
 Browse and manage your self-hosted [Gitea](https://gitea.io) server — repos, pull requests, issues, Actions, and notifications — from a clean native SwiftUI app.
 
-![GitBoba Home Screen](images/screenshot-home.png)
+<img src="images/screenshot-home.png" alt="GitBoba Home Screen" width="300">
 
 ## Features
 
