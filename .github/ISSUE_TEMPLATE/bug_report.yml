@@ -1,0 +1,71 @@
+name: Bug Report
+description: Report a bug in GitBoba
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. The more detail you provide, the faster it can be fixed.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug.
+      placeholder: When I tap X, Y happens instead of Z.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Step-by-step instructions to reliably trigger the bug.
+      placeholder: |
+        1. Go to ...
+        2. Tap ...
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened?
+    validations:
+      required: true
+
+  - type: input
+    id: ios-version
+    attributes:
+      label: iOS version
+      placeholder: e.g. iOS 26.0
+    validations:
+      required: true
+
+  - type: input
+    id: gitea-version
+    attributes:
+      label: Gitea version
+      description: Found in your Gitea instance under Site Administration → Configuration.
+      placeholder: e.g. 1.22.1
+    validations:
+      required: true
+
+  - type: input
+    id: gitboba-version
+    attributes:
+      label: GitBoba version
+      description: Found in the App Store or Settings → GitBoba.
+      placeholder: e.g. 1.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: extras
+    attributes:
+      label: Logs or additional context
+      description: Any error messages, screenshots, or extra context that might help.
+    validations:
+      required: false
