@@ -640,7 +640,7 @@
     <a href="https://apps.apple.com/us/app/gitboba/id6767851416?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6767851416" class="nav-dl">
       <span>Download Free</span>
     </a>
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Open navigation menu" aria-expanded="false">
+    <button type="button" class="nav-menu-btn" id="navMenuBtn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMobileMenu">
       <svg class="icon-menu" width="18" height="13" viewBox="0 0 18 13" fill="none" aria-hidden="true">
         <line x1="0" y1="1.5" x2="18" y2="1.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
         <line x1="0" y1="6.5" x2="18" y2="6.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
@@ -653,12 +653,12 @@
     </button>
   </header>
 
-  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+  <nav class="nav-mobile-menu" id="navMobileMenu" aria-label="Mobile navigation" aria-hidden="true">
     <a href="#features" class="mobile-menu-link">Features</a>
     <a href="#privacy" class="mobile-menu-link">Privacy</a>
     <a href="#download" class="mobile-menu-link">Download</a>
     <a href="https://apps.apple.com/us/app/gitboba/id6767851416?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6767851416" class="mobile-menu-dl">Download Free on the App Store</a>
-  </div>
+  </nav>
 
   <!-- ── HERO ── -->
   <section class="hero">
@@ -867,6 +867,7 @@
       navMobileMenu.classList.remove('is-open');
       navMenuBtn.classList.remove('is-open');
       navMenuBtn.setAttribute('aria-expanded', 'false');
+      navMenuBtn.setAttribute('aria-label', 'Open navigation menu');
       navMobileMenu.setAttribute('aria-hidden', 'true');
     }
 
@@ -874,11 +875,16 @@
       var isOpen = navMobileMenu.classList.toggle('is-open');
       navMenuBtn.classList.toggle('is-open', isOpen);
       navMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      navMenuBtn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
       navMobileMenu.setAttribute('aria-hidden', String(!isOpen));
     });
 
     navMobileMenu.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', closeMenu);
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 960) closeMenu();
     });
   </script>
 
