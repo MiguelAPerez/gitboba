@@ -360,7 +360,7 @@
         </svg>
       </span>
       <p>
-        GitBoba is in active development — API coverage expands with each release. If there's a specific area you need sooner, <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">open a feature request on GitHub</a> to help shape what comes next.
+        GitBoba is in active development — API coverage expands with each release. If there's a feature you need, <a href="https://github.com/MiguelAPerez/gitboba/issues?q=is%3Aissue+label%3Aenhancement" target="_blank" rel="noopener noreferrer">browse existing requests</a> and upvote what matches your needs — votes move things up the roadmap faster than a new ticket. Nothing there yet? <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">Open a new request.</a>
       </p>
     </div>
 
@@ -368,15 +368,15 @@
     <div class="stat-grid">
       <div class="stat-cell">
         <div class="stat-number stat-number--green" id="count-supported">—</div>
-        <div class="stat-label">Supported</div>
+        <div class="stat-label">Ops Supported</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-number stat-number--amber" id="count-partial">—</div>
-        <div class="stat-label">Partial</div>
+        <div class="stat-number stat-number--muted" id="count-partial">—</div>
+        <div class="stat-label">Ops Planned</div>
       </div>
       <div class="stat-cell">
         <div class="stat-number stat-number--muted" id="count-planned">—</div>
-        <div class="stat-label">Planned</div>
+        <div class="stat-label">Areas Complete</div>
       </div>
     </div>
 
@@ -460,12 +460,18 @@
       document.getElementById('updated').textContent =
         'Last updated: ' + d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-      // counts
-      var counts = { supported: 0, partial: 0, planned: 0 };
-      data.groups.forEach(function(g) { counts[g.status]++; });
-      document.getElementById('count-supported').textContent = counts.supported;
-      document.getElementById('count-partial').textContent   = counts.partial;
-      document.getElementById('count-planned').textContent   = counts.planned;
+      // counts — op-level so "planned" reflects actual remaining work
+      var opsYes = 0, opsPlanned = 0, areasComplete = 0;
+      data.groups.forEach(function(g) {
+        if (g.status === 'supported') areasComplete++;
+        g.ops.forEach(function(op) {
+          if (op.status === 'yes') opsYes++;
+          else opsPlanned++;
+        });
+      });
+      document.getElementById('count-supported').textContent = opsYes;
+      document.getElementById('count-partial').textContent   = opsPlanned;
+      document.getElementById('count-planned').textContent   = areasComplete + ' of ' + data.groups.length;
 
       // rows
       document.getElementById('category-list').innerHTML =
