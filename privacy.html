@@ -10,155 +10,9 @@
   <link rel="apple-touch-icon" href="images/mac-128@2x.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg:       oklch(0.09 0.008 68);
-      --surface:  oklch(0.13 0.009 68);
-      --border:   oklch(0.21 0.008 68);
-      --border-soft: oklch(0.18 0.006 68);
-      --green:    oklch(0.54 0.14 145);
-      --green-mid: oklch(0.65 0.13 145);
-      --text:     oklch(0.96 0.007 68);
-      --text-soft: oklch(0.70 0.010 68);
-      --muted:    oklch(0.50 0.012 68);
-      --font: 'Outfit', system-ui, sans-serif;
-      --px: clamp(1.5rem, 6vw, 7rem);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--green-mid); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    img { display: block; }
-
-    /* NAV */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 var(--px);
-      height: 62px;
-      border-bottom: 1px solid var(--border-soft);
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
-
-    /* CONTENT */
-    .content {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 5rem var(--px) 7rem;
-    }
-    .back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 3rem;
-      transition: color 0.15s;
-    }
-    .back:hover { color: var(--text-soft); text-decoration: none; }
-    .back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-    .doc-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--green-mid);
-      margin-bottom: 0.9rem;
-    }
-    h1 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 0.75rem;
-    }
-    .updated {
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-weight: 500;
-      margin-bottom: 3rem;
-    }
-    .intro {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: var(--text-soft);
-      margin-bottom: 3.5rem;
-      padding-bottom: 3.5rem;
-      border-bottom: 1px solid var(--border-soft);
-    }
-
-    .section { margin-bottom: 2.75rem; }
-    h2 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      margin-bottom: 0.75rem;
-      color: var(--text);
-    }
-    p, li {
-      font-size: 0.9rem;
-      line-height: 1.75;
-      color: var(--text-soft);
-    }
-    ul {
-      padding-left: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    li::marker { color: var(--green); }
-
-    /* FOOTER */
-    footer {
-      padding: 2rem var(--px);
-      border-top: 1px solid var(--border-soft);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--muted);
-    }
-    .footer-links a { color: var(--muted); transition: color 0.15s; }
-    .footer-links a:hover { color: var(--text-soft); text-decoration: none; }
-    .footer-legal {
-      font-size: 0.68rem;
-      color: oklch(0.38 0.008 68);
-      line-height: 1.65;
-      max-width: 520px;
-      text-align: right;
-    }
-    @media (max-width: 600px) {
-      footer { flex-direction: column; align-items: flex-start; }
-      .footer-legal { text-align: left; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/doc.css">
 </head>
 <body>
 
@@ -169,7 +23,7 @@
     </a>
   </header>
 
-  <main class="content">
+  <main class="content content--narrow">
     <a href="/" class="back">
       <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
       Back to home
