@@ -58,11 +58,11 @@
         <div class="stat-label">Ops Supported</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-number stat-number--muted" id="count-partial">—</div>
+        <div class="stat-number stat-number--muted" id="count-ops-planned">—</div>
         <div class="stat-label">Ops Planned</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-number stat-number--muted" id="count-planned">—</div>
+        <div class="stat-number stat-number--muted" id="count-areas-complete">—</div>
         <div class="stat-label">Areas Complete</div>
       </div>
     </div>
@@ -114,8 +114,25 @@
       return '<svg viewBox="0 0 24 24" aria-hidden="true">' + paths + '</svg>';
     }
 
+    var STATUS_LABELS = {
+      supported: 'Supported',
+      partial: 'Partial',
+      planned: 'Planned'
+    };
+
     function escapeHtml(str) {
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      if (str == null) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function statusPill(status) {
+      var key = STATUS_LABELS[status] ? status : 'planned';
+      return '<span class="status-pill status-pill--' + key + '">' + STATUS_LABELS[key] + '</span>';
     }
 
     function renderRow(group) {
@@ -134,9 +151,7 @@
             '</div>',
           '</div>',
           '<div class="category-chips">' + chips + '</div>',
-          '<div class="category-status">',
-            '<span class="status-pill status-pill--' + group.status + '">' + group.status + '</span>',
-          '</div>',
+          '<div class="category-status">' + statusPill(group.status) + '</div>',
         '</div>',
       ].join('');
     }
@@ -157,8 +172,8 @@
         });
       });
       document.getElementById('count-supported').textContent = opsYes;
-      document.getElementById('count-partial').textContent   = opsPlanned;
-      document.getElementById('count-planned').textContent   = areasComplete + ' of ' + data.groups.length;
+      document.getElementById('count-ops-planned').textContent = opsPlanned;
+      document.getElementById('count-areas-complete').textContent = areasComplete + ' of ' + data.groups.length;
 
       // rows
       document.getElementById('category-list').innerHTML =
