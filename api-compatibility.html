@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://gitboba.app/api-compatibility">
+  <title>API Compatibility — GitBoba</title>
+  <meta name="description" content="See which Gitea API areas GitBoba currently supports, which have partial coverage, and which are planned for upcoming releases.">
+  <link rel="icon" type="image/png" href="images/mac-128@2x.png">
+  <link rel="apple-touch-icon" href="images/mac-128@2x.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          oklch(0.09 0.008 68);
+      --bg2:         oklch(0.12 0.008 68);
+      --surface:     oklch(0.13 0.009 68);
+      --surface2:    oklch(0.16 0.009 68);
+      --border:      oklch(0.21 0.008 68);
+      --border-soft: oklch(0.18 0.006 68);
+      --green:       oklch(0.54 0.14 145);
+      --green-mid:   oklch(0.65 0.13 145);
+      --green-light: oklch(0.76 0.12 145);
+      --amber:       oklch(0.78 0.11 72);
+      --amber-soft:  oklch(0.85 0.09 72);
+      --text:        oklch(0.96 0.007 68);
+      --text-soft:   oklch(0.70 0.010 68);
+      --muted:       oklch(0.50 0.012 68);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm:  8px;
+      --font: 'Outfit', system-ui, sans-serif;
+      --px: clamp(1.5rem, 6vw, 7rem);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--green-mid); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { display: block; }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--px);
+      height: 62px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
+
+    /* CONTENT */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem var(--px) 7rem;
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      transition: color 0.15s;
+    }
+    .back:hover { color: var(--text-soft); text-decoration: none; }
+    .back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .doc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 0.9rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .updated {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .intro {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+      margin-bottom: 1.75rem;
+    }
+
+    /* AMBER CALLOUT */
+    .callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: oklch(0.78 0.11 72 / 0.08);
+      border: 1px solid oklch(0.78 0.11 72 / 0.25);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .callout-icon { flex-shrink: 0; margin-top: 1px; }
+    .callout-icon svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--amber);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .callout p {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--amber-soft);
+    }
+    .callout a { color: var(--amber); }
+    .callout a:hover { color: var(--amber-soft); }
+
+    /* STAT SUMMARY */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .stat-cell {
+      background: var(--surface);
+      padding: 1.5rem 1.75rem;
+    }
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-number--green { color: var(--green-mid); }
+    .stat-number--amber { color: var(--amber); }
+    .stat-number--muted { color: var(--muted); }
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    /* LEGEND */
+    .legend {
+      display: flex;
+      gap: 0.625rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .legend-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-right: 0.125rem;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .status-pill--supported { background: oklch(0.54 0.14 145 / 0.15); color: var(--green-light); }
+    .status-pill--partial   { background: oklch(0.78 0.11 72 / 0.15);  color: var(--amber); }
+    .status-pill--planned   { background: var(--surface2); color: var(--muted); }
+
+    /* CATEGORY LIST */
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .category-row {
+      background: var(--surface);
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 230px 1fr auto;
+      gap: 1.25rem;
+      align-items: center;
+      transition: background 0.15s;
+    }
+    .category-row:hover { background: var(--surface2); }
+    .category-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .category-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .category-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--muted);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .category-name {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .category-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-top: 0.2rem;
+    }
+    .category-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+      align-content: center;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 9px;
+      border-radius: 99px;
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .chip--yes     { background: oklch(0.54 0.14 145 / 0.13); color: var(--green-mid); }
+    .chip--planned { background: var(--surface2); color: var(--muted); }
+
+    .category-status { flex-shrink: 0; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem var(--px);
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .footer-links a { color: var(--muted); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text-soft); text-decoration: none; }
+    .footer-legal {
+      font-size: 0.68rem;
+      color: oklch(0.38 0.008 68);
+      line-height: 1.65;
+      max-width: 520px;
+      text-align: right;
+    }
+
+    @media (max-width: 720px) {
+      .category-row {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 0.75rem 1rem;
+      }
+      .category-left  { grid-column: 1; grid-row: 1; }
+      .category-chips { grid-column: 1; grid-row: 2; }
+      .category-status { grid-column: 2; grid-row: 1; align-self: start; }
+    }
+    @media (max-width: 600px) {
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-legal { text-align: left; }
+      .stat-number { font-size: 1.75rem; }
+      .stat-cell { padding: 1.1rem 1rem; }
+    }
+    @media (max-width: 400px) {
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <a href="/" class="nav-logo">
+      <img src="images/mac-128@2x.png" alt="GitBoba icon">
+      GitBoba
+    </a>
+  </header>
+
+  <main class="content">
+    <a href="/" class="back">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to home
+    </a>
+
+    <div class="doc-label">API Coverage</div>
+    <h1>Gitea API Compatibility</h1>
+    <p class="updated" id="updated">Last updated: —</p>
+
+    <p class="intro">
+      GitBoba is a work in progress. This page tracks which parts of the Gitea API are currently supported in the app, which have partial coverage, and which are on the roadmap for upcoming releases.
+    </p>
+
+    <div class="callout">
+      <span class="callout-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </span>
+      <p>
+        GitBoba is in active development — API coverage expands with each release. If there's a specific area you need sooner, <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">open a feature request on GitHub</a> to help shape what comes next.
+      </p>
+    </div>
+
+    <!-- STAT SUMMARY -->
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-number stat-number--green" id="count-supported">—</div>
+        <div class="stat-label">Supported</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number stat-number--amber" id="count-partial">—</div>
+        <div class="stat-label">Partial</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-number stat-number--muted" id="count-planned">—</div>
+        <div class="stat-label">Planned</div>
+      </div>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+      <span class="legend-label">Legend:</span>
+      <span class="status-pill status-pill--supported">Supported</span>
+      <span class="status-pill status-pill--partial">Partial</span>
+      <span class="status-pill status-pill--planned">Planned</span>
+    </div>
+
+    <!-- CATEGORY LIST (populated by JS) -->
+    <div class="category-list" id="category-list"></div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">Request a Feature</a>
+      <a href="mailto:contact@miguelaperez.dev">Contact</a>
+    </div>
+    <p class="footer-legal">
+      GitBoba is not affiliated with or endorsed by Gitea or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
+    </p>
+  </footer>
+
+  <script>
+    // ── Icon paths ─────────────────────────────────────────────────────────
+    var ICONS = {
+      repo:         '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/>',
+      pr:           '<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/>',
+      issue:        '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
+      notification: '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+      actions:      '<polygon points="5 3 19 12 5 21 5 3"/>',
+      org:          '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+      user:         '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+      search:       '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+      release:      '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+      star:         '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+      webhook:      '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+      admin:        '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+    };
+
+    // ── Render helpers ─────────────────────────────────────────────────────
+    function icon(name) {
+      var paths = ICONS[name] || ICONS['issue'];
+      return '<svg viewBox="0 0 24 24" aria-hidden="true">' + paths + '</svg>';
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function renderRow(group) {
+      var chips = group.ops.map(function(op) {
+        var cls = op.status === 'yes' ? 'chip--yes' : 'chip--planned';
+        return '<span class="chip ' + cls + '">' + escapeHtml(op.label) + '</span>';
+      }).join('');
+
+      return [
+        '<div class="category-row">',
+          '<div class="category-left">',
+            '<div class="category-icon">' + icon(group.icon) + '</div>',
+            '<div>',
+              '<div class="category-name">' + escapeHtml(group.name) + '</div>',
+              '<div class="category-desc">' + escapeHtml(group.desc) + '</div>',
+            '</div>',
+          '</div>',
+          '<div class="category-chips">' + chips + '</div>',
+          '<div class="category-status">',
+            '<span class="status-pill status-pill--' + group.status + '">' + group.status + '</span>',
+          '</div>',
+        '</div>',
+      ].join('');
+    }
+
+    function render(data) {
+      // date
+      var d = new Date(data.generated + 'T00:00:00');
+      document.getElementById('updated').textContent =
+        'Last updated: ' + d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      // counts
+      var counts = { supported: 0, partial: 0, planned: 0 };
+      data.groups.forEach(function(g) { counts[g.status]++; });
+      document.getElementById('count-supported').textContent = counts.supported;
+      document.getElementById('count-partial').textContent   = counts.partial;
+      document.getElementById('count-planned').textContent   = counts.planned;
+
+      // rows
+      document.getElementById('category-list').innerHTML =
+        data.groups.map(renderRow).join('');
+    }
+
+    // ── Fetch ──────────────────────────────────────────────────────────────
+    fetch('./api-compatibility-data.json')
+      .then(function(r) { return r.json(); })
+      .then(render)
+      .catch(function(err) {
+        document.getElementById('category-list').innerHTML =
+          '<div style="padding:2rem;color:var(--muted);font-size:0.875rem;">Failed to load compatibility data.</div>';
+        console.error('api-compatibility-data.json:', err);
+      });
+  </script>
+
+</body>
+</html>

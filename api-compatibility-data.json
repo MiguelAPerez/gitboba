@@ -1,0 +1,321 @@
+{
+  "generated": "2026-06-14",
+  "groups": [
+    {
+      "id": "repositories",
+      "name": "Repositories",
+      "icon": "repo",
+      "desc": "Browse repos, branches, commits, and files",
+      "status": "partial",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "View",
+          "status": "yes"
+        },
+        {
+          "label": "Branches",
+          "status": "yes"
+        },
+        {
+          "label": "Commits",
+          "status": "yes"
+        },
+        {
+          "label": "File Tree",
+          "status": "yes"
+        },
+        {
+          "label": "Create",
+          "status": "planned"
+        },
+        {
+          "label": "Fork",
+          "status": "yes"
+        }
+      ]
+    },
+    {
+      "id": "pull-requests",
+      "name": "Pull Requests",
+      "icon": "pr",
+      "desc": "List, review, create, and merge",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "View",
+          "status": "yes"
+        },
+        {
+          "label": "Files Changed",
+          "status": "yes"
+        },
+        {
+          "label": "Create",
+          "status": "yes"
+        },
+        {
+          "label": "Merge",
+          "status": "yes"
+        },
+        {
+          "label": "Review",
+          "status": "yes"
+        }
+      ]
+    },
+    {
+      "id": "issues",
+      "name": "Issues",
+      "icon": "issue",
+      "desc": "Browse, comment, and edit; create planned",
+      "status": "partial",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "View",
+          "status": "yes"
+        },
+        {
+          "label": "Edit",
+          "status": "planned"
+        },
+        {
+          "label": "Comment",
+          "status": "yes"
+        },
+        {
+          "label": "Labels",
+          "status": "yes"
+        },
+        {
+          "label": "Create",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "notifications",
+      "name": "Notifications",
+      "icon": "notification",
+      "desc": "Full inbox management and filtering",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "Mark Read",
+          "status": "yes"
+        },
+        {
+          "label": "Filter",
+          "status": "yes"
+        },
+        {
+          "label": "Unsubscribe",
+          "status": "yes"
+        }
+      ]
+    },
+    {
+      "id": "actions",
+      "name": "Actions / CI",
+      "icon": "actions",
+      "desc": "Monitor, re-run, and cancel workflow runs",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "Workflow Runs",
+          "status": "yes"
+        },
+        {
+          "label": "Job Logs",
+          "status": "yes"
+        },
+        {
+          "label": "Re-run",
+          "status": "yes"
+        },
+        {
+          "label": "Cancel",
+          "status": "yes"
+        }
+      ]
+    },
+    {
+      "id": "organizations",
+      "name": "Organizations",
+      "icon": "org",
+      "desc": "Browse orgs and repos; members planned",
+      "status": "partial",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "Repos",
+          "status": "yes"
+        },
+        {
+          "label": "Members",
+          "status": "planned"
+        },
+        {
+          "label": "Manage",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "user-profile",
+      "name": "User & Profile",
+      "icon": "user",
+      "desc": "Authenticated user info and activity",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "Profile",
+          "status": "yes"
+        },
+        {
+          "label": "Repos",
+          "status": "yes"
+        },
+        {
+          "label": "Activity",
+          "status": "yes"
+        }
+      ]
+    },
+    {
+      "id": "stars-watching",
+      "name": "Stars & Watching",
+      "icon": "star",
+      "desc": "Star repos and watch activity feeds",
+      "status": "partial",
+      "ops": [
+        {
+          "label": "Star / Unstar",
+          "status": "yes"
+        },
+        {
+          "label": "Watch / Unwatch",
+          "status": "yes"
+        },
+        {
+          "label": "Starred List",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "name": "Search",
+      "icon": "search",
+      "desc": "Cross-server search across resource types",
+      "status": "partial",
+      "ops": [
+        {
+          "label": "Issues",
+          "status": "yes"
+        },
+        {
+          "label": "Repos",
+          "status": "planned"
+        },
+        {
+          "label": "Users",
+          "status": "planned"
+        },
+        {
+          "label": "Code",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "releases",
+      "name": "Releases",
+      "icon": "release",
+      "desc": "Browse and manage repo releases",
+      "status": "partial",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "Create",
+          "status": "yes"
+        },
+        {
+          "label": "Edit",
+          "status": "yes"
+        },
+        {
+          "label": "Download",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "webhooks",
+      "name": "Webhooks",
+      "icon": "webhook",
+      "desc": "Manage repo webhooks",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "Create",
+          "status": "yes"
+        },
+        {
+          "label": "Edit",
+          "status": "yes"
+        },
+        {
+          "label": "Delete",
+          "status": "yes"
+        }
+      ]
+    },
+    {
+      "id": "admin",
+      "name": "Admin",
+      "icon": "admin",
+      "desc": "Server administration and user management",
+      "status": "partial",
+      "ops": [
+        {
+          "label": "Users",
+          "status": "planned"
+        },
+        {
+          "label": "Orgs",
+          "status": "planned"
+        },
+        {
+          "label": "Runners",
+          "status": "yes"
+        }
+      ]
+    }
+  ]
+}
