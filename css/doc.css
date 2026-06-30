@@ -84,3 +84,43 @@
   gap: 0.4rem;
 }
 .content li::marker { color: var(--green); }
+
+.content pre {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  margin: 0.75rem 0 1rem;
+}
+.content pre code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+.content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85em;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0 1.25rem;
+  font-size: 0.85rem;
+}
+.content th,
+.content td {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-soft);
+}
+.content th {
+  font-weight: 700;
+  color: var(--text);
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://gitboba.app/deep-links">
+  <title>Deep Links — GitBoba</title>
+  <meta name="description" content="Add Open in GitBoba links to your Gitea site. URL scheme reference, HTML examples, and share extension setup for self-hosted instances.">
+  <link rel="icon" type="image/png" href="images/mac-128@2x.png">
+  <link rel="apple-touch-icon" href="images/mac-128@2x.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/doc.css">
+  <link rel="stylesheet" href="/css/api.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a href="/" class="nav-logo">
+      <img src="images/mac-128@2x.png" alt="GitBoba icon">
+      GitBoba
+    </a>
+  </header>
+
+  <main class="content content--narrow">
+    <a href="/" class="back">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to home
+    </a>
+
+    <div class="doc-label">Developers</div>
+    <h1>Deep Links</h1>
+    <p class="updated">Last updated: June 30, 2026</p>
+
+    <p class="intro">
+      GitBoba registers the custom URL scheme <code>gitboba://</code> and accepts matching Gitea HTTPS links from configured accounts. Use these links on your Gitea instance, in emails, or in internal tools so iOS users can jump straight into the native app.
+    </p>
+
+    <div class="callout">
+      <div class="callout-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <p>
+        <strong>Self-hosted instances:</strong> iOS cannot intercept arbitrary <code>https://</code> links without per-domain Universal Links setup. The most reliable path today is the <strong>Share → Open in GitBoba</strong> extension, or explicit <code>gitboba://</code> buttons in your Gitea templates.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>URL scheme</h2>
+      <p>All paths use the <code>gitboba</code> scheme. Owner and repo names are case-sensitive and must match Gitea.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Destination</th>
+            <th>URL format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Repository</td>
+            <td><code>gitboba://repo/{owner}/{repo}</code></td>
+          </tr>
+          <tr>
+            <td>Pull request</td>
+            <td><code>gitboba://pull/{owner}/{repo}/{number}</code></td>
+          </tr>
+          <tr>
+            <td>Issue</td>
+            <td><code>gitboba://issue/{owner}/{repo}/{number}</code></td>
+          </tr>
+          <tr>
+            <td>Commit</td>
+            <td><code>gitboba://commit/{owner}/{repo}/{sha}</code></td>
+          </tr>
+          <tr>
+            <td>Notifications tab</td>
+            <td><code>gitboba://notifications</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Examples:</p>
+      <pre><code>gitboba://repo/acme/widget
+gitboba://pull/acme/widget/42
+gitboba://issue/acme/widget/17
+gitboba://commit/acme/widget/a1b2c3d4e5</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>HTML link (Gitea custom template)</h2>
+      <p>Add an “Open in GitBoba” button anywhere you can inject HTML — a custom footer, <code>custom/extra_tabs.tmpl</code>, or org README. Replace owner, repo, and number with your template variables.</p>
+      <pre><code>&lt;a href="gitboba://pull/{{.Repository.Owner.Name}}/{{.Repository.Name}}/{{.Issue.Index}}"
+   rel="nofollow"&gt;
+  Open in GitBoba
+&lt;/a&gt;</code></pre>
+      <p>For a repository header:</p>
+      <pre><code>&lt;a href="gitboba://repo/{{.Owner.Name}}/{{.Name}}"&gt;
+  Open in GitBoba
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>JavaScript (derive from the current page)</h2>
+      <p>If your Gitea web URL already matches the patterns below, you can build a deep link from <code>window.location</code> without hard-coding owner/repo:</p>
+      <pre><code>function gitBobaDeepLink(pathname) {
+  const parts = pathname.replace(/^\/+/, '').split('/');
+  if (parts.length &lt; 2) return null;
+
+  const [owner, repo, section, id] = parts;
+  const base = `gitboba://`;
+
+  if (!section) return `${base}repo/${owner}/${repo}`;
+  if (section === 'pulls' &amp;&amp; id) return `${base}pull/${owner}/${repo}/${id}`;
+  if (section === 'issues' &amp;&amp; id) return `${base}issue/${owner}/${repo}/${id}`;
+  if (section === 'commit' &amp;&amp; id) return `${base}commit/${owner}/${repo}/${id}`;
+
+  return `${base}repo/${owner}/${repo}`;
+}
+
+// Example: inject a button on PR pages
+const link = gitBobaDeepLink(window.location.pathname);
+if (link) {
+  const a = document.createElement('a');
+  a.href = link;
+  a.textContent = 'Open in GitBoba';
+  a.className = 'ui button';
+  document.querySelector('.issue-title')?.append(a);
+}</code></pre>
+      <p>Supported Gitea web paths: <code>/{owner}/{repo}</code>, <code>/pulls/{n}</code>, <code>/issues/{n}</code>, <code>/commit/{sha}</code>. Subpath installs (e.g. <code>/gitea/owner/repo</code>) are handled automatically when the user has configured the matching base URL in GitBoba.</p>
+    </div>
+
+    <div class="section">
+      <h2>Safari Smart App Banner</h2>
+      <p>Optional banner in Safari when users visit your Gitea site. Add to your instance’s <code>templates/base/head.tmpl</code> or a custom header injection. Replace <code>YOUR_APP_STORE_ID</code> with GitBoba’s App Store ID (<code>6767851416</code>).</p>
+      <pre><code>&lt;meta name="apple-itunes-app"
+      content="app-id=6767851416, app-argument=gitboba://repo/{{.Owner.Name}}/{{.Name}}"&gt;</code></pre>
+      <p>The <code>app-argument</code> is passed to GitBoba on launch — use any supported deep link for the current page.</p>
+    </div>
+
+    <div class="section">
+      <h2>Share extension (end users)</h2>
+      <p>Users with GitBoba installed can open any Gitea page from Safari:</p>
+      <ol>
+        <li>Tap <strong>Share</strong> on a Gitea URL</li>
+        <li>Choose <strong>Open in GitBoba</strong></li>
+      </ol>
+      <p>GitBoba matches the link host against saved accounts, switches to the right instance if needed, and navigates to the repo, PR, issue, or commit.</p>
+    </div>
+
+    <div class="section">
+      <h2>HTTPS links &amp; Universal Links (advanced)</h2>
+      <p>GitBoba also parses <code>https://</code> URLs whose host matches a configured account — useful when another app hands off a raw Gitea link via <code>gitboba://open?url=…</code>.</p>
+      <p>Automatic Safari interception (tap link → open app without a custom button) requires <a href="https://developer.apple.com/documentation/xcode/supporting-associated-domains" target="_blank" rel="noopener noreferrer">Apple Universal Links</a>:</p>
+      <ul>
+        <li>Host <code>/.well-known/apple-app-site-association</code> on your Gitea domain</li>
+        <li>Declare the domain in GitBoba’s entitlements (fixed set of hosts per app release)</li>
+      </ul>
+      <p>Because GitBoba users run arbitrary self-hosted domains, Universal Links are documented here for operators who control both the instance and a known domain list — not as the default integration path.</p>
+      <p>Example AASA snippet (adjust team ID and paths):</p>
+      <pre><code>{
+  "applinks": {
+    "apps": [],
+    "details": [{
+      "appID": "TEAMID.FreeTimeForce.GitBoba",
+      "paths": ["/*/pulls/*", "/*/issues/*", "/*/commit/*", "*/*"]
+    }]
+  }
+}</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>Testing</h2>
+      <p>On a simulator or device with GitBoba installed:</p>
+      <pre><code>xcrun simctl openurl booted "gitboba://repo/owner/repo"
+xcrun simctl openurl booted "gitboba://pull/owner/repo/1"</code></pre>
+      <p>Questions or integration help? <a href="https://github.com/MiguelAPerez/gitboba/issues" target="_blank" rel="noopener noreferrer">Open an issue on GitHub</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="api-compatibility.html">API Compatibility</a>
+      <a href="https://github.com/MiguelAPerez/gitboba" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="mailto:contact@miguelaperez.dev">Contact</a>
+    </div>
+    <p class="footer-legal">
+      GitBoba is not affiliated with or endorsed by Gitea or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
+    </p>
+  </footer>
+
+</body>
+</html>
