@@ -1,0 +1,70 @@
+name: Translation
+description: Suggest a correction or improvement to GitBoba's translations
+labels: [translation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve GitBoba's translations. Please include the language, the text as shown in the app, and your suggested wording.
+
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      description: The language or locale you are reporting for.
+      placeholder: e.g. Spanish (es), French (fr), Japanese (ja)
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-text
+    attributes:
+      label: Current text
+      description: The wording shown in the app today, copied exactly if possible.
+      placeholder: Paste the text as it appears in GitBoba.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-text
+    attributes:
+      label: Suggested text
+      description: How you think it should read instead.
+      placeholder: Your corrected or improved translation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Where does this appear?
+      description: The screen, tab, button, menu item, or flow where you saw this text.
+      placeholder: e.g. Settings → Appearance, Pull Request detail, notification title
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why change it?
+      description: Briefly explain the issue — grammar, tone, incorrect meaning, missing context, etc.
+      placeholder: e.g. This reads like a machine translation; the verb tense is wrong; the term doesn't match common Gitea UI wording.
+    validations:
+      required: false
+
+  - type: input
+    id: gitboba-version
+    attributes:
+      label: GitBoba version
+      description: Found in the App Store or Settings → GitBoba.
+      placeholder: e.g. 1.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: extras
+    attributes:
+      label: Screenshots or additional context
+      description: A screenshot helps us find the exact string. English UI text for the same screen is also helpful.
+    validations:
+      required: false
