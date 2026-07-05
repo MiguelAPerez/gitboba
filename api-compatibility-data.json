@@ -1,11 +1,11 @@
 {
-  "generated": "2026-06-14",
+  "generated": "2026-07-05",
   "groups": [
     {
       "id": "repositories",
       "name": "Repositories",
       "icon": "repo",
-      "desc": "Browse repos, branches, commits, and files",
+      "desc": "Browse repos, branches, commits, files, and tags",
       "status": "partial",
       "ops": [
         {
@@ -29,12 +29,40 @@
           "status": "yes"
         },
         {
-          "label": "Create",
-          "status": "planned"
+          "label": "File Create",
+          "status": "yes"
+        },
+        {
+          "label": "File Edit",
+          "status": "yes"
+        },
+        {
+          "label": "File Delete",
+          "status": "yes"
+        },
+        {
+          "label": "Tags",
+          "status": "yes"
         },
         {
           "label": "Fork",
           "status": "yes"
+        },
+        {
+          "label": "Collaborators",
+          "status": "yes"
+        },
+        {
+          "label": "Branch Protections",
+          "status": "yes"
+        },
+        {
+          "label": "Settings",
+          "status": "yes"
+        },
+        {
+          "label": "Create",
+          "status": "planned"
         }
       ]
     },
@@ -42,7 +70,7 @@
       "id": "pull-requests",
       "name": "Pull Requests",
       "icon": "pr",
-      "desc": "List, review, create, and merge",
+      "desc": "List, review, create, merge, and manage",
       "status": "supported",
       "ops": [
         {
@@ -66,7 +94,39 @@
           "status": "yes"
         },
         {
+          "label": "Close",
+          "status": "yes"
+        },
+        {
           "label": "Review",
+          "status": "yes"
+        },
+        {
+          "label": "Dismiss Review",
+          "status": "yes"
+        },
+        {
+          "label": "Resolve Comments",
+          "status": "yes"
+        },
+        {
+          "label": "Multi-comment Review",
+          "status": "yes"
+        },
+        {
+          "label": "Update Branch",
+          "status": "yes"
+        },
+        {
+          "label": "Cancel Auto-merge",
+          "status": "yes"
+        },
+        {
+          "label": "Draft",
+          "status": "yes"
+        },
+        {
+          "label": "Subscribe",
           "status": "yes"
         }
       ]
@@ -75,8 +135,8 @@
       "id": "issues",
       "name": "Issues",
       "icon": "issue",
-      "desc": "Browse, comment, and edit; create planned",
-      "status": "partial",
+      "desc": "Create, edit, comment, labels, milestones, and more",
+      "status": "supported",
       "ops": [
         {
           "label": "List",
@@ -87,8 +147,12 @@
           "status": "yes"
         },
         {
+          "label": "Create",
+          "status": "yes"
+        },
+        {
           "label": "Edit",
-          "status": "planned"
+          "status": "yes"
         },
         {
           "label": "Comment",
@@ -99,8 +163,53 @@
           "status": "yes"
         },
         {
-          "label": "Create",
-          "status": "planned"
+          "label": "Milestones",
+          "status": "yes"
+        },
+        {
+          "label": "Assignees",
+          "status": "yes"
+        },
+        {
+          "label": "Attachments",
+          "status": "yes"
+        },
+        {
+          "label": "Reactions",
+          "status": "yes"
+        },
+        {
+          "label": "Subscribe",
+          "status": "yes"
+        },
+        {
+          "label": "Pin",
+          "status": "yes"
+        },
+        {
+          "label": "Transfer",
+          "status": "yes"
+        },
+        {
+          "label": "Lock",
+          "status": "yes"
+        }
+      ]
+    },
+    {
+      "id": "comments",
+      "name": "Comments",
+      "icon": "issue",
+      "desc": "Edit and delete your own issue and PR comments",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "Edit",
+          "status": "yes"
+        },
+        {
+          "label": "Delete",
+          "status": "yes"
         }
       ]
     },
@@ -117,6 +226,10 @@
         },
         {
           "label": "Mark Read",
+          "status": "yes"
+        },
+        {
+          "label": "Mark Unread",
           "status": "yes"
         },
         {
@@ -204,8 +317,8 @@
       "id": "stars-watching",
       "name": "Stars & Watching",
       "icon": "star",
-      "desc": "Star repos and watch activity feeds",
-      "status": "partial",
+      "desc": "Star repos, watch activity feeds, and browse lists",
+      "status": "supported",
       "ops": [
         {
           "label": "Star / Unstar",
@@ -217,7 +330,11 @@
         },
         {
           "label": "Starred List",
-          "status": "planned"
+          "status": "yes"
+        },
+        {
+          "label": "Watched List",
+          "status": "yes"
         }
       ]
     },
@@ -267,6 +384,31 @@
         },
         {
           "label": "Download",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "id": "packages",
+      "name": "Packages",
+      "icon": "release",
+      "desc": "Browse and manage repository packages",
+      "status": "partial",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "View",
+          "status": "yes"
+        },
+        {
+          "label": "Delete",
+          "status": "yes"
+        },
+        {
+          "label": "Upload",
           "status": "planned"
         }
       ]
