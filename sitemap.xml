@@ -13,9 +13,9 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://gitboba.app/api-compatibility</loc>
-    <lastmod>2026-06-14</lastmod>
+    <loc>https://gitboba.app/docs</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
