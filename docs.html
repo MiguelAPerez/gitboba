@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://gitboba.app/docs">
+  <title>Documentation — GitBoba</title>
+  <meta name="description" content="GitBoba documentation — getting started, deep links, and integrations for opening repos, pull requests, and issues in the app.">
+  <link rel="icon" type="image/png" href="images/mac-128@2x.png">
+  <link rel="apple-touch-icon" href="images/mac-128@2x.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/api.css">
+  <link rel="stylesheet" href="/css/docs.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a href="/" class="nav-logo">
+      <img src="images/mac-128@2x.png" alt="GitBoba icon">
+      GitBoba
+    </a>
+  </header>
+
+  <div class="docs-shell">
+
+    <aside class="docs-sidebar" id="docsSidebar">
+      <div class="docs-sidebar-label">Documentation</div>
+      <nav class="docs-nav" aria-label="Documentation sections">
+        <a href="#overview" class="docs-nav-item" data-page="overview">Overview</a>
+        <a href="#getting-started" class="docs-nav-item" data-page="getting-started">Getting Started</a>
+        <a href="#deep-links" class="docs-nav-item" data-page="deep-links">Deep Links</a>
+        <div class="docs-nav-sub" id="deepLinksSub">
+          <a href="#deep-links-url-scheme" data-sub="deep-links-url-scheme">URL scheme</a>
+          <a href="#deep-links-routes" data-sub="deep-links-routes">Routes</a>
+          <a href="#deep-links-https" data-sub="deep-links-https">HTTPS URLs</a>
+          <a href="#deep-links-open-wrapper" data-sub="deep-links-open-wrapper">Open wrapper</a>
+          <a href="#deep-links-site-integration" data-sub="deep-links-site-integration">Site integration</a>
+        </div>
+        <a href="#api-compatibility" class="docs-nav-item" data-page="api-compatibility">API Compatibility</a>
+      </nav>
+    </aside>
+
+    <div class="docs-main">
+
+      <button type="button" class="docs-sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="docsSidebar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        Documentation menu
+      </button>
+
+      <!-- OVERVIEW -->
+      <article class="docs-page" id="overview" data-page="overview">
+        <h1>Overview</h1>
+        <p class="page-intro">
+          GitBoba is a native Gitea client for iPhone and iPad. Browse repos, pull requests, issues, Actions, and notifications from your self-hosted server — with zero data collection and credentials stored only in the iOS Keychain.
+        </p>
+
+        <div class="section">
+          <h2>What you can do</h2>
+          <ul>
+            <li><strong>Home</strong> — personalized feed of repos, open PRs, and issues</li>
+            <li><strong>Notifications</strong> — Gitea notification inbox</li>
+            <li><strong>Explore</strong> — browse organizations and repositories</li>
+            <li><strong>Repos</strong> — branches, commits, file tree, PRs, and issues</li>
+            <li><strong>Actions</strong> — workflow runs and job logs</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Requirements</h2>
+          <ul>
+            <li>iOS 26+ (iPhone and iPad)</li>
+            <li>A self-hosted Gitea instance</li>
+            <li>A Gitea API token (Settings → Applications → Generate Token)</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>In this documentation</h2>
+          <p>Use the sidebar to navigate between sections. <strong>Getting Started</strong> covers first-time setup. <strong>Deep Links</strong> explains how to open GitBoba from links on the web. <strong>API Compatibility</strong> tracks which Gitea API areas the app currently supports.</p>
+        </div>
+      </article>
+
+      <!-- GETTING STARTED -->
+      <article class="docs-page" id="getting-started" data-page="getting-started">
+        <h1>Getting Started</h1>
+        <p class="page-intro">
+          Connect GitBoba to your Gitea server in a few steps. All credentials stay on your device — nothing is sent to any third-party server.
+        </p>
+
+        <div class="docs-steps">
+          <div class="docs-step">
+            <div class="docs-step-num">1</div>
+            <div class="docs-step-body">
+              <h3>Install GitBoba</h3>
+              <p>Download the app from the <a href="https://apps.apple.com/us/app/gitboba/id6767851416" target="_blank" rel="noopener noreferrer">App Store</a>. GitBoba is free.</p>
+            </div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">2</div>
+            <div class="docs-step-body">
+              <h3>Generate an API token</h3>
+              <p>On your Gitea server, go to <strong>Settings → Applications → Generate Token</strong>. Grant the scopes you need (typically <code>read:repository</code> at minimum).</p>
+            </div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">3</div>
+            <div class="docs-step-body">
+              <h3>Add your server</h3>
+              <p>Open GitBoba and tap <strong>Add Account</strong>. Enter your server URL (e.g. <code>https://gitea.example.com</code>) and paste the API token. Subpath installations like <code>https://git.example.com/gitea</code> are supported.</p>
+            </div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">4</div>
+            <div class="docs-step-body">
+              <h3>Start browsing</h3>
+              <p>Your repos, notifications, and activity appear on the Home tab. Use Explore to browse organizations, or search for repos across your instance.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top: 2.5rem;">
+          <span class="callout-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </span>
+          <p>
+            GitBoba collects no data. Read the full <a href="privacy.html">Privacy Policy</a> for details on credential storage and network traffic.
+          </p>
+        </div>
+      </article>
+
+      <!-- DEEP LINKS -->
+      <article class="docs-page" id="deep-links" data-page="deep-links">
+        <h1>Deep Links</h1>
+        <p class="page-intro">
+          Open repos, pull requests, issues, and commits directly in GitBoba — from your website, Home Screen widgets, Shortcuts, or the iOS share sheet.
+        </p>
+
+        <div class="section" id="deep-links-url-scheme">
+          <h2>The <code>gitboba://</code> URL scheme</h2>
+          <p>
+            Registered in the app as a custom URL scheme. Tapping a <code>gitboba://</code> link on iOS opens GitBoba and navigates to the matching screen. The host segment names the resource type; owner, repo, and identifiers follow as path segments.
+          </p>
+          <div class="code-block">
+            <pre><code><span class="scheme">gitboba://</span><span class="param">{type}</span>/<span class="param">{owner}</span>/<span class="param">{repo}</span>[/<span class="param">{id}</span>]</code></pre>
+          </div>
+          <p class="docs-note">
+            Requires GitBoba to be installed. If the app isn't installed, the link won't resolve — use a normal HTTPS link as a fallback for web browsers.
+          </p>
+        </div>
+
+        <div class="section" id="deep-links-routes">
+          <h2>Supported routes</h2>
+          <p>These paths map directly to screens inside the app.</p>
+
+          <table class="route-table">
+            <thead>
+              <tr>
+                <th>URL pattern</th>
+                <th>Opens</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>gitboba://repo/{owner}/{repo}</td>
+                <td>Repository overview</td>
+              </tr>
+              <tr>
+                <td>gitboba://pull/{owner}/{repo}/{number}</td>
+                <td>Pull request detail</td>
+              </tr>
+              <tr>
+                <td>gitboba://issue/{owner}/{repo}/{number}</td>
+                <td>Issue detail</td>
+              </tr>
+              <tr>
+                <td>gitboba://commit/{owner}/{repo}/{sha}</td>
+                <td>Commit detail</td>
+              </tr>
+              <tr>
+                <td>gitboba://notifications</td>
+                <td>Notifications tab</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Examples</h3>
+
+          <div class="code-block">
+            <pre><code>gitboba://repo/alice/my-repo
+gitboba://pull/alice/my-repo/42
+gitboba://issue/alice/my-repo/7
+gitboba://commit/alice/my-repo/deadbeef
+gitboba://notifications</code></pre>
+          </div>
+
+          <p class="docs-note">
+            Note the singular hosts: <code>issue</code> and <code>pull</code>, not <code>issues</code> or <code>pulls</code>. Gitea web URLs use the plural form (<code>/issues/42</code>) — those work too when the user has the matching server configured.
+          </p>
+        </div>
+
+        <div class="section" id="deep-links-https">
+          <h2>Gitea HTTPS URLs</h2>
+          <p>
+            When a user has already added a Gitea server in GitBoba, the app can also open standard web URLs that point at that instance. GitBoba matches the host (and optional subpath prefix) against configured accounts and routes to the right screen.
+          </p>
+
+          <table class="route-table">
+            <thead>
+              <tr>
+                <th>Web URL pattern</th>
+                <th>Opens</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>https://{host}/{owner}/{repo}</td>
+                <td>Repository overview</td>
+              </tr>
+              <tr>
+                <td>https://{host}/{owner}/{repo}/pulls/{number}</td>
+                <td>Pull request detail</td>
+              </tr>
+              <tr>
+                <td>https://{host}/{owner}/{repo}/issues/{number}</td>
+                <td>Issue detail</td>
+              </tr>
+              <tr>
+                <td>https://{host}/{owner}/{repo}/commit/{sha}</td>
+                <td>Commit detail</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="code-block">
+            <pre><code>https://gitea.example.com/alice/my-repo
+https://gitea.example.com/alice/my-repo/pulls/146
+https://gitea.example.com/alice/my-repo/issues/7
+https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
+          </div>
+
+          <p class="docs-note">
+            Subpath installations are supported — if the server is at <code>https://git.example.com/gitea</code>, repo URLs include that prefix. When the link targets a different configured account than the one currently active, GitBoba switches accounts automatically.
+          </p>
+        </div>
+
+        <div class="section" id="deep-links-open-wrapper">
+          <h2>The <code>open</code> wrapper</h2>
+          <p>
+            For integrations that only have a raw HTTPS link (for example, the iOS share sheet's <strong>Open in GitBoba</strong> action), wrap the web URL in a <code>gitboba://open</code> link. GitBoba extracts the embedded URL, matches it to a configured account, and navigates accordingly.
+          </p>
+
+          <div class="code-block">
+            <pre><code>gitboba://open?url=https%3A%2F%2Fgitea.example.com%2Falice%2Fmy-repo%2Fissues%2F1</code></pre>
+          </div>
+
+          <p class="docs-note">
+            The <code>url</code> query parameter must be a fully URL-encoded HTTPS (or HTTP) Gitea link. This is the format the share extension uses when handing off from Safari or other apps.
+          </p>
+        </div>
+
+        <div class="section" id="deep-links-site-integration">
+          <h2>Linking from your site</h2>
+          <p>
+            Add <code>gitboba://</code> links alongside normal HTTPS links so mobile visitors with GitBoba installed can jump straight into the app. Use the custom scheme when you know owner, repo, and number; use HTTPS when you want the link to work in a browser too.
+          </p>
+
+          <div class="code-block">
+            <pre><code>&lt;!-- Open pull request #42 in GitBoba --&gt;
+&lt;a href="gitboba://pull/alice/my-repo/42"&gt;Open in GitBoba&lt;/a&gt;
+
+&lt;!-- Fallback-friendly: works in browser and in-app when configured --&gt;
+&lt;a href="https://gitea.example.com/alice/my-repo/pulls/42"&gt;
+  View pull request
+&lt;/a&gt;</code></pre>
+          </div>
+
+          <div class="docs-grid">
+            <div class="docs-card">
+              <h3>Widgets</h3>
+              <p>Home Screen widgets use <code>gitboba://repo/…</code> and <code>gitboba://notifications</code> as widget URLs so tapping a widget opens the right screen.</p>
+            </div>
+            <div class="docs-card">
+              <h3>Shortcuts &amp; automations</h3>
+              <p>Use the <strong>Open URL</strong> action with any supported <code>gitboba://</code> link to deep-link into GitBoba from Shortcuts or other automations.</p>
+            </div>
+            <div class="docs-card">
+              <h3>Share extension</h3>
+              <p>From Safari or any app showing a Gitea link, tap Share → <strong>Open in GitBoba</strong>. No manual URL building required.</p>
+            </div>
+            <div class="docs-card">
+              <h3>Multi-account</h3>
+              <p>HTTPS links automatically select the matching Gitea account. Custom-scheme links don't include a host, so the active account is used.</p>
+            </div>
+          </div>
+
+          <p class="docs-note" style="margin-top: 1.25rem;">
+            To open a deep link on your iPhone or iPad, tap any <code>gitboba://</code> link in Safari, Mail, or Messages. From a Gitea page in Safari, you can also use Share → <strong>Open in GitBoba</strong>. In Shortcuts, add an <strong>Open URL</strong> action with a supported link.
+          </p>
+        </div>
+
+        <div class="callout" style="margin-top: 0.5rem;">
+          <span class="callout-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </span>
+          <p>
+            Missing a route or have a question? <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">Open a feature request</a> on GitHub.
+          </p>
+        </div>
+      </article>
+
+      <!-- API COMPATIBILITY -->
+      <article class="docs-page" id="api-compatibility" data-page="api-compatibility">
+        <h1>API Compatibility</h1>
+        <p class="page-intro">
+          GitBoba is a work in progress. This section tracks which parts of the Gitea API are currently supported in the app, which have partial coverage, and which are on the roadmap for upcoming releases.
+        </p>
+
+        <div class="callout">
+          <span class="callout-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </span>
+          <p>
+            API coverage expands with each release. If there's a feature you need, <a href="https://github.com/MiguelAPerez/gitboba/issues?q=is%3Aissue+label%3Aenhancement" target="_blank" rel="noopener noreferrer">browse existing requests</a> and upvote what matches your needs. Nothing there yet? <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">Open a new request.</a>
+          </p>
+        </div>
+
+        <p class="docs-note" id="api-updated" style="margin-bottom: 1.5rem;">Last updated: —</p>
+
+        <div class="stat-grid">
+          <div class="stat-cell">
+            <div class="stat-number stat-number--green" id="api-count-supported">—</div>
+            <div class="stat-label">Ops Supported</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-number stat-number--muted" id="api-count-ops-planned">—</div>
+            <div class="stat-label">Ops Planned</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-number stat-number--muted" id="api-count-areas-complete">—</div>
+            <div class="stat-label">Areas Complete</div>
+          </div>
+        </div>
+
+        <div class="legend">
+          <span class="legend-label">Legend:</span>
+          <span class="status-pill status-pill--supported">Supported</span>
+          <span class="status-pill status-pill--partial">Partial</span>
+          <span class="status-pill status-pill--planned">Planned</span>
+        </div>
+
+        <div class="category-list" id="api-category-list"></div>
+      </article>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:contact@miguelaperez.dev">Contact</a>
+    </div>
+    <p class="footer-legal">
+      GitBoba is not affiliated with or endorsed by Gitea or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
+    </p>
+  </footer>
+
+  <script src="/js/api-compatibility.js"></script>
+  <script>
+    (function() {
+      var pages = document.querySelectorAll('.docs-page');
+      var navItems = document.querySelectorAll('.docs-nav-item[data-page]');
+      var subNav = document.getElementById('deepLinksSub');
+      var subLinks = subNav.querySelectorAll('a[data-sub]');
+      var sidebar = document.getElementById('docsSidebar');
+      var sidebarToggle = document.getElementById('sidebarToggle');
+      var apiCompatLoader = initApiCompatibility({
+        prefix: 'api-',
+        dataUrl: './api-compatibility-data.json',
+        autoLoad: false
+      });
+
+      function showPage(pageId, scrollTarget) {
+        pages.forEach(function(page) {
+          page.classList.toggle('is-active', page.dataset.page === pageId);
+        });
+        navItems.forEach(function(item) {
+          item.classList.toggle('is-active', item.dataset.page === pageId);
+        });
+        subNav.classList.toggle('is-visible', pageId === 'deep-links');
+
+        if (pageId === 'api-compatibility') {
+          apiCompatLoader.load();
+        }
+
+        if (scrollTarget) {
+          var el = document.getElementById(scrollTarget);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        if (history.replaceState) {
+          history.replaceState(null, '', '#' + (scrollTarget || pageId));
+        }
+      }
+
+      function parseHash() {
+        var hash = location.hash.slice(1) || 'overview';
+        if (hash.indexOf('deep-links') === 0) {
+          var subIds = ['deep-links-url-scheme', 'deep-links-routes', 'deep-links-https',
+            'deep-links-open-wrapper', 'deep-links-site-integration'];
+          if (subIds.indexOf(hash) !== -1) {
+            return { page: 'deep-links', sub: hash };
+          }
+          return { page: 'deep-links', sub: null };
+        }
+        return { page: hash, sub: null };
+      }
+
+      function setActiveSub(subId) {
+        subLinks.forEach(function(link) {
+          link.classList.toggle('is-active', link.dataset.sub === subId);
+        });
+      }
+
+      navItems.forEach(function(item) {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          showPage(item.dataset.page);
+          setActiveSub(null);
+          sidebar.classList.remove('is-open');
+          sidebarToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      subLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          showPage('deep-links', link.dataset.sub);
+          setActiveSub(link.dataset.sub);
+          sidebar.classList.remove('is-open');
+          sidebarToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      sidebarToggle.addEventListener('click', function() {
+        var open = sidebar.classList.toggle('is-open');
+        sidebarToggle.setAttribute('aria-expanded', String(open));
+      });
+
+      window.addEventListener('hashchange', function() {
+        var parsed = parseHash();
+        showPage(parsed.page, parsed.sub);
+        setActiveSub(parsed.sub);
+      });
+
+      var initial = parseHash();
+      showPage(initial.page, initial.sub);
+      setActiveSub(initial.sub);
+
+      // Highlight sub-section on scroll within deep links page
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          if (!document.getElementById('deep-links').classList.contains('is-active')) return;
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) setActiveSub(entry.target.id);
+          });
+        }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+        subLinks.forEach(function(link) {
+          var section = document.getElementById(link.dataset.sub);
+          if (section) observer.observe(section);
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
