@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="/js/canonical-redirect.js"></script>
+  <script>
+    if (location.hostname === 'gitboba.app') {
+      var s = document.createElement('script');
+      s.src = '/js/canonical-redirect.js';
+      document.head.appendChild(s);
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://gitboba.app/">
