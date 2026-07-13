@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    if (location.hostname === 'gitboba.app') {
+      var s = document.createElement('script');
+      s.src = '/js/canonical-redirect.js';
+      document.head.appendChild(s);
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://gitboba.app/privacy">
   <title>Privacy Policy — GitBoba</title>
   <meta name="description" content="GitBoba collects no data. Credentials stay in the iOS Keychain; all traffic goes directly to your own self-hosted Gitea server.">
-  <link rel="icon" type="image/png" href="images/mac-128@2x.png">
-  <link rel="apple-touch-icon" href="images/mac-128@2x.png">
+  <link rel="icon" type="image/png" href="/images/mac-128@2x.png">
+  <link rel="apple-touch-icon" href="/images/mac-128@2x.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -18,7 +25,7 @@
 
   <header class="nav">
     <a href="/" class="nav-logo">
-      <img src="images/mac-128@2x.png" alt="GitBoba icon">
+      <img src="/images/mac-128@2x.png" alt="GitBoba icon">
       GitBoba
     </a>
   </header>
@@ -65,7 +72,7 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
-      <a href="docs.html">Docs</a>
+      <a href="/docs">Docs</a>
       <a href="mailto:contact@miguelaperez.dev">Contact</a>
     </div>
     <p class="footer-legal">

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    if (location.hostname === 'gitboba.app') {
+      var s = document.createElement('script');
+      s.src = '/js/canonical-redirect.js';
+      document.head.appendChild(s);
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://gitboba.app/">
@@ -65,7 +72,7 @@
       <a href="#privacy">Privacy</a>
       <a href="#download">Download</a>
       <a href="#support">Support</a>
-      <a href="docs.html">Documentation</a>
+      <a href="/docs">Documentation</a>
     </nav>
     <a href="https://apps.apple.com/us/app/gitboba/id6767851416?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6767851416" class="nav-dl">
       <span>Download Free</span>
@@ -87,7 +94,7 @@
     <a href="#features" class="mobile-menu-link">Features</a>
     <a href="#privacy" class="mobile-menu-link">Privacy</a>
     <a href="#download" class="mobile-menu-link">Download</a>
-    <a href="docs.html" class="mobile-menu-link">Docs</a>
+    <a href="/docs" class="mobile-menu-link">Docs</a>
     <a href="#support" class="mobile-menu-link">Support</a>
     <a href="https://apps.apple.com/us/app/gitboba/id6767851416?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6767851416" class="mobile-menu-dl">Download Free on the App Store</a>
   </nav>
@@ -270,8 +277,8 @@
   <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-links">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="docs.html">Docs</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/docs">Docs</a>
       <a href="https://github.com/MiguelAPerez/gitboba" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=bug_report.yml" target="_blank" rel="noopener noreferrer">Report a Bug</a>
       <a href="mailto:contact@miguelaperez.dev">Contact</a>
