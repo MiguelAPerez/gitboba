@@ -14,7 +14,8 @@
   }
 
   if (/\.html$/i.test(path)) {
-    var clean = path.replace(/\.html$/i, '') || '/';
+    var base = path.replace(/\/index\.html$/i, '/').replace(/\.html$/i, '');
+    var clean = base || '/';
     location.replace(clean + search + hash);
   }
 })();
