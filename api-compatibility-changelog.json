@@ -1,0 +1,150 @@
+{
+  "entries": [
+    {
+      "date": "2026-07-28",
+      "appVersion": "1.12.1",
+      "summary": "73 → 83 ops supported; 8 → 10 of 14 areas fully supported.",
+      "sections": {
+        "nowSupported": [
+          {"group": "Repositories", "op": "Create", "note": "was planned"},
+          {"group": "Releases", "op": "Download", "note": "was planned"}
+        ],
+        "addedSupported": [
+          {"group": "Repositories", "op": "Delete"},
+          {"group": "Repositories", "op": "Branch Create"},
+          {"group": "Repositories", "op": "Branch Rename"},
+          {"group": "Repositories", "op": "Branch Delete"},
+          {"group": "Actions / CI", "op": "Dispatch"},
+          {"group": "Releases", "op": "Delete"},
+          {"group": "Releases", "op": "Asset Upload"},
+          {"group": "Webhooks", "op": "Test"}
+        ],
+        "addedPlanned": [],
+        "groupStatus": [
+          {"group": "Repositories", "before": "partial", "after": "supported"},
+          {"group": "Releases", "before": "partial", "after": "supported"}
+        ],
+        "removed": [],
+        "regressions": []
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "appVersion": "1.9.1",
+      "summary": "40 → 73 ops supported; 5 → 8 of 12 areas fully supported.",
+      "sections": {
+        "nowSupported": [
+          {"group": "Issues", "op": "Create", "note": "was planned"},
+          {"group": "Issues", "op": "Edit", "note": "was planned"},
+          {"group": "Stars & Watching", "op": "Starred List", "note": "was planned"}
+        ],
+        "addedSupported": [
+          {"group": "Repositories", "op": "File Create"},
+          {"group": "Repositories", "op": "File Edit"},
+          {"group": "Repositories", "op": "File Delete"},
+          {"group": "Repositories", "op": "Tags"},
+          {"group": "Repositories", "op": "Collaborators"},
+          {"group": "Repositories", "op": "Branch Protections"},
+          {"group": "Repositories", "op": "Settings"},
+          {"group": "Pull Requests", "op": "Dismiss Review"},
+          {"group": "Pull Requests", "op": "Resolve Comments"},
+          {"group": "Pull Requests", "op": "Multi-comment Review"},
+          {"group": "Pull Requests", "op": "Update Branch"},
+          {"group": "Pull Requests", "op": "Cancel Auto-merge"},
+          {"group": "Pull Requests", "op": "Draft"},
+          {"group": "Pull Requests", "op": "Subscribe"},
+          {"group": "Issues", "op": "Milestones"},
+          {"group": "Issues", "op": "Assignees"},
+          {"group": "Issues", "op": "Attachments"},
+          {"group": "Issues", "op": "Reactions"},
+          {"group": "Issues", "op": "Subscribe"},
+          {"group": "Issues", "op": "Pin"},
+          {"group": "Issues", "op": "Transfer"},
+          {"group": "Issues", "op": "Lock"},
+          {"group": "Comments", "op": "Edit"},
+          {"group": "Comments", "op": "Delete"},
+          {"group": "Notifications", "op": "Mark Unread"},
+          {"group": "Notifications", "op": "Filter"},
+          {"group": "Stars & Watching", "op": "Watched List"},
+          {"group": "Packages", "op": "List"},
+          {"group": "Packages", "op": "View"},
+          {"group": "Packages", "op": "Delete"}
+        ],
+        "addedPlanned": [
+          {"group": "Repositories", "op": "Create"}
+        ],
+        "groupStatus": [
+          {"group": "Issues", "before": "partial", "after": "supported"},
+          {"group": "Stars & Watching", "before": "partial", "after": "supported"}
+        ],
+        "removed": [],
+        "regressions": []
+      }
+    },
+    {
+      "date": "2026-06-14",
+      "appVersion": null,
+      "summary": "Initial matrix — 40 ops supported, 5 of 12 areas complete.",
+      "sections": {
+        "nowSupported": [],
+        "addedSupported": [
+          {"group": "Repositories", "op": "List"},
+          {"group": "Repositories", "op": "View"},
+          {"group": "Repositories", "op": "Branches"},
+          {"group": "Repositories", "op": "Commits"},
+          {"group": "Repositories", "op": "File Tree"},
+          {"group": "Repositories", "op": "Fork"},
+          {"group": "Pull Requests", "op": "List"},
+          {"group": "Pull Requests", "op": "View"},
+          {"group": "Pull Requests", "op": "Files Changed"},
+          {"group": "Pull Requests", "op": "Create"},
+          {"group": "Pull Requests", "op": "Merge"},
+          {"group": "Pull Requests", "op": "Close"},
+          {"group": "Pull Requests", "op": "Review"},
+          {"group": "Issues", "op": "List"},
+          {"group": "Issues", "op": "View"},
+          {"group": "Issues", "op": "Comment"},
+          {"group": "Issues", "op": "Labels"},
+          {"group": "Notifications", "op": "List"},
+          {"group": "Notifications", "op": "Mark Read"},
+          {"group": "Notifications", "op": "Unsubscribe"},
+          {"group": "Actions / CI", "op": "Workflow Runs"},
+          {"group": "Actions / CI", "op": "Job Logs"},
+          {"group": "Actions / CI", "op": "Re-run"},
+          {"group": "Actions / CI", "op": "Cancel"},
+          {"group": "Organizations", "op": "List"},
+          {"group": "Organizations", "op": "Repos"},
+          {"group": "User & Profile", "op": "Profile"},
+          {"group": "User & Profile", "op": "Repos"},
+          {"group": "User & Profile", "op": "Activity"},
+          {"group": "Stars & Watching", "op": "Star / Unstar"},
+          {"group": "Stars & Watching", "op": "Watch / Unwatch"},
+          {"group": "Search", "op": "Issues"},
+          {"group": "Releases", "op": "List"},
+          {"group": "Releases", "op": "Create"},
+          {"group": "Releases", "op": "Edit"},
+          {"group": "Webhooks", "op": "List"},
+          {"group": "Webhooks", "op": "Create"},
+          {"group": "Webhooks", "op": "Edit"},
+          {"group": "Webhooks", "op": "Delete"},
+          {"group": "Admin", "op": "Runners"}
+        ],
+        "addedPlanned": [
+          {"group": "Issues", "op": "Create"},
+          {"group": "Issues", "op": "Edit"},
+          {"group": "Organizations", "op": "Members"},
+          {"group": "Organizations", "op": "Manage"},
+          {"group": "Search", "op": "Repos"},
+          {"group": "Search", "op": "Users"},
+          {"group": "Search", "op": "Code"},
+          {"group": "Releases", "op": "Download"},
+          {"group": "Admin", "op": "Users"},
+          {"group": "Admin", "op": "Orgs"}
+        ],
+        "groupStatus": [],
+        "removed": [],
+        "regressions": []
+      }
+    }
+  ]
+}

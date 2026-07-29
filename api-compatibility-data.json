@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-05",
+  "generated": "2026-07-28",
   "groups": [
     {
       "id": "repositories",
       "name": "Repositories",
       "icon": "repo",
       "desc": "Browse repos, branches, commits, files, and tags",
-      "status": "partial",
+      "status": "supported",
       "ops": [
         {
           "label": "List",
@@ -62,7 +62,23 @@
         },
         {
           "label": "Create",
-          "status": "planned"
+          "status": "yes"
+        },
+        {
+          "label": "Delete",
+          "status": "yes"
+        },
+        {
+          "label": "Branch Create",
+          "status": "yes"
+        },
+        {
+          "label": "Branch Rename",
+          "status": "yes"
+        },
+        {
+          "label": "Branch Delete",
+          "status": "yes"
         }
       ]
     },
@@ -264,6 +280,10 @@
         {
           "label": "Cancel",
           "status": "yes"
+        },
+        {
+          "label": "Dispatch",
+          "status": "yes"
         }
       ]
     },
@@ -368,7 +388,7 @@
       "name": "Releases",
       "icon": "release",
       "desc": "Browse and manage repo releases",
-      "status": "partial",
+      "status": "supported",
       "ops": [
         {
           "label": "List",
@@ -384,7 +404,15 @@
         },
         {
           "label": "Download",
-          "status": "planned"
+          "status": "yes"
+        },
+        {
+          "label": "Delete",
+          "status": "yes"
+        },
+        {
+          "label": "Asset Upload",
+          "status": "yes"
         }
       ]
     },
@@ -434,6 +462,10 @@
         },
         {
           "label": "Delete",
+          "status": "yes"
+        },
+        {
+          "label": "Test",
           "status": "yes"
         }
       ]

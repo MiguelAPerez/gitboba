@@ -20,6 +20,15 @@
     planned: 'Planned'
   };
 
+  var CHANGELOG_SECTIONS = [
+    { key: 'nowSupported', title: 'Now supported' },
+    { key: 'addedSupported', title: 'New on this page' },
+    { key: 'addedPlanned', title: 'New on this page (planned)' },
+    { key: 'groupStatus', title: 'Group status', kind: 'groupStatus' },
+    { key: 'removed', title: 'Removed' },
+    { key: 'regressions', title: 'Regressions' }
+  ];
+
   function icon(name) {
     return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[name] || ICONS.issue) + '</svg>';
   }
@@ -32,6 +41,13 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  }
+
+  function formatDate(isoDate) {
+    var d = new Date(isoDate + 'T00:00:00');
+    return d.toLocaleDateString('en-US', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
   }
 
   function statusPill(status) {
@@ -60,9 +76,137 @@
     ].join('');
   }
 
+  function renderOpItem(entry, chipClass) {
+    var note = entry.note ? ' <span class="chip ' + chipClass + '">' + escapeHtml(entry.note) + '</span>' : '';
+    return '<li><strong>' + escapeHtml(entry.group) + '</strong> / ' + escapeHtml(entry.op) + note + '</li>';
+  }
+
+  function renderChangelogEntry(entry) {
+    var sections = entry.sections || {};
+    var html = [
+      '<article class="compat-changelog-entry">',
+        '<div class="compat-changelog-entry-head">',
+          '<div class="compat-changelog-date">' + escapeHtml(formatDate(entry.date)) + '</div>'
+    ];
+
+    if (entry.appVersion) {
+      html.push('<span class="compat-changelog-version">GitBoba ' + escapeHtml(entry.appVersion) + '</span>');
+    }
+
+    html.push(
+      '</div>',
+      '<p class="compat-changelog-summary">' + escapeHtml(entry.summary) + '</p>'
+    );
+
+    CHANGELOG_SECTIONS.forEach(function(section) {
+      var items = sections[section.key] || [];
+      if (!items.length) return;
+
+      html.push('<div class="compat-changelog-section">');
+      html.push('<div class="compat-changelog-section-title">' + escapeHtml(section.title) + '</div>');
+      html.push('<ul class="compat-changelog-list">');
+
+      if (section.kind === 'groupStatus') {
+        items.forEach(function(item) {
+          html.push(
+            '<li><strong>' + escapeHtml(item.group) + ':</strong> ' +
+            escapeHtml(item.before) + ' → ' + escapeHtml(item.after) + '</li>'
+          );
+        });
+      } else {
+        var chipClass = section.key === 'regressions'
+          ? 'chip--planned'
+          : (section.key === 'addedPlanned' ? 'chip--planned' : 'chip--yes');
+        items.forEach(function(item) {
+          html.push(renderOpItem(item, chipClass));
+        });
+      }
+
+      html.push('</ul></div>');
+    });
+
+    html.push('</article>');
+    return html.join('');
+  }
+
+  function initChangelogModal(opts) {
+    var prefix = opts && opts.prefix ? opts.prefix : '';
+    var openBtn = document.getElementById(prefix + 'changelog-open');
+    var closeBtn = document.getElementById(prefix + 'changelog-close');
+    var backdrop = document.getElementById(prefix + 'changelog-backdrop');
+    var body = document.getElementById(prefix + 'changelog-body');
+    var loaded = false;
+    var lastFocus = null;
+
+    function openModal() {
+      if (!backdrop || !body) return;
+      lastFocus = document.activeElement;
+      backdrop.hidden = false;
+      document.body.style.overflow = 'hidden';
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+      if (!backdrop) return;
+      backdrop.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    function renderChangelog(data) {
+      if (!body) return;
+      var entries = (data && data.entries) || [];
+      if (!entries.length) {
+        body.innerHTML = '<p class="compat-changelog-empty">No changelog entries yet.</p>';
+        return;
+      }
+      body.innerHTML = entries.map(renderChangelogEntry).join('');
+    }
+
+    function loadChangelog() {
+      if (loaded) return Promise.resolve();
+      return fetch((opts && opts.changelogUrl) || './api-compatibility-changelog.json')
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(function(data) {
+          renderChangelog(data);
+          loaded = true;
+        })
+        .catch(function(err) {
+          console.error('api-compatibility-changelog.json:', err);
+          if (body) {
+            body.innerHTML =
+              '<p class="compat-changelog-empty">Could not load changelog. Try a hard refresh.</p>';
+          }
+        });
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', function() {
+        openModal();
+        loadChangelog();
+      });
+    }
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) {
+      backdrop.addEventListener('click', function(e) {
+        if (e.target === backdrop) closeModal();
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && backdrop && !backdrop.hidden) closeModal();
+    });
+
+    return { load: loadChangelog, open: openModal, close: closeModal };
+  }
+
   window.initApiCompatibility = function(opts) {
     var prefix = opts && opts.prefix ? opts.prefix : '';
     var loaded = false;
+    var changelog = initChangelogModal(opts);
 
     function render(data) {
       var d = new Date(data.generated + 'T00:00:00');
@@ -113,6 +257,6 @@
       load();
     }
 
-    return { load: load };
+    return { load: load, openChangelog: changelog.open };
   };
 })();
