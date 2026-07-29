@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/api.css">
+  <link rel="stylesheet" href="/css/api.css?v=20260728">
   <link rel="stylesheet" href="/css/docs.css">
 </head>
 <body>
@@ -346,7 +346,12 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
           </p>
         </div>
 
-        <p class="docs-note" id="api-updated" style="margin-bottom: 1.5rem;">Last updated: —</p>
+        <div class="compat-updated-row" style="margin-bottom: 1.5rem;">
+          <p class="docs-note" id="api-updated">Last updated: —</p>
+          <button type="button" class="compat-changelog-btn" id="api-changelog-open" aria-haspopup="dialog">
+            View changelog
+          </button>
+        </div>
 
         <div class="stat-grid">
           <div class="stat-cell">
@@ -387,7 +392,22 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
     </p>
   </footer>
 
-  <script src="/js/api-compatibility.js"></script>
+  <div class="compat-changelog-backdrop" id="api-changelog-backdrop" hidden>
+    <div class="compat-changelog-dialog" role="dialog" aria-modal="true" aria-labelledby="api-changelog-title">
+      <header class="compat-changelog-header">
+        <div>
+          <h2 class="compat-changelog-title" id="api-changelog-title">Compatibility changelog</h2>
+          <p class="compat-changelog-subtitle">What changed on this page over time</p>
+        </div>
+        <button type="button" class="compat-changelog-close" id="api-changelog-close" aria-label="Close changelog">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </header>
+      <div class="compat-changelog-body" id="api-changelog-body"></div>
+    </div>
+  </div>
+
+  <script src="/js/api-compatibility.js?v=20260728b"></script>
   <script>
     (function() {
       var pages = document.querySelectorAll('.docs-page');
@@ -399,6 +419,7 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
       var apiCompatLoader = initApiCompatibility({
         prefix: 'api-',
         dataUrl: './api-compatibility-data.json',
+        changelogUrl: './api-compatibility-changelog.json',
         autoLoad: false
       });
 
