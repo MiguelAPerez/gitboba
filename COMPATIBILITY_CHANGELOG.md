@@ -9,6 +9,23 @@ generated matrix differs from the file already on disk.
 
 ---
 
+## 2026-07-30 · GitBoba 1.13.0
+
+**Summary:** 83 → 90 ops supported; 10 of 14 areas fully supported.
+
+### Now supported
+
+- **Search** / Users — was planned
+
+### New on this page
+
+- **User & Profile** / View User
+- **User & Profile** / Followers
+- **User & Profile** / Following
+- **User & Profile** / Follow / Unfollow
+- **Actions / CI** / Secrets
+- **Actions / CI** / Variables
+
 ## 2026-07-28 · GitBoba 1.12.1
 
 **Summary:** 73 → 83 ops supported; 8 → 10 of 14 areas fully supported.

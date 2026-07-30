@@ -1,6 +1,28 @@
 {
   "entries": [
     {
+      "date": "2026-07-30",
+      "appVersion": "1.13.0",
+      "summary": "83 → 90 ops supported; 10 of 14 areas fully supported.",
+      "sections": {
+        "nowSupported": [
+          {"group": "Search", "op": "Users", "note": "was planned"}
+        ],
+        "addedSupported": [
+          {"group": "User & Profile", "op": "View User"},
+          {"group": "User & Profile", "op": "Followers"},
+          {"group": "User & Profile", "op": "Following"},
+          {"group": "User & Profile", "op": "Follow / Unfollow"},
+          {"group": "Actions / CI", "op": "Secrets"},
+          {"group": "Actions / CI", "op": "Variables"}
+        ],
+        "addedPlanned": [],
+        "groupStatus": [],
+        "removed": [],
+        "regressions": []
+      }
+    },
+    {
       "date": "2026-07-28",
       "appVersion": "1.12.1",
       "summary": "73 → 83 ops supported; 8 → 10 of 14 areas fully supported.",
