@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-28",
+  "generated": "2026-07-30",
   "groups": [
     {
       "id": "repositories",
@@ -262,7 +262,7 @@
       "id": "actions",
       "name": "Actions / CI",
       "icon": "actions",
-      "desc": "Monitor, re-run, and cancel workflow runs",
+      "desc": "Monitor, dispatch, re-run, and manage workflow secrets and variables",
       "status": "supported",
       "ops": [
         {
@@ -283,6 +283,14 @@
         },
         {
           "label": "Dispatch",
+          "status": "yes"
+        },
+        {
+          "label": "Secrets",
+          "status": "yes"
+        },
+        {
+          "label": "Variables",
           "status": "yes"
         }
       ]
@@ -316,7 +324,7 @@
       "id": "user-profile",
       "name": "User & Profile",
       "icon": "user",
-      "desc": "Authenticated user info and activity",
+      "desc": "Authenticated user info, profiles, follow graph, and activity",
       "status": "supported",
       "ops": [
         {
@@ -324,7 +332,23 @@
           "status": "yes"
         },
         {
+          "label": "View User",
+          "status": "yes"
+        },
+        {
           "label": "Repos",
+          "status": "yes"
+        },
+        {
+          "label": "Followers",
+          "status": "yes"
+        },
+        {
+          "label": "Following",
+          "status": "yes"
+        },
+        {
+          "label": "Follow / Unfollow",
           "status": "yes"
         },
         {
@@ -375,7 +399,7 @@
         },
         {
           "label": "Users",
-          "status": "planned"
+          "status": "yes"
         },
         {
           "label": "Code",
