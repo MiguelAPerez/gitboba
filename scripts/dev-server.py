@@ -16,7 +16,13 @@ class DevHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         suffix = f"?{query}" if query else ""
 
         if path != "/" and not path.endswith("/") and not os.path.splitext(path)[1]:
-            html_file = path.lstrip("/") + ".html"
+            rel = path.lstrip("/")
+            index_on_disk = os.path.join(self.directory, rel, "index.html")
+            if os.path.isfile(index_on_disk):
+                self.path = f"/{rel}/index.html{suffix}"
+                return
+
+            html_file = rel + ".html"
             html_on_disk = os.path.join(self.directory, html_file)
             if os.path.isfile(html_on_disk):
                 self.path = f"/{html_file}{suffix}"

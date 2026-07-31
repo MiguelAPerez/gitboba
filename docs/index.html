@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    if (location.hostname === 'gitboba.app') {
-      var s = document.createElement('script');
-      s.src = '/js/canonical-redirect.js';
-      document.head.appendChild(s);
-    }
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://gitboba.app/docs">
+  <link rel="canonical" href="https://gitboba.app/docs/">
+  <meta name="robots" content="index, follow">
   <title>Documentation — GitBoba</title>
   <meta name="description" content="GitBoba documentation — getting started, deep links, and integrations for opening repos, pull requests, and issues in the app.">
+  <meta property="og:title" content="Documentation — GitBoba">
+  <meta property="og:description" content="Getting started, deep links, and API compatibility for the GitBoba Gitea iOS app.">
+  <meta property="og:url" content="https://gitboba.app/docs/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GitBoba">
   <link rel="icon" type="image/png" href="/images/mac-128@2x.png">
   <link rel="apple-touch-icon" href="/images/mac-128@2x.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -418,8 +417,8 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
       var sidebarToggle = document.getElementById('sidebarToggle');
       var apiCompatLoader = initApiCompatibility({
         prefix: 'api-',
-        dataUrl: './api-compatibility-data.json',
-        changelogUrl: './api-compatibility-changelog.json',
+        dataUrl: '/api-compatibility-data.json',
+        changelogUrl: '/api-compatibility-changelog.json',
         autoLoad: false
       });
 
