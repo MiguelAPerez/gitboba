@@ -1,7 +1,7 @@
 # API Compatibility Changelog
 
 Tracks changes to `api-compatibility-data.json` shown on the
-[API Compatibility](https://gitboba.app/docs#api-compatibility) docs page.
+[API Compatibility](https://gitboba.app/docs/#api-compatibility) docs page.
 
 New entries are prepended automatically by
 `python3 scripts/build-api-compatibility.py` in GitBobaApp whenever the
