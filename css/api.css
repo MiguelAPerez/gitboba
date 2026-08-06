@@ -38,6 +38,9 @@
   overflow: hidden;
   margin-bottom: 1.5rem;
 }
+/* Set by JS only when the data file carries endpointCoverage — without it the
+   fourth track would render as an empty, border-coloured block. */
+.stat-grid--with-coverage { grid-template-columns: repeat(4, 1fr); }
 .stat-cell {
   background: var(--surface);
   padding: 1.5rem 1.75rem;
@@ -174,6 +177,9 @@
   .category-left  { grid-column: 1; grid-row: 1; }
   .category-chips { grid-column: 1; grid-row: 2; }
   .category-status { grid-column: 2; grid-row: 1; align-self: start; }
+}
+@media (max-width: 860px) {
+  .stat-grid--with-coverage { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
   .stat-number { font-size: 1.75rem; }
