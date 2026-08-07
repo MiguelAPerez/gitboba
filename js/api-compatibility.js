@@ -234,6 +234,34 @@
       if (countSupported) countSupported.textContent = opsYes;
       if (countPlanned) countPlanned.textContent = opsPlanned;
       if (countAreas) countAreas.textContent = areasComplete + ' of ' + data.groups.length;
+
+      // Gitea endpoint coverage is optional — older data files omit it. Treat a
+      // partial block as absent so the cell can't render "undefined".
+      var coverage = data.endpointCoverage;
+      var hasCoverage = !!coverage &&
+        isFinite(coverage.percent) &&
+        isFinite(coverage.used) &&
+        isFinite(coverage.total) &&
+        !!coverage.giteaVersion;
+      var statGrid = document.getElementById(prefix + 'stat-grid');
+      var coverageCell = document.getElementById(prefix + 'endpoint-coverage-cell');
+      var coverageValue = document.getElementById(prefix + 'endpoint-coverage');
+      var coverageLabel = document.getElementById(prefix + 'endpoint-coverage-label');
+
+      // Without the fourth cell the grid falls back to three columns; a fixed
+      // four-column track would show as an empty block.
+      if (statGrid) statGrid.classList.toggle('stat-grid--with-coverage', hasCoverage);
+      if (coverageCell) coverageCell.hidden = !hasCoverage;
+      if (hasCoverage && coverageValue) {
+        // Generated data is already 1dp; round in case the file was hand-edited.
+        coverageValue.textContent = (Math.round(coverage.percent * 10) / 10) + '%';
+      }
+      if (hasCoverage && coverageLabel) {
+        coverageLabel.textContent =
+          'Gitea Endpoints Used (' + coverage.used + ' of ' + coverage.total +
+          ', API ' + coverage.giteaVersion + ')';
+      }
+
       if (categoryList) categoryList.innerHTML = data.groups.map(renderRow).join('');
       loaded = true;
     }

@@ -1,5 +1,11 @@
 {
   "generated": "2026-07-30",
+  "endpointCoverage": {
+    "giteaVersion": "1.26.2",
+    "used": 197,
+    "total": 471,
+    "percent": 41.8
+  },
   "groups": [
     {
       "id": "repositories",
