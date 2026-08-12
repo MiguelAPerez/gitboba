@@ -1,6 +1,6 @@
 # GitBoba
 
-A unofficial Gitea client for iPhone, iPad.
+A Gitea client for iPhone, iPad.
 
 Browse and manage your self-hosted [Gitea](https://gitea.io) server — repos, pull requests, issues, Actions, and notifications — from a clean native SwiftUI app.
 
