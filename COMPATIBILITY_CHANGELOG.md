@@ -1,13 +1,36 @@
 # API Compatibility Changelog
 
 Tracks changes to `api-compatibility-data.json` shown on the
-[API Compatibility](https://gitboba.app/docs/#api-compatibility) docs page.
+[API Compatibility](https://gitboba.app/docs#api-compatibility) docs page.
 
 New entries are prepended automatically by
 `python3 scripts/build-api-compatibility.py` in GitBobaApp whenever the
 generated matrix differs from the file already on disk.
 
 ---
+## 2026-09-12 · GitBoba 1.17.1
+
+**Summary:** 90 → 85 ops supported; 10 → 10 of 14 areas fully supported.
+
+### Now supported
+
+- **Organizations** / Members — was planned
+- **Search** / Repos — was planned
+
+### Removed from matrix
+
+These features still ship in the app; they are no longer listed as separate rows on the compatibility page.
+
+- **Actions / CI** / Secrets
+- **Actions / CI** / Variables
+- **User & Profile** / View User
+- **User & Profile** / Followers
+- **User & Profile** / Following
+- **User & Profile** / Follow / Unfollow
+
+### Corrected — Gitea offers no endpoint
+
+- **Actions / CI** / Cancel — never actually worked
 
 ## 2026-07-30 · GitBoba 1.13.0
 

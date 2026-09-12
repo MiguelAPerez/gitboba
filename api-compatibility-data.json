@@ -1,10 +1,10 @@
 {
-  "generated": "2026-07-30",
+  "generated": "2026-09-12",
   "endpointCoverage": {
-    "giteaVersion": "1.26.2",
-    "used": 197,
-    "total": 471,
-    "percent": 41.8
+    "giteaVersion": "1.27.2",
+    "used": 268,
+    "total": 482,
+    "percent": 55.6
   },
   "groups": [
     {
@@ -268,7 +268,7 @@
       "id": "actions",
       "name": "Actions / CI",
       "icon": "actions",
-      "desc": "Monitor, dispatch, re-run, and manage workflow secrets and variables",
+      "desc": "Monitor, re-run, and cancel workflow runs",
       "status": "supported",
       "ops": [
         {
@@ -285,18 +285,10 @@
         },
         {
           "label": "Cancel",
-          "status": "yes"
+          "status": "unsupported"
         },
         {
           "label": "Dispatch",
-          "status": "yes"
-        },
-        {
-          "label": "Secrets",
-          "status": "yes"
-        },
-        {
-          "label": "Variables",
           "status": "yes"
         }
       ]
@@ -305,7 +297,7 @@
       "id": "organizations",
       "name": "Organizations",
       "icon": "org",
-      "desc": "Browse orgs and repos; members planned",
+      "desc": "Browse orgs and repos; member management planned",
       "status": "partial",
       "ops": [
         {
@@ -318,7 +310,7 @@
         },
         {
           "label": "Members",
-          "status": "planned"
+          "status": "yes"
         },
         {
           "label": "Manage",
@@ -330,7 +322,7 @@
       "id": "user-profile",
       "name": "User & Profile",
       "icon": "user",
-      "desc": "Authenticated user info, profiles, follow graph, and activity",
+      "desc": "Authenticated user info and activity",
       "status": "supported",
       "ops": [
         {
@@ -338,23 +330,7 @@
           "status": "yes"
         },
         {
-          "label": "View User",
-          "status": "yes"
-        },
-        {
           "label": "Repos",
-          "status": "yes"
-        },
-        {
-          "label": "Followers",
-          "status": "yes"
-        },
-        {
-          "label": "Following",
-          "status": "yes"
-        },
-        {
-          "label": "Follow / Unfollow",
           "status": "yes"
         },
         {
@@ -401,7 +377,7 @@
         },
         {
           "label": "Repos",
-          "status": "planned"
+          "status": "yes"
         },
         {
           "label": "Users",
