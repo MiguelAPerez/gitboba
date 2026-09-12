@@ -17,7 +17,9 @@ generated matrix differs from the file already on disk.
 - **Organizations** / Members — was planned
 - **Search** / Repos — was planned
 
-### Removed
+### Removed from matrix
+
+These features still ship in the app; they are no longer listed as separate rows on the compatibility page.
 
 - **Actions / CI** / Secrets
 - **Actions / CI** / Variables

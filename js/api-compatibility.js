@@ -25,7 +25,8 @@
     { key: 'addedSupported', title: 'New on this page' },
     { key: 'addedPlanned', title: 'New on this page (planned)' },
     { key: 'groupStatus', title: 'Group status', kind: 'groupStatus' },
-    { key: 'removed', title: 'Removed' },
+    { key: 'removed', title: 'Removed from matrix' },
+    { key: 'correctedUnsupported', title: 'Corrected — Gitea offers no endpoint' },
     { key: 'regressions', title: 'Regressions' }
   ];
 
