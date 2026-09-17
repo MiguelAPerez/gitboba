@@ -4,14 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download GitBoba</title>
-  <meta name="description" content="Download GitBoba for iPhone and iPad on the App Store.">
+  <meta name="description" content="Download GitBoba — free Gitea iOS mobile app for iPhone and iPad on the App Store.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://gitboba.app/download/">
-  <meta http-equiv="refresh" content="0; url=https://apps.apple.com/us/app/gitboba/id6767851416?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6767851416">
-  <script>window.location.replace("https://apps.apple.com/us/app/gitboba/id6767851416?itscg=30200&itsct=apps_box_link&mttnsubad=6767851416");</script>
+  <script src="/js/app-store-url.js"></script>
+  <script>window.location.replace(GITBOBA_APP_STORE_URL);</script>
 </head>
 <body>
   <p>Redirecting to the App Store… If you are not redirected automatically,
-  <a href="https://apps.apple.com/us/app/gitboba/id6767851416?itscg=30200&amp;itsct=apps_box_link&amp;mttnsubad=6767851416">download GitBoba on the App Store</a>.</p>
+  <a id="app-store-link" href="https://apps.apple.com/app/gitboba/id6767851416">download GitBoba on the App Store</a>.</p>
+  <script>
+    document.getElementById('app-store-link').href = GITBOBA_APP_STORE_URL;
+  </script>
 </body>
 </html>

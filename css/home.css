@@ -177,6 +177,19 @@
     .badge-link { width: fit-content; transition: opacity 0.15s, transform 0.15s; }
     .badge-link:hover { opacity: 0.85; transform: translateY(-2px); }
     .badge-link img { height: 50px; }
+    .hero-reqs {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--text-soft);
+      max-width: 420px;
+    }
+    .hero-reqs a {
+      color: var(--green-light);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .hero-reqs a:hover { color: var(--amber-soft); }
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
