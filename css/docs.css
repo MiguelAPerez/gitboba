@@ -207,6 +207,17 @@
   color: var(--muted);
 }
 
+.docs-back a {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--green-mid);
+  text-decoration: none;
+}
+.docs-back a:hover {
+  color: var(--green-light);
+  text-decoration: underline;
+}
+
 /* SHARED DOCS COMPONENTS */
 
 .route-table {

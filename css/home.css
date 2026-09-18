@@ -365,6 +365,38 @@
     }
     .showcase-caption strong { color: var(--text); font-weight: 700; }
 
+    /* ─── INTEGRATE ──────────────────────────────── */
+    .integrate {
+      position: relative;
+      z-index: 1;
+      padding: 5rem var(--px);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .integrate-inner { max-width: 720px; margin: 0 auto; }
+    .integrate-desc {
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--text-soft);
+      margin-bottom: 1.25rem;
+    }
+    .integrate-desc code {
+      font-size: 0.88em;
+      padding: 0.12em 0.4em;
+      border-radius: 6px;
+      background: var(--surface2);
+      color: var(--green-light);
+    }
+    .integrate-link {
+      display: inline-flex;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--green-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .integrate-link:hover { color: var(--amber-soft); }
+
     /* ─── PRIVACY ────────────────────────────────── */
     .privacy {
       position: relative;
