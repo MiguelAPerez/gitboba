@@ -177,6 +177,19 @@
     .badge-link { width: fit-content; transition: opacity 0.15s, transform 0.15s; }
     .badge-link:hover { opacity: 0.85; transform: translateY(-2px); }
     .badge-link img { height: 50px; }
+    .hero-reqs {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--text-soft);
+      max-width: 420px;
+    }
+    .hero-reqs a {
+      color: var(--green-light);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .hero-reqs a:hover { color: var(--amber-soft); }
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
@@ -313,6 +326,44 @@
       line-height: 1.65;
       color: var(--muted);
     }
+
+    /* ─── APP PREVIEWS ───────────────────────────── */
+    .showcase {
+      position: relative;
+      z-index: 1;
+      padding: 6.5rem var(--px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .showcase-inner { max-width: 1200px; margin: 0 auto; }
+    .showcase-grid {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .showcase-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+      text-align: center;
+    }
+    .showcase-card img {
+      width: min(220px, 72vw);
+      height: auto;
+      border-radius: 22px;
+      box-shadow: 0 32px 64px oklch(0 0 0 / 0.45);
+    }
+    .showcase-caption {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+      max-width: 280px;
+      margin: 0;
+    }
+    .showcase-caption strong { color: var(--text); font-weight: 700; }
 
     /* ─── PRIVACY ────────────────────────────────── */
     .privacy {
@@ -605,6 +656,7 @@
       .nav-dl { display: none; }
       .nav-menu-btn { display: flex; }
       .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-grid { grid-template-columns: 1fr; gap: 3rem; }
       .feat:last-child { grid-column: span 2; }
       .privacy-inner { grid-template-columns: 1fr; gap: 3rem; }
       .privacy-sub { max-width: 100%; }

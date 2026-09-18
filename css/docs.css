@@ -189,6 +189,24 @@
   margin: 0;
 }
 
+.docs-figure {
+  margin: 1rem 0 0;
+  max-width: 220px;
+}
+.docs-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 40px oklch(0 0 0 / 0.35);
+}
+.docs-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
 /* SHARED DOCS COMPONENTS */
 
 .route-table {
