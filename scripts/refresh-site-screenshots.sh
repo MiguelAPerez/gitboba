@@ -1,21 +1,35 @@
 #!/usr/bin/env bash
-# Copy UI captures from GitBobaApp into gitboba.app/images (not app-store bezels).
+# Copy raw UI captures from GitBobaApp into gitboba.app/images.
+#
+# Use gitignored screenshots/ (simulator PNGs from take_screenshots.sh).
+# Do NOT use marketing/screenshots/ — those are bezeled with a white mat, or
+# marketing/app-store/ — captioned App Store slides.
 set -euo pipefail
 
 APP_REPO="${GITBOBA_APP_REPO:-$HOME/development/GitBobaApp}"
-SRC="$APP_REPO/marketing/screenshots"
+SRC="$APP_REPO/screenshots"
 DST="$(cd "$(dirname "$0")/.." && pwd)/images"
 PHONE="1242x2688"
 
 if [[ ! -d "$SRC" ]]; then
-  echo "Missing $SRC — set GITBOBA_APP_REPO to your GitBobaApp checkout." >&2
+  echo "Missing $SRC — run take_screenshots.sh in GitBobaApp first." >&2
   exit 1
 fi
 
-sips --resampleWidth 780 "$SRC/home-$PHONE.png" --out "$DST/screenshot-home.png" >/dev/null
-sips --resampleWidth 390 "$SRC/home-$PHONE.png" --out "$DST/screenshot-home-docs.png" >/dev/null
-sips --resampleWidth 390 "$SRC/pr-detail-$PHONE.png" --out "$DST/screenshot-pull-request.png" >/dev/null
-sips --resampleWidth 390 "$SRC/actions-$PHONE.png" --out "$DST/screenshot-actions.png" >/dev/null
-sips --resampleWidth 390 "$SRC/notifications-$PHONE.png" --out "$DST/screenshot-notifications.png" >/dev/null
+for pair in \
+  "home:screenshot-home:780" \
+  "home:screenshot-home-docs:390" \
+  "pr-detail:screenshot-pull-request:390" \
+  "actions:screenshot-actions:390" \
+  "notifications:screenshot-notifications:390"
+do
+  IFS=: read -r name out width <<<"$pair"
+  src="$SRC/${name}-${PHONE}.png"
+  if [[ ! -f "$src" ]]; then
+    echo "Missing $src" >&2
+    exit 1
+  fi
+  sips --resampleWidth "$width" "$src" --out "$DST/${out}.png" >/dev/null
+done
 
-echo "Updated site screenshots from $SRC"
+echo "Updated site screenshots from $SRC (raw UI, no bezels)"

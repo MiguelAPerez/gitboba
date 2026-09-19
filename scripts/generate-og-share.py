@@ -14,7 +14,7 @@ except ImportError:
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP_REPO = os.environ.get("GITBOBA_APP_REPO", os.path.expanduser("~/development/GitBobaApp"))
-PHONE_SHOT = os.path.join(APP_REPO, "marketing", "screenshots", "home-1242x2688.png")
+PHONE_SHOT = os.path.join(APP_REPO, "screenshots", "home-1242x2688.png")
 OUT = os.path.join(ROOT, "images", "og-share.png")
 
 W, H = 1200, 630
