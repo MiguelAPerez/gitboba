@@ -353,9 +353,7 @@
     .showcase-card img {
       width: min(220px, 72vw);
       height: auto;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      box-shadow: 0 32px 64px oklch(0 0 0 / 0.45);
+      filter: drop-shadow(0 32px 64px oklch(0 0 0 / 0.55));
       background: transparent;
       vertical-align: middle;
     }

@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
-# Raw UI from GitBobaApp/screenshots/ → gitboba.app/images (no bezels, no white mat).
+# Raw UI + device frames → transparent PNGs for gitboba.app (hero + showcase).
 set -euo pipefail
 
-APP_REPO="${GITBOBA_APP_REPO:-$HOME/development/GitBobaApp}"
-SRC="$APP_REPO/screenshots"
-DST="$(cd "$(dirname "$0")/.." && pwd)/images"
-PHONE="1242x2688"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-PREPARE="$ROOT/scripts/prepare_site_screenshot.py"
+APP_REPO="${GITBOBA_APP_REPO:-$HOME/development/GitBobaApp}"
 
-if [[ ! -d "$SRC" ]]; then
-  echo "Missing $SRC — run take_screenshots.sh in GitBobaApp first." >&2
+export GITBOBA_APP_REPO="$APP_REPO"
+
+if [[ ! -d "$APP_REPO/screenshots" ]]; then
+  echo "Missing $APP_REPO/screenshots — run take_screenshots.sh in GitBobaApp first." >&2
   exit 1
 fi
 
@@ -19,17 +17,5 @@ if ! python3 -c "import PIL" 2>/dev/null; then
   exit 1
 fi
 
-prep() {
-  local name="$1" out="$2" width="$3"
-  local src="$SRC/${name}-${PHONE}.png"
-  [[ -f "$src" ]] || { echo "Missing $src" >&2; exit 1; }
-  python3 "$PREPARE" "$src" "$DST/${out}.png" --width "$width"
-}
-
-prep home screenshot-home 780
-prep home screenshot-home-docs 390
-prep pr-detail screenshot-pull-request 390
-prep actions screenshot-actions 390
-prep notifications screenshot-notifications 390
-
-echo "Updated site screenshots from $SRC (raw UI, letterbox trimmed)"
+python3 "$ROOT/scripts/compose_site_screenshots.py"
+python3 "$ROOT/scripts/generate-og-share.py" 2>/dev/null || true
