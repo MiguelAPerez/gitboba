@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://gitboba.app/docs/getting-started/">
+  <meta name="robots" content="index, follow">
+  <title>Getting Started — GitBoba Gitea iOS App</title>
+  <meta name="description" content="Install GitBoba on iPhone or iPad and connect your self-hosted Gitea server with an API token. Free native Gitea mobile app setup guide.">
+  <meta property="og:title" content="Getting Started — GitBoba">
+  <meta property="og:description" content="Connect GitBoba to your Gitea server in a few steps. Credentials stay on your device only.">
+  <meta property="og:url" content="https://gitboba.app/docs/getting-started/">
+  <meta property="og:image" content="https://gitboba.app/images/og-share.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GitBoba">
+  <link rel="icon" type="image/png" href="/images/mac-128@2x.png">
+  <link rel="apple-touch-icon" href="/images/mac-128@2x.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/docs.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a href="/" class="nav-logo">
+      <img src="/images/mac-128@2x.png" alt="GitBoba icon">
+      GitBoba
+    </a>
+  </header>
+
+  <div class="docs-shell">
+
+    <aside class="docs-sidebar" id="docsSidebar">
+      <div class="docs-sidebar-label">Documentation</div>
+      <nav class="docs-nav" aria-label="Documentation sections">
+        <a href="/docs/#overview" class="docs-nav-item">Overview</a>
+        <a href="/docs/getting-started/" class="docs-nav-item is-active">Getting Started</a>
+        <a href="/docs/#deep-links" class="docs-nav-item">Deep Links</a>
+        <a href="/docs/#api-compatibility" class="docs-nav-item">API Compatibility</a>
+      </nav>
+    </aside>
+
+    <div class="docs-main">
+
+      <button type="button" class="docs-sidebar-toggle" id="sidebarToggle" aria-expanded="false" aria-controls="docsSidebar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        Documentation menu
+      </button>
+
+      <article class="docs-page is-active">
+        <h1>Getting Started</h1>
+        <p class="page-intro">
+          Connect GitBoba to your Gitea server in a few steps. All credentials stay on your device — nothing is sent to any third-party server.
+        </p>
+
+        <div class="docs-steps">
+          <div class="docs-step">
+            <div class="docs-step-num">1</div>
+            <div class="docs-step-body">
+              <h3>Install GitBoba</h3>
+              <p>Download the app from the <a href="/download/">App Store</a>. GitBoba is free.</p>
+              <figure class="docs-figure">
+                <img src="/images/screenshot-home-docs.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba home screen — repos, pull requests, and issues on iPhone">
+                <figcaption>Home feed after you connect your server.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">2</div>
+            <div class="docs-step-body">
+              <h3>Generate an API token</h3>
+              <p>On your Gitea server, go to <strong>Settings → Applications → Generate Token</strong>. Grant the scopes you need (typically <code>read:repository</code> at minimum).</p>
+            </div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">3</div>
+            <div class="docs-step-body">
+              <h3>Add your server</h3>
+              <p>Open GitBoba and tap <strong>Add Account</strong>. Enter your server URL (e.g. <code>https://gitea.example.com</code>) and paste the API token. Subpath installations like <code>https://git.example.com/gitea</code> are supported.</p>
+            </div>
+          </div>
+          <div class="docs-step">
+            <div class="docs-step-num">4</div>
+            <div class="docs-step-body">
+              <h3>Start browsing</h3>
+              <p>Your repos, notifications, and activity appear on the Home tab. Use Explore to browse organizations, or search for repos across your instance.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top: 2.5rem;">
+          <span class="callout-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </span>
+          <p>
+            GitBoba collects no data. Read the full <a href="/privacy">Privacy Policy</a> for details on credential storage and network traffic.
+          </p>
+        </div>
+
+        <p class="docs-back" style="margin-top: 2rem;">
+          <a href="/docs/#deep-links">Open repos from the web with deep links →</a>
+        </p>
+      </article>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/docs/">Documentation</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="mailto:contact@miguelaperez.dev">Contact</a>
+    </div>
+    <p class="footer-legal">
+      GitBoba is not affiliated with or endorsed by Gitea or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
+    </p>
+  </footer>
+
+  <script>
+    (function() {
+      var sidebar = document.getElementById('docsSidebar');
+      var sidebarToggle = document.getElementById('sidebarToggle');
+      sidebarToggle.addEventListener('click', function() {
+        var open = sidebar.classList.toggle('is-open');
+        sidebarToggle.setAttribute('aria-expanded', String(open));
+      });
+    })();
+  </script>
+
+</body>
+</html>
