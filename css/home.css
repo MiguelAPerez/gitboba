@@ -353,8 +353,9 @@
     .showcase-card img {
       width: min(220px, 72vw);
       height: auto;
-      border-radius: 22px;
-      box-shadow: 0 32px 64px oklch(0 0 0 / 0.45);
+      filter: drop-shadow(0 32px 64px oklch(0 0 0 / 0.55));
+      background: transparent;
+      vertical-align: middle;
     }
     .showcase-caption {
       font-size: 0.88rem;
@@ -364,6 +365,38 @@
       margin: 0;
     }
     .showcase-caption strong { color: var(--text); font-weight: 700; }
+
+    /* ─── INTEGRATE ──────────────────────────────── */
+    .integrate {
+      position: relative;
+      z-index: 1;
+      padding: 5rem var(--px);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .integrate-inner { max-width: 720px; margin: 0 auto; }
+    .integrate-desc {
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--text-soft);
+      margin-bottom: 1.25rem;
+    }
+    .integrate-desc code {
+      font-size: 0.88em;
+      padding: 0.12em 0.4em;
+      border-radius: 6px;
+      background: var(--surface2);
+      color: var(--green-light);
+    }
+    .integrate-link {
+      display: inline-flex;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--green-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .integrate-link:hover { color: var(--amber-soft); }
 
     /* ─── PRIVACY ────────────────────────────────── */
     .privacy {

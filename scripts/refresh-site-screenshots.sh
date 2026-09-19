@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
-# Copy UI captures from GitBobaApp into gitboba.app/images (not app-store bezels).
+# Raw UI + device frames → transparent PNGs for gitboba.app (hero + showcase).
 set -euo pipefail
 
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 APP_REPO="${GITBOBA_APP_REPO:-$HOME/development/GitBobaApp}"
-SRC="$APP_REPO/marketing/screenshots"
-DST="$(cd "$(dirname "$0")/.." && pwd)/images"
-PHONE="1242x2688"
 
-if [[ ! -d "$SRC" ]]; then
-  echo "Missing $SRC — set GITBOBA_APP_REPO to your GitBobaApp checkout." >&2
+export GITBOBA_APP_REPO="$APP_REPO"
+
+if [[ ! -d "$APP_REPO/screenshots" ]]; then
+  echo "Missing $APP_REPO/screenshots — run take_screenshots.sh in GitBobaApp first." >&2
   exit 1
 fi
 
-sips --resampleWidth 780 "$SRC/home-$PHONE.png" --out "$DST/screenshot-home.png" >/dev/null
-sips --resampleWidth 390 "$SRC/home-$PHONE.png" --out "$DST/screenshot-home-docs.png" >/dev/null
-sips --resampleWidth 390 "$SRC/pr-detail-$PHONE.png" --out "$DST/screenshot-pull-request.png" >/dev/null
-sips --resampleWidth 390 "$SRC/actions-$PHONE.png" --out "$DST/screenshot-actions.png" >/dev/null
-sips --resampleWidth 390 "$SRC/notifications-$PHONE.png" --out "$DST/screenshot-notifications.png" >/dev/null
+if ! python3 -c "import PIL" 2>/dev/null; then
+  echo "Need Pillow: python3 -m venv .venv-site && .venv-site/bin/pip install Pillow" >&2
+  exit 1
+fi
 
-echo "Updated site screenshots from $SRC"
+python3 "$ROOT/scripts/compose_site_screenshots.py"
+python3 "$ROOT/scripts/generate-og-share.py" 2>/dev/null || true
