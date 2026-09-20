@@ -12,11 +12,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://gitboba.app/">
   <meta name="apple-itunes-app" content="app-id=6767851416">
-  <meta name="description" content="Free Gitea mobile app for iPhone and iPad (iOS). Browse repos, pull requests, issues, Actions, and notifications on your self-hosted Gitea server — native SwiftUI, no data collection.">
-  <meta name="keywords" content="Gitea iOS app, Gitea iPhone client, self-hosted Git iOS, Gitea mobile app, SwiftUI Gitea">
+  <meta name="description" content="Free Gitea and Forgejo mobile app for iPhone and iPad. Connect self-hosted Gitea or Forgejo (including Codeberg) — or try Demo mode with no server. Repos, PRs, issues, Actions, and notifications in native SwiftUI.">
+  <meta name="keywords" content="Gitea iOS app, Forgejo iOS app, Codeberg iOS, Gitea iPhone client, Forgejo mobile app, self-hosted Git iOS, Gitea mobile app, Codeberg iPhone app">
   <meta name="author" content="Miguel A. Perez">
-  <meta property="og:title" content="GitBoba — Gitea Client for iPhone &amp; iPad">
-  <meta property="og:description" content="Free Gitea mobile app for iPhone and iPad (iOS). Native client for your self-hosted Gitea server — repos, PRs, issues, Actions, and notifications.">
+  <meta property="og:title" content="GitBoba — Gitea &amp; Forgejo Client for iPhone &amp; iPad">
+  <meta property="og:description" content="Native Gitea and Forgejo iOS app — self-hosted servers and Codeberg, plus Demo mode with no account. Repos, PRs, issues, Actions, and notifications.">
   <meta property="og:image" content="https://gitboba.app/images/og-share.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -25,22 +25,22 @@
   <meta property="og:site_name" content="GitBoba">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://gitboba.app/images/og-share.png">
-  <meta name="twitter:title" content="GitBoba — Gitea Client for iPhone &amp; iPad">
-  <meta name="twitter:description" content="Free Gitea mobile app for iPhone and iPad (iOS). Native SwiftUI client for self-hosted Gitea.">
-  <title>GitBoba — Gitea iOS App for iPhone &amp; iPad</title>
+  <meta name="twitter:title" content="GitBoba — Gitea &amp; Forgejo Client for iPhone &amp; iPad">
+  <meta name="twitter:description" content="Gitea and Forgejo iOS app for iPhone and iPad — Codeberg, self-hosted instances, and Demo mode. Native SwiftUI, free.">
+  <title>GitBoba — Gitea &amp; Forgejo iOS App for iPhone &amp; iPad</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "GitBoba",
-    "description": "Free Gitea iOS app. Browse repos, pull requests, issues, Actions, and notifications from your self-hosted Gitea server in a native SwiftUI app.",
+    "description": "Free Gitea and Forgejo iOS app for iPhone and iPad. Connect self-hosted Gitea or Forgejo (including Codeberg), or use Demo mode — repos, pull requests, issues, Actions, and notifications in native SwiftUI.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "iOS 26",
     "url": "https://gitboba.app/",
     "image": "https://gitboba.app/images/screenshot-home.png",
     "downloadUrl": "https://gitboba.app/download/",
     "installUrl": "https://apps.apple.com/app/gitboba/id6767851416",
-    "softwareVersion": "1.0",
+    "softwareVersion": "1.18.0",
     "author": {
       "@type": "Person",
       "name": "Miguel A. Perez"
@@ -107,13 +107,13 @@
     <div class="hero-content">
       <div class="pill">
         <span class="pill-dot"></span>
-        A Gitea Client
+        Gitea &amp; Forgejo · v1.18
       </div>
 
-      <h1>Gitea iOS app<br>for <span class="accent">iPhone &amp; iPad.</span></h1>
+      <h1>Gitea &amp; Forgejo iOS app<br>for <span class="accent">iPhone &amp; iPad.</span></h1>
 
       <p class="hero-desc">
-        The native Gitea mobile app for iPhone and iPad — browse and manage your self-hosted server, including repos, pull requests, issues, Actions, and notifications, in a clean SwiftUI client.
+        The native mobile client for Gitea and Forgejo on iPhone and iPad — connect your self-hosted instance or Codeberg, or explore the built-in Demo with sample repos, issues, pull requests, and Actions. Repos, notifications, and CI, in SwiftUI.
       </p>
 
       <div class="hero-actions">
@@ -121,7 +121,7 @@
           <img src="images/download-on-the-app-store-en-us-black/black.svg" alt="Download on the App Store">
         </a>
         <p class="hero-reqs">
-          Requires <strong>iOS 26+</strong> and a <strong>self-hosted Gitea</strong> server.
+          Requires <strong>iOS 26+</strong>. Use a <strong>Gitea or Forgejo</strong> server, or try <strong>Demo</strong> with no account.
           <a href="/docs/getting-started/">Setup guide</a>
         </p>
       </div>
@@ -143,6 +143,23 @@
         width="780"
         height="1688"
         data-comment-anchor="c3cf3fcca3-img" style="opacity: 1">
+    </div>
+  </section>
+
+  <!-- ── WHAT'S NEW ── -->
+  <section id="whats-new" class="whats-new" aria-labelledby="whats-new-title">
+    <div class="whats-new-inner">
+      <div class="eyebrow">What&rsquo;s new in 1.18</div>
+      <h2 id="whats-new-title" class="section-title">Forgejo, Demo mode, and a sharper Actions experience</h2>
+      <ul class="whats-new-list">
+        <li><strong>Forgejo &amp; Codeberg</strong> — add Forgejo servers alongside Gitea, with a one-tap Codeberg option when you connect an account.</li>
+        <li><strong>Demo</strong> — try the full app on your device with sample repositories, issues, pull requests, and Actions — no server required.</li>
+        <li><strong>Actions</strong> — rebuilt around live workflow runs, streaming logs, and artifact downloads.</li>
+        <li><strong>Pull requests</strong> — redesigned detail screen, plus an administrator merge override when checks are blocking.</li>
+        <li><strong>Organizations</strong> — teams, members, repos, webhooks, and labels; site admins can manage users and every organization.</li>
+        <li><strong>Accounts</strong> — GitBoba verifies your server and token before saving; Settings shows which server and version you&rsquo;re on.</li>
+        <li><strong>Languages</strong> — more of the app in Spanish, French, and Chinese.</li>
+      </ul>
     </div>
   </section>
 
@@ -171,7 +188,7 @@
             </svg>
           </div>
           <div class="feat-name">Notifications</div>
-          <p class="feat-desc">Your Gitea inbox, delivered natively. Never miss a review request or mention again.</p>
+          <p class="feat-desc">Your server inbox, delivered natively. Never miss a review request or mention on Gitea or Forgejo.</p>
         </div>
 
         <div class="feat">
@@ -204,7 +221,7 @@
             </svg>
           </div>
           <div class="feat-name">Actions</div>
-          <p class="feat-desc">Monitor CI/CD workflow runs and drill into job logs without ever opening a browser.</p>
+          <p class="feat-desc">Follow live Gitea and Forgejo Actions runs, stream job logs, and download artifacts — without a browser.</p>
         </div>
 
       </div>
@@ -215,19 +232,19 @@
   <section id="screenshots" class="showcase" aria-labelledby="showcase-title">
     <div class="showcase-inner">
       <div class="eyebrow">In the app</div>
-      <h2 id="showcase-title" class="section-title">Pull requests, Actions, and notifications on your Gitea server</h2>
+      <h2 id="showcase-title" class="section-title">Pull requests, Actions, and notifications on Gitea &amp; Forgejo</h2>
       <ul class="showcase-grid">
         <li class="showcase-card">
-          <img src="images/screenshot-pull-request.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea iOS app — pull request diff on iPhone">
-          <p class="showcase-caption"><strong>Pull requests</strong> — review diffs and threads from your self-hosted Gitea.</p>
+          <img src="images/screenshot-pull-request.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea and Forgejo iOS app — pull request diff on iPhone">
+          <p class="showcase-caption"><strong>Pull requests</strong> — review diffs and threads on Gitea, Forgejo, or Codeberg.</p>
         </li>
         <li class="showcase-card">
-          <img src="images/screenshot-actions.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea iOS app — Gitea Actions workflow run logs">
+          <img src="images/screenshot-actions.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Forgejo and Gitea iOS app — Actions workflow run logs">
           <p class="showcase-caption"><strong>Actions</strong> — follow workflow runs and read job logs without a browser.</p>
         </li>
         <li class="showcase-card">
-          <img src="images/screenshot-notifications.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea iOS app — Gitea notification inbox">
-          <p class="showcase-caption"><strong>Notifications</strong> — your Gitea inbox, native on iPhone and iPad.</p>
+          <img src="images/screenshot-notifications.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea and Forgejo iOS app — notification inbox">
+          <p class="showcase-caption"><strong>Notifications</strong> — your server inbox, native on iPhone and iPad.</p>
         </li>
       </ul>
     </div>
@@ -237,9 +254,9 @@
   <section id="integrate" class="integrate">
     <div class="integrate-inner">
       <div class="eyebrow">Integrations</div>
-      <h2 class="section-title">Open in GitBoba from your Gitea server</h2>
+      <h2 class="section-title">Open in GitBoba from Gitea or Forgejo</h2>
       <p class="integrate-desc">
-        Add <code>gitboba://</code> links on your instance so teammates jump from the browser into the native app — repos, pull requests, issues, and Actions. Share-sheet support opens Gitea URLs from Safari without building links by hand.
+        Add <code>gitboba://</code> links on your Gitea or Forgejo instance so teammates jump from the browser into the native app — repos, pull requests, issues, and Actions. Share-sheet support opens instance URLs from Safari without building links by hand.
       </p>
       <a href="/docs/#deep-links-site-integration" class="integrate-link">Deep links &amp; site integration docs</a>
     </div>
@@ -262,7 +279,7 @@
         </div>
         <div class="privacy-item">
           <h3>Direct connection only</h3>
-          <p>Every network request goes straight from your device to your Gitea instance. No proxy, no relay, no developer-operated servers in between.</p>
+          <p>Every network request goes straight from your device to your Gitea or Forgejo instance. No proxy, no relay, no developer-operated servers in between.</p>
         </div>
         <div class="privacy-item">
           <h3>No analytics or tracking</h3>
@@ -291,7 +308,7 @@
           <p class="dl-reqs">
             Requires iOS 26 or later<br>
             Compatible with iPhone and iPad<br>
-            Requires a self-hosted Gitea instance
+            Gitea or Forgejo server — or Demo mode with no account
           </p>
         </div>
       </div>
@@ -304,7 +321,7 @@
       <div class="eyebrow">Support</div>
       <h2 class="section-title">Found a bug?</h2>
       <p class="support-desc">
-        Open a GitHub issue — include your iOS version, Gitea version, and steps to reproduce. I'll take a look.
+        Open a GitHub issue — include your iOS version, server type (Gitea or Forgejo), server version, and steps to reproduce. I'll take a look.
       </p>
       <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=bug_report.yml" target="_blank" rel="noopener noreferrer" class="support-btn">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -325,7 +342,7 @@
       <a href="mailto:contact@miguelaperez.dev">Contact</a>
     </div>
     <p class="footer-legal">
-      GitBoba is not affiliated with or endorsed by Gitea or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
+      GitBoba is not affiliated with or endorsed by Gitea, Forgejo, Codeberg, or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
     </p>
   </footer>
 

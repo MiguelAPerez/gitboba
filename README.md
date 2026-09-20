@@ -1,24 +1,25 @@
 # GitBoba
 
-A Gitea client for iPhone, iPad.
+A native Gitea and Forgejo client for iPhone and iPad.
 
-Browse and manage your self-hosted [Gitea](https://gitea.io) server — repos, pull requests, issues, Actions, and notifications — from a clean native SwiftUI app.
+Browse and manage your self-hosted [Gitea](https://gitea.io) or [Forgejo](https://forgejo.org) server — including [Codeberg](https://codeberg.org) — or try **Demo mode** with sample repos, issues, pull requests, and Actions. Repos, pull requests, issues, Actions, and notifications in a clean SwiftUI app.
 
 <img src="images/screenshot-home.png" alt="GitBoba Home Screen" width="300">
 
 ## Features
 
 - **Home** — personalized feed of your repos, open PRs, and issues
-- **Notifications** — Gitea notification inbox
-- **Explore** — browse organizations and their repositories
+- **Notifications** — inbox for your Gitea or Forgejo account
+- **Explore** — browse organizations, teams, webhooks, and labels
 - **Repos** — repo detail, branches, commits, file tree, PRs, issues
-- **Actions** — workflow run list and job logs
+- **Actions** — live workflow runs, job logs, and artifact downloads
+- **Demo** — explore the app without connecting a server (1.18+)
 
 ## Requirements
 
 - iOS 26+ / macOS 26+
-- A self-hosted Gitea instance
-- A Gitea API token (Settings → Applications → Generate Token)
+- A Gitea or Forgejo instance **or** Demo mode (no account)
+- An API token from your server (Settings → Applications → Generate Token) when not using Demo
 
 ## Privacy
 
