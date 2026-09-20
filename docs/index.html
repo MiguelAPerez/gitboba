@@ -6,9 +6,9 @@
   <link rel="canonical" href="https://gitboba.app/docs/">
   <meta name="robots" content="index, follow">
   <title>Documentation — GitBoba</title>
-  <meta name="description" content="GitBoba documentation — getting started, deep links, and integrations for opening repos, pull requests, and issues in the app.">
+  <meta name="description" content="GitBoba documentation — Gitea and Forgejo setup (Codeberg), deep links, and API compatibility for the iOS app.">
   <meta property="og:title" content="Documentation — GitBoba">
-  <meta property="og:description" content="Getting started, deep links, and API compatibility for the GitBoba Gitea iOS app.">
+  <meta property="og:description" content="Getting started for Gitea and Forgejo, deep links, and API compatibility for the GitBoba iOS app.">
   <meta property="og:url" content="https://gitboba.app/docs/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="GitBoba">
@@ -60,17 +60,18 @@
       <article class="docs-page" id="overview" data-page="overview">
         <h1>Overview</h1>
         <p class="page-intro">
-          GitBoba is a native Gitea client for iPhone and iPad. Browse repos, pull requests, issues, Actions, and notifications from your self-hosted server — with zero data collection and credentials stored only in the iOS Keychain.
+          GitBoba is a native Gitea and Forgejo client for iPhone and iPad — connect self-hosted instances, Codeberg, or Demo mode. Browse repos, pull requests, issues, Actions, and notifications with zero data collection and credentials stored only in the iOS Keychain.
         </p>
 
         <div class="section">
           <h2>What you can do</h2>
           <ul>
             <li><strong>Home</strong> — personalized feed of repos, open PRs, and issues</li>
-            <li><strong>Notifications</strong> — Gitea notification inbox</li>
-            <li><strong>Explore</strong> — browse organizations and repositories</li>
+            <li><strong>Notifications</strong> — inbox for Gitea and Forgejo accounts</li>
+            <li><strong>Explore</strong> — organizations, teams, webhooks, and labels</li>
             <li><strong>Repos</strong> — branches, commits, file tree, PRs, and issues</li>
-            <li><strong>Actions</strong> — workflow runs and job logs</li>
+            <li><strong>Actions</strong> — live workflow runs, logs, and artifacts</li>
+            <li><strong>Demo</strong> — sample server on device, no account (1.18+)</li>
           </ul>
         </div>
 
@@ -78,14 +79,14 @@
           <h2>Requirements</h2>
           <ul>
             <li>iOS 26+ (iPhone and iPad)</li>
-            <li>A self-hosted Gitea instance</li>
-            <li>A Gitea API token (Settings → Applications → Generate Token)</li>
+            <li>A Gitea or Forgejo instance <em>or</em> Demo mode</li>
+            <li>An API token from your server when not using Demo</li>
           </ul>
         </div>
 
         <div class="section">
           <h2>In this documentation</h2>
-          <p>Use the sidebar to navigate between sections. <strong>Getting Started</strong> covers first-time setup. <strong>Deep Links</strong> explains how to open GitBoba from links on the web. <strong>API Compatibility</strong> tracks which Gitea API areas the app currently supports.</p>
+          <p>Use the sidebar to navigate between sections. <strong>Getting Started</strong> covers Gitea, Forgejo, Codeberg, and Demo setup. <strong>Deep Links</strong> explains how to open GitBoba from links on the web. <strong>API Compatibility</strong> tracks which Gitea/Forgejo API areas the app currently supports.</p>
         </div>
       </article>
 
@@ -93,7 +94,7 @@
       <article class="docs-page" id="getting-started" data-page="getting-started">
         <h1>Getting Started</h1>
         <p class="page-intro">
-          Connect GitBoba to your Gitea server in a few steps. All credentials stay on your device — nothing is sent to any third-party server.
+          Connect GitBoba to Gitea or Forgejo in a few steps, or use Demo mode with no server. All credentials stay on your device — nothing is sent to any third-party server. See also the dedicated <a href="/docs/getting-started/">Getting Started</a> page.
         </p>
 
         <div class="docs-steps">
@@ -112,7 +113,7 @@
             <div class="docs-step-num">2</div>
             <div class="docs-step-body">
               <h3>Generate an API token</h3>
-              <p>On your Gitea server, go to <strong>Settings → Applications → Generate Token</strong>. Grant the scopes you need (typically <code>read:repository</code> at minimum).</p>
+              <p>On your Gitea or Forgejo server, go to <strong>Settings → Applications → Generate Token</strong>. Grant the scopes you need (typically <code>read:repository</code> at minimum).</p>
             </div>
           </div>
           <div class="docs-step">
@@ -216,9 +217,9 @@ gitboba://notifications</code></pre>
         </div>
 
         <div class="section" id="deep-links-https">
-          <h2>Gitea HTTPS URLs</h2>
+          <h2>Gitea &amp; Forgejo HTTPS URLs</h2>
           <p>
-            When a user has already added a Gitea server in GitBoba, the app can also open standard web URLs that point at that instance. GitBoba matches the host (and optional subpath prefix) against configured accounts and routes to the right screen.
+            When a user has already added a Gitea or Forgejo server in GitBoba, the app can also open standard web URLs that point at that instance. GitBoba matches the host (and optional subpath prefix) against configured accounts and routes to the right screen.
           </p>
 
           <table class="route-table">
@@ -271,7 +272,7 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
           </div>
 
           <p class="docs-note">
-            The <code>url</code> query parameter must be a fully URL-encoded HTTPS (or HTTP) Gitea link. This is the format the share extension uses when handing off from Safari or other apps.
+            The <code>url</code> query parameter must be a fully URL-encoded HTTPS (or HTTP) link to your Gitea or Forgejo instance. This is the format the share extension uses when handing off from Safari or other apps.
           </p>
         </div>
 
@@ -302,11 +303,11 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
             </div>
             <div class="docs-card">
               <h3>Share extension</h3>
-              <p>From Safari or any app showing a Gitea link, tap Share → <strong>Open in GitBoba</strong>. No manual URL building required.</p>
+              <p>From Safari or any app showing a Gitea or Forgejo link, tap Share → <strong>Open in GitBoba</strong>. No manual URL building required.</p>
             </div>
             <div class="docs-card">
               <h3>Multi-account</h3>
-              <p>HTTPS links automatically select the matching Gitea account. Custom-scheme links don't include a host, so the active account is used.</p>
+              <p>HTTPS links automatically select the matching account. Custom-scheme links don't include a host, so the active account is used.</p>
             </div>
           </div>
 
@@ -333,7 +334,7 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
       <article class="docs-page" id="api-compatibility" data-page="api-compatibility">
         <h1>API Compatibility</h1>
         <p class="page-intro">
-          GitBoba is a work in progress. This section tracks which parts of the Gitea API are currently supported in the app, which have partial coverage, and which are on the roadmap for upcoming releases.
+          GitBoba is a work in progress. This section tracks which parts of the Gitea and Forgejo APIs are currently supported in the app, which have partial coverage, and which are on the roadmap for upcoming releases.
         </p>
 
         <div class="callout">
@@ -395,7 +396,7 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
       <a href="mailto:contact@miguelaperez.dev">Contact</a>
     </div>
     <p class="footer-legal">
-      GitBoba is not affiliated with or endorsed by Gitea or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
+      GitBoba is not affiliated with or endorsed by Gitea, Forgejo, Codeberg, or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
     </p>
   </footer>
 
