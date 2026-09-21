@@ -10,7 +10,29 @@ import sys
 from functools import partial
 
 
+LONG_CACHE_SUFFIXES = (
+    ".css",
+    ".js",
+    ".png",
+    ".webp",
+    ".jpg",
+    ".jpeg",
+    ".svg",
+    ".ico",
+    ".woff",
+    ".woff2",
+)
+
+
 class DevHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self) -> None:
+        path = self.path.split("?", 1)[0]
+        if path.endswith(LONG_CACHE_SUFFIXES):
+            self.send_header("Cache-Control", "public, max-age=31536000, immutable")
+        elif path.endswith(".html") or path.endswith("/"):
+            self.send_header("Cache-Control", "no-cache")
+        super().end_headers()
+
     def _rewrite_extensionless_path(self) -> None:
         path, _, query = self.path.partition("?")
         suffix = f"?{query}" if query else ""
