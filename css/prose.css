@@ -1,0 +1,54 @@
+/* Shared typography for legal pages and docs content */
+
+.eyebrow,
+.doc-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 0.9rem;
+}
+
+.section { margin-bottom: 2.75rem; }
+.docs-page .section { scroll-margin-top: 5rem; }
+
+.content h2,
+.docs-page .section h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.docs-page .section h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.content p,
+.content li,
+.docs-page .section p,
+.docs-page .section li {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--text-soft);
+}
+
+.content ul,
+.docs-page .section ul {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.content ul { margin-top: 0; }
+
+.content li::marker,
+.docs-page .section li::marker { color: var(--green); }

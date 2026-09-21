@@ -2,3 +2,5 @@
 
 # Local planning notes (not for the public repo)
 drafts/
+.lighthouse-*.json
+.lighthouse-latest.json

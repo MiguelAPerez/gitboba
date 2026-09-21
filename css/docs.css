@@ -117,39 +117,6 @@
   margin-bottom: 2.5rem;
   max-width: 56ch;
 }
-.docs-page .section {
-  margin-bottom: 2.75rem;
-  scroll-margin-top: 5rem;
-}
-.docs-page .section h2 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  margin-bottom: 0.75rem;
-  color: var(--text);
-}
-.docs-page .section h3 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  color: var(--text);
-}
-.docs-page .section p,
-.docs-page .section li {
-  font-size: 0.9rem;
-  line-height: 1.75;
-  color: var(--text-soft);
-}
-.docs-page .section ul {
-  padding-left: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
-}
-.docs-page .section li::marker { color: var(--green); }
-
 .docs-steps {
   display: flex;
   flex-direction: column;
@@ -219,6 +186,35 @@
 }
 
 /* SHARED DOCS COMPONENTS */
+
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: oklch(0.78 0.11 72 / 0.08);
+  border: 1px solid oklch(0.78 0.11 72 / 0.25);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 3rem;
+}
+.callout-icon { flex-shrink: 0; margin-top: 1px; }
+.callout-icon svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--amber);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.callout p {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--amber-soft);
+}
+.callout a { color: var(--amber); }
+.callout a:hover { color: var(--amber-soft); text-decoration: underline; }
+.docs-page .callout { margin-bottom: 2rem; }
 
 .route-table {
   width: 100%;
@@ -326,7 +322,6 @@
   stroke-linejoin: round;
 }
 
-.docs-page .callout { margin-bottom: 2rem; }
 .docs-page .stat-grid { margin-bottom: 1.5rem; }
 .docs-page .legend { margin-bottom: 1.5rem; }
 

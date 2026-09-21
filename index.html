@@ -56,7 +56,10 @@
   <link rel="apple-touch-icon" href="images/mac-128@2x.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"></noscript>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/prose.css">
   <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
@@ -67,7 +70,10 @@
   <!-- ── NAV ── -->
   <header class="nav">
     <a href="/" class="nav-logo">
-      <img src="images/mac-128@2x.png" alt="GitBoba icon">
+      <picture>
+        <source type="image/webp" srcset="images/mac-128@2x.webp">
+        <img src="images/mac-128@2x.png" alt="GitBoba icon" width="28" height="28" decoding="async">
+      </picture>
       GitBoba
     </a>
     <nav class="nav-links">
@@ -102,6 +108,7 @@
     <a href="/download/" class="mobile-menu-dl">Download Free on the App Store</a>
   </nav>
 
+  <main id="main-content">
   <!-- ── HERO ── -->
   <section class="hero">
     <div class="hero-content">
@@ -118,7 +125,7 @@
 
       <div class="hero-actions">
         <a href="/download/" class="badge-link">
-          <img src="images/download-on-the-app-store-en-us-black/black.svg" alt="Download on the App Store">
+          <img src="images/download-on-the-app-store-en-us-black/black.svg" alt="Download on the App Store" width="150" height="50">
         </a>
         <p class="hero-reqs">
           Requires <strong>iOS 26+</strong>. Use a <strong>Gitea or Forgejo</strong> server, or try <strong>Demo</strong> with no account.
@@ -136,13 +143,17 @@
 
     <div class="hero-visual">
       <div class="hero-glow"></div>
-      <img
-        src="images/screenshot-home.png"
-        alt="GitBoba Home Screen showing repos, pull requests and issues"
-        class="hero-phone"
-        width="780"
-        height="1688"
-        data-comment-anchor="c3cf3fcca3-img" style="opacity: 1">
+      <picture>
+        <source type="image/webp" srcset="images/screenshot-home.webp">
+        <img
+          src="images/screenshot-home.png"
+          alt="GitBoba Home Screen showing repos, pull requests and issues"
+          class="hero-phone"
+          width="780"
+          height="1688"
+          fetchpriority="high"
+          decoding="async">
+      </picture>
     </div>
   </section>
 
@@ -235,15 +246,24 @@
       <h2 id="showcase-title" class="section-title">Pull requests, Actions, and notifications on Gitea &amp; Forgejo</h2>
       <ul class="showcase-grid">
         <li class="showcase-card">
-          <img src="images/screenshot-pull-request.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea and Forgejo iOS app — pull request diff on iPhone">
+          <picture>
+            <source type="image/webp" srcset="images/screenshot-pull-request.webp">
+            <img src="images/screenshot-pull-request.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea and Forgejo iOS app — pull request diff on iPhone">
+          </picture>
           <p class="showcase-caption"><strong>Pull requests</strong> — review diffs and threads on Gitea, Forgejo, or Codeberg.</p>
         </li>
         <li class="showcase-card">
-          <img src="images/screenshot-actions.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Forgejo and Gitea iOS app — Actions workflow run logs">
+          <picture>
+            <source type="image/webp" srcset="images/screenshot-actions.webp">
+            <img src="images/screenshot-actions.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Forgejo and Gitea iOS app — Actions workflow run logs">
+          </picture>
           <p class="showcase-caption"><strong>Actions</strong> — follow workflow runs and read job logs without a browser.</p>
         </li>
         <li class="showcase-card">
-          <img src="images/screenshot-notifications.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea and Forgejo iOS app — notification inbox">
+          <picture>
+            <source type="image/webp" srcset="images/screenshot-notifications.webp">
+            <img src="images/screenshot-notifications.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba Gitea and Forgejo iOS app — notification inbox">
+          </picture>
           <p class="showcase-caption"><strong>Notifications</strong> — your server inbox, native on iPhone and iPad.</p>
         </li>
       </ul>
@@ -302,7 +322,7 @@
         </div>
         <div class="dl-block">
           <a href="/download/" class="badge-link">
-            <img src="images/download-on-the-app-store-en-us-black/black.svg" alt="Download on the App Store">
+            <img src="images/download-on-the-app-store-en-us-black/black.svg" alt="Download on the App Store" width="150" height="50">
           </a>
           <span class="free-tag">Free to download</span>
           <p class="dl-reqs">
@@ -331,6 +351,7 @@
       </a>
     </div>
   </section>
+  </main>
 
   <!-- ── FOOTER ── -->
   <footer>

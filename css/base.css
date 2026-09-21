@@ -74,7 +74,7 @@ footer {
 .footer-links a:hover { color: var(--text-soft); text-decoration: none; }
 .footer-legal {
   font-size: 0.68rem;
-  color: oklch(0.38 0.008 68);
+  color: oklch(0.62 0.012 68);
   line-height: 1.65;
   max-width: 520px;
   text-align: right;
