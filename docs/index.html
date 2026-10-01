@@ -6,7 +6,7 @@
   <link rel="canonical" href="https://gitboba.app/docs/">
   <meta name="robots" content="index, follow">
   <title>Documentation — GitBoba</title>
-  <meta name="description" content="GitBoba documentation — Gitea and Forgejo setup (Codeberg), deep links, and API compatibility for the iOS app.">
+  <meta name="description" content="GitBoba documentation — Gitea and Forgejo setup (Codeberg), deep links, API compatibility, and optional Pro upgrade policy for the iOS app.">
   <meta property="og:title" content="Documentation — GitBoba">
   <meta property="og:description" content="Getting started for Gitea and Forgejo, deep links, and API compatibility for the GitBoba iOS app.">
   <meta property="og:url" content="https://gitboba.app/docs/">
@@ -38,6 +38,7 @@
       <nav class="docs-nav" aria-label="Documentation sections">
         <a href="#overview" class="docs-nav-item" data-page="overview">Overview</a>
         <a href="/docs/getting-started/" class="docs-nav-item">Getting Started</a>
+        <a href="#pro" class="docs-nav-item" data-page="pro">Pro</a>
         <a href="#deep-links" class="docs-nav-item" data-page="deep-links">Deep Links</a>
         <div class="docs-nav-sub" id="deepLinksSub">
           <a href="#deep-links-url-scheme" data-sub="deep-links-url-scheme">URL scheme</a>
@@ -87,7 +88,7 @@
 
         <div class="section">
           <h2>In this documentation</h2>
-          <p>Use the sidebar to navigate between sections. <strong>Getting Started</strong> covers Gitea, Forgejo, Codeberg, and Demo setup. <strong>Deep Links</strong> explains how to open GitBoba from links on the web. <strong>API Compatibility</strong> tracks which Gitea/Forgejo API areas the app currently supports.</p>
+          <p>Use the sidebar to navigate between sections. <strong>Getting Started</strong> covers Gitea, Forgejo, Codeberg, and Demo setup. <strong>Pro</strong> explains the optional upgrade. <strong>Deep Links</strong> explains how to open GitBoba from links on the web. <strong>API Compatibility</strong> tracks which Gitea/Forgejo API areas the app currently supports.</p>
         </div>
       </article>
 
@@ -103,7 +104,7 @@
             <div class="docs-step-num">1</div>
             <div class="docs-step-body">
               <h3>Install GitBoba</h3>
-              <p>Download the app from the <a href="/download/">App Store</a>. GitBoba is free.</p>
+              <p>Download the app from the <a href="/download/">App Store</a>. GitBoba is free to download and use with your server; see <a href="/docs/#pro">Pro</a> for the optional upgrade.</p>
               <figure class="docs-figure">
                 <img src="/images/screenshot-home-docs.png" width="390" height="844" loading="lazy" decoding="async" alt="GitBoba home screen — repos, pull requests, and issues on iPhone">
                 <figcaption>Home feed after you connect your server.</figcaption>
@@ -331,6 +332,39 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
         </div>
       </article>
 
+      <!-- PRO -->
+      <article class="docs-page" id="pro" data-page="pro">
+        <h1>GitBoba Pro <span class="docs-optional-tag">optional</span></h1>
+        <p class="page-intro">
+          GitBoba is a free client for your Gitea or Forgejo instance. An optional one-time <strong>Pro</strong> upgrade (Apple App Store, StoreKit&nbsp;2) adds extra polish and workflows that exist only in GitBoba — not access to your server’s open-source features.
+        </p>
+
+        <div class="section">
+          <h2>What stays free</h2>
+          <p>
+            Everything your server exposes for normal use through the API — repositories, pull requests, issues, Actions, notifications, file browsing and editing, and merges you could perform in the Gitea or Forgejo web UI. Pro is never used to withhold standard API parity.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2>What Pro adds</h2>
+          <ul>
+            <li><strong>Layout &amp; customization</strong> — extra home dashboard styles, tab arrangement, and metrics views, etc.</li>
+            <li><strong>GitBoba-only workflows</strong> — power features the web apps do not ship, such as merging an entire PR stack in one guided flow (while single-PR merge in a stack remains available without Pro).</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Gitea vs Forgejo</h2>
+          <p>
+            When Gitea and Forgejo differ at the API level, GitBoba shows what your server supports. That is separate from Pro — missing endpoints on Forgejo (or older Gitea) are not unlocked by purchasing Pro.
+          </p>
+          <p>
+            See <a href="#api-compatibility">API Compatibility</a> for coverage details. Purchase handling and privacy are described under <a href="/privacy/#in-app-purchase">In-App Purchase</a> in the privacy policy.
+          </p>
+        </div>
+      </article>
+
       <!-- API COMPATIBILITY -->
       <article class="docs-page" id="api-compatibility" data-page="api-compatibility">
         <h1>API Compatibility</h1>
@@ -398,6 +432,7 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
     </div>
     <p class="footer-legal">
       GitBoba is not affiliated with or endorsed by Gitea, Forgejo, Codeberg, or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
+      <span class="footer-note">Optional <a href="/docs/#pro">Pro</a> upgrade — see docs.</span>
     </p>
   </footer>
 

@@ -117,6 +117,15 @@
   margin-bottom: 2.5rem;
   max-width: 56ch;
 }
+.docs-optional-tag {
+  font-size: 0.55em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  vertical-align: middle;
+  margin-left: 0.35rem;
+}
 .docs-steps {
   display: flex;
   flex-direction: column;

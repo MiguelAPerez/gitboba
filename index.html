@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://gitboba.app/">
   <meta name="apple-itunes-app" content="app-id=6767851416">
-  <meta name="description" content="Free Gitea and Forgejo mobile app for iPhone and iPad. Connect self-hosted Gitea or Forgejo (including Codeberg) — or try Demo mode with no server. Repos, PRs, issues, Actions, and notifications in native SwiftUI.">
+  <meta name="description" content="Free Gitea and Forgejo mobile app for iPhone and iPad. Connect self-hosted Gitea or Forgejo (including Codeberg) — or try Demo mode with no server. Repos, PRs, issues, Actions, and notifications in native SwiftUI. Optional one-time Pro adds layout options and GitBoba-only workflows; open-source API features are not paywalled.">
   <meta name="keywords" content="Gitea iOS app, Forgejo iOS app, Codeberg iOS, Gitea iPhone client, Forgejo mobile app, self-hosted Git iOS, Gitea mobile app, Codeberg iPhone app">
   <meta name="author" content="Miguel A. Perez">
   <meta property="og:title" content="GitBoba — Gitea &amp; Forgejo Client for iPhone &amp; iPad">
@@ -33,14 +33,14 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "GitBoba",
-    "description": "Free Gitea and Forgejo iOS app for iPhone and iPad. Connect self-hosted Gitea or Forgejo (including Codeberg), or use Demo mode — repos, pull requests, issues, Actions, and notifications in native SwiftUI.",
+    "description": "Free Gitea and Forgejo iOS app for iPhone and iPad. Connect self-hosted Gitea or Forgejo (including Codeberg), or use Demo mode — repos, pull requests, issues, Actions, and notifications in native SwiftUI. Optional one-time Pro upgrade for extra layout and GitBoba-only workflows; standard Gitea and Forgejo capabilities stay free.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "iOS 26",
     "url": "https://gitboba.app/",
     "image": "https://gitboba.app/images/screenshot-home.png",
     "downloadUrl": "https://gitboba.app/download/",
     "installUrl": "https://apps.apple.com/app/gitboba/id6767851416",
-    "softwareVersion": "1.18.0",
+    "softwareVersion": "1.20.0",
     "author": {
       "@type": "Person",
       "name": "Miguel A. Perez"
@@ -114,7 +114,7 @@
     <div class="hero-content">
       <div class="pill">
         <span class="pill-dot"></span>
-        Gitea &amp; Forgejo · v1.18
+        Gitea &amp; Forgejo · v1.20
       </div>
 
       <h1>Gitea &amp; Forgejo iOS app<br>for <span class="accent">iPhone &amp; iPad.</span></h1>
@@ -160,16 +160,19 @@
   <!-- ── WHAT'S NEW ── -->
   <section id="whats-new" class="whats-new" aria-labelledby="whats-new-title">
     <div class="whats-new-inner">
-      <div class="eyebrow">What&rsquo;s new in 1.18</div>
-      <h2 id="whats-new-title" class="section-title">Forgejo, Demo mode, and a sharper Actions experience</h2>
+      <div class="eyebrow">What&rsquo;s new in 1.20</div>
+      <h2 id="whats-new-title" class="section-title">Stacked pull requests and Explore search</h2>
       <ul class="whats-new-list">
-        <li><strong>Forgejo &amp; Codeberg</strong> — add Forgejo servers alongside Gitea, with a one-tap Codeberg option when you connect an account.</li>
-        <li><strong>Demo</strong> — try the full app on your device with sample repositories, issues, pull requests, and Actions — no server required.</li>
-        <li><strong>Actions</strong> — rebuilt around live workflow runs, streaming logs, and artifact downloads.</li>
-        <li><strong>Pull requests</strong> — redesigned detail screen, plus an administrator merge override when checks are blocking.</li>
-        <li><strong>Organizations</strong> — teams, members, repos, webhooks, and labels; site admins can manage users and every organization.</li>
-        <li><strong>Accounts</strong> — GitBoba verifies your server and token before saving; Settings shows which server and version you&rsquo;re on.</li>
-        <li><strong>Languages</strong> — more of the app in Spanish, French, and Chinese.</li>
+        <li><strong>Pull Requests: Stacks</strong> — organize stacked pull requests, bring whole stacks up to date, and merge the next pull request with one tap.</li>
+        <li><strong>Explore</strong> — one search for repositories, issues, pull requests, organizations, people, and topics.</li>
+      </ul>
+      <p class="whats-new-fixes-label">Fixes</p>
+      <ul class="whats-new-list whats-new-list--fixes">
+        <li>Actions: tapping Run twice no longer starts the workflow twice.</li>
+        <li>Repository settings: a double tap no longer adds a webhook or collaborator change twice.</li>
+        <li>Settings: SSH keys, GPG keys, and email addresses stay up to date after you add or remove one.</li>
+        <li>Notifications: VoiceOver reads each notification clearly instead of reading out icon names.</li>
+        <li>Home: empty sections now show their message in your language.</li>
       </ul>
     </div>
   </section>
@@ -328,7 +331,8 @@
           <p class="dl-reqs">
             Requires iOS 26 or later<br>
             Compatible with iPhone and iPad<br>
-            Gitea or Forgejo server — or Demo mode with no account
+            Gitea or Forgejo server — or Demo mode with no account<br>
+            <span class="dl-note">Optional <a href="/docs/#pro">Pro</a> upgrade — not required for your server’s features</span>
           </p>
         </div>
       </div>
@@ -364,6 +368,7 @@
     </div>
     <p class="footer-legal">
       GitBoba is not affiliated with or endorsed by Gitea, Forgejo, Codeberg, or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc.
+      <span class="footer-note">Free client for your instance; <a href="/docs/#pro">Pro</a> is optional (<a href="/privacy/#in-app-purchase">privacy</a>).</span>
     </p>
   </footer>
 

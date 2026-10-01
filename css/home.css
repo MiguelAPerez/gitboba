@@ -241,6 +241,15 @@
       background: var(--green-mid);
     }
     .whats-new-list strong { color: var(--text); font-weight: 600; }
+    .whats-new-fixes-label {
+      margin: 2rem 0 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .whats-new-list--fixes { margin-top: 0; }
 
     /* ─── FEATURES ───────────────────────────────── */
     .features {
@@ -510,6 +519,13 @@
       color: var(--muted);
       text-align: left;
     }
+    .dl-note {
+      display: inline-block;
+      margin-top: 0.35rem;
+      font-size: 0.72rem;
+      opacity: 0.85;
+    }
+    .dl-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
     /* ─── SUPPORT ───────────────────────────────── */
     .support {
