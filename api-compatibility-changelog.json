@@ -1,6 +1,120 @@
 {
   "entries": [
     {
+      "date": "2026-09-30",
+      "appVersion": "1.20.0",
+      "summary": "85 → 98 ops supported; 10 → 16 of 16 areas fully supported.",
+      "sections": {
+        "nowSupported": [
+          {
+            "group": "Organizations",
+            "op": "Manage",
+            "from": "planned",
+            "note": "was planned"
+          },
+          {
+            "group": "Admin",
+            "op": "Users",
+            "from": "planned",
+            "note": "was planned"
+          },
+          {
+            "group": "Admin",
+            "op": "Orgs",
+            "from": "planned",
+            "note": "was planned"
+          }
+        ],
+        "addedSupported": [
+          {
+            "group": "Repositories",
+            "op": "Compare"
+          },
+          {
+            "group": "Deploy Keys",
+            "op": "List"
+          },
+          {
+            "group": "Deploy Keys",
+            "op": "View"
+          },
+          {
+            "group": "Deploy Keys",
+            "op": "Create"
+          },
+          {
+            "group": "Deploy Keys",
+            "op": "Delete"
+          },
+          {
+            "group": "Wiki",
+            "op": "List"
+          },
+          {
+            "group": "Wiki",
+            "op": "View"
+          },
+          {
+            "group": "Wiki",
+            "op": "Create"
+          },
+          {
+            "group": "Wiki",
+            "op": "Edit"
+          },
+          {
+            "group": "Wiki",
+            "op": "Delete"
+          },
+          {
+            "group": "Wiki",
+            "op": "Revisions"
+          }
+        ],
+        "addedPlanned": [],
+        "groupStatus": [
+          {
+            "group": "Organizations",
+            "before": "partial",
+            "after": "supported"
+          },
+          {
+            "group": "Search",
+            "before": "partial",
+            "after": "supported"
+          },
+          {
+            "group": "Packages",
+            "before": "partial",
+            "after": "supported"
+          },
+          {
+            "group": "Admin",
+            "before": "partial",
+            "after": "supported"
+          }
+        ],
+        "removed": [],
+        "regressions": [],
+        "addedUnsupported": [],
+        "correctedUnsupported": [
+          {
+            "group": "Issues",
+            "op": "Transfer"
+          },
+          {
+            "group": "Search",
+            "op": "Code"
+          },
+          {
+            "group": "Packages",
+            "op": "Upload"
+          }
+        ],
+        "nowBuildable": []
+      }
+    },
+    {
       "date": "2026-09-12",
       "appVersion": "1.17.1",
       "summary": "90 → 85 ops supported; 10 → 10 of 14 areas fully supported.",

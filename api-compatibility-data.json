@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-12",
+  "generated": "2026-09-30",
   "endpointCoverage": {
     "giteaVersion": "1.27.2",
-    "used": 268,
+    "used": 299,
     "total": 482,
-    "percent": 55.6
+    "percent": 62.0
   },
   "groups": [
     {
@@ -84,6 +84,10 @@
         },
         {
           "label": "Branch Delete",
+          "status": "yes"
+        },
+        {
+          "label": "Compare",
           "status": "yes"
         }
       ]
@@ -210,7 +214,7 @@
         },
         {
           "label": "Transfer",
-          "status": "yes"
+          "status": "unsupported"
         },
         {
           "label": "Lock",
@@ -297,8 +301,8 @@
       "id": "organizations",
       "name": "Organizations",
       "icon": "org",
-      "desc": "Browse orgs and repos; member management planned",
-      "status": "partial",
+      "desc": "Browse orgs and repos; manage teams, members, and team repos",
+      "status": "supported",
       "ops": [
         {
           "label": "List",
@@ -314,7 +318,7 @@
         },
         {
           "label": "Manage",
-          "status": "planned"
+          "status": "yes"
         }
       ]
     },
@@ -369,7 +373,7 @@
       "name": "Search",
       "icon": "search",
       "desc": "Cross-server search across resource types",
-      "status": "partial",
+      "status": "supported",
       "ops": [
         {
           "label": "Issues",
@@ -385,7 +389,7 @@
         },
         {
           "label": "Code",
-          "status": "planned"
+          "status": "unsupported"
         }
       ]
     },
@@ -427,7 +431,7 @@
       "name": "Packages",
       "icon": "release",
       "desc": "Browse and manage repository packages",
-      "status": "partial",
+      "status": "supported",
       "ops": [
         {
           "label": "List",
@@ -443,7 +447,7 @@
         },
         {
           "label": "Upload",
-          "status": "planned"
+          "status": "unsupported"
         }
       ]
     },
@@ -477,19 +481,77 @@
       ]
     },
     {
+      "id": "deploy-keys",
+      "name": "Deploy Keys",
+      "icon": "repo",
+      "desc": "Manage repo SSH deploy keys",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "View",
+          "status": "yes"
+        },
+        {
+          "label": "Create",
+          "status": "yes"
+        },
+        {
+          "label": "Delete",
+          "status": "yes"
+        }
+      ]
+    },
+    {
+      "id": "wiki",
+      "name": "Wiki",
+      "icon": "repo",
+      "desc": "Read, write, and review the history of repo wiki pages",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "List",
+          "status": "yes"
+        },
+        {
+          "label": "View",
+          "status": "yes"
+        },
+        {
+          "label": "Create",
+          "status": "yes"
+        },
+        {
+          "label": "Edit",
+          "status": "yes"
+        },
+        {
+          "label": "Delete",
+          "status": "yes"
+        },
+        {
+          "label": "Revisions",
+          "status": "yes"
+        }
+      ]
+    },
+    {
       "id": "admin",
       "name": "Admin",
       "icon": "admin",
       "desc": "Server administration and user management",
-      "status": "partial",
+      "status": "supported",
       "ops": [
         {
           "label": "Users",
-          "status": "planned"
+          "status": "yes"
         },
         {
           "label": "Orgs",
-          "status": "planned"
+          "status": "yes"
         },
         {
           "label": "Runners",

@@ -8,6 +8,43 @@ New entries are prepended automatically by
 generated matrix differs from the file already on disk.
 
 ---
+## 2026-09-30 · GitBoba 1.20.0
+
+**Summary:** 85 → 98 ops supported; 10 → 16 of 16 areas fully supported.
+
+### Now supported
+
+- **Organizations** / Manage — was planned
+- **Admin** / Users — was planned
+- **Admin** / Orgs — was planned
+
+### New on this page
+
+- **Repositories** / Compare
+- **Deploy Keys** / List
+- **Deploy Keys** / View
+- **Deploy Keys** / Create
+- **Deploy Keys** / Delete
+- **Wiki** / List
+- **Wiki** / View
+- **Wiki** / Create
+- **Wiki** / Edit
+- **Wiki** / Delete
+- **Wiki** / Revisions
+
+### Group status
+
+- **Organizations:** partial → supported
+- **Search:** partial → supported
+- **Packages:** partial → supported
+- **Admin:** partial → supported
+
+### Corrected — Gitea offers no endpoint
+
+- **Issues** / Transfer — never actually worked
+- **Search** / Code — never actually worked
+- **Packages** / Upload — never actually worked
+
 ## 2026-09-12 · GitBoba 1.17.1
 
 **Summary:** 90 → 85 ops supported; 10 → 10 of 14 areas fully supported.
