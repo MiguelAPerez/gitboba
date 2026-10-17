@@ -8,6 +8,25 @@ New entries are prepended automatically by
 generated matrix differs from the file already on disk.
 
 ---
+## 2026-10-17 · GitBoba 1.21.0
+
+**Summary:** 98 → 107 ops supported; 16 → 17 of 17 areas fully supported.
+
+### Now supported
+
+- **Actions / CI** / Cancel — Gitea added the endpoint
+
+### New on this page
+
+- **Actions / CI** / Force Cancel
+- **Actions / CI** / Approve
+- **Deploy Keys** / Create Token
+- **Projects** / Boards
+- **Projects** / Columns
+- **Projects** / Cards
+- **Projects** / Org & personal
+- **Admin** / Packages
+
 ## 2026-09-30 · GitBoba 1.20.0
 
 **Summary:** 85 → 98 ops supported; 10 → 16 of 16 areas fully supported.

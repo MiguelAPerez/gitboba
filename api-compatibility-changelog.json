@@ -1,6 +1,62 @@
 {
   "entries": [
     {
+      "date": "2026-10-17",
+      "appVersion": "1.21.0",
+      "summary": "98 → 107 ops supported; 16 → 17 of 17 areas fully supported.",
+      "sections": {
+        "nowSupported": [
+          {
+            "group": "Actions / CI",
+            "op": "Cancel",
+            "from": "unsupported",
+            "note": "Gitea added the endpoint"
+          }
+        ],
+        "addedSupported": [
+          {
+            "group": "Actions / CI",
+            "op": "Force Cancel"
+          },
+          {
+            "group": "Actions / CI",
+            "op": "Approve"
+          },
+          {
+            "group": "Deploy Keys",
+            "op": "Create Token"
+          },
+          {
+            "group": "Projects",
+            "op": "Boards"
+          },
+          {
+            "group": "Projects",
+            "op": "Columns"
+          },
+          {
+            "group": "Projects",
+            "op": "Cards"
+          },
+          {
+            "group": "Projects",
+            "op": "Org & personal"
+          },
+          {
+            "group": "Admin",
+            "op": "Packages"
+          }
+        ],
+        "addedPlanned": [],
+        "groupStatus": [],
+        "removed": [],
+        "regressions": [],
+        "addedUnsupported": [],
+        "correctedUnsupported": [],
+        "nowBuildable": []
+      }
+    },
+    {
       "date": "2026-09-30",
       "appVersion": "1.20.0",
       "summary": "85 → 98 ops supported; 10 → 16 of 16 areas fully supported.",
