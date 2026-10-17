@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-30",
+  "generated": "2026-10-17",
   "endpointCoverage": {
-    "giteaVersion": "1.27.2",
-    "used": 299,
-    "total": 482,
-    "percent": 62.0
+    "giteaVersion": "28.1.0",
+    "used": 382,
+    "total": 537,
+    "percent": 71.1
   },
   "groups": [
     {
@@ -272,7 +272,7 @@
       "id": "actions",
       "name": "Actions / CI",
       "icon": "actions",
-      "desc": "Monitor, re-run, and cancel workflow runs",
+      "desc": "Monitor, re-run, cancel, and approve workflow runs",
       "status": "supported",
       "ops": [
         {
@@ -289,7 +289,15 @@
         },
         {
           "label": "Cancel",
-          "status": "unsupported"
+          "status": "yes"
+        },
+        {
+          "label": "Force Cancel",
+          "status": "yes"
+        },
+        {
+          "label": "Approve",
+          "status": "yes"
         },
         {
           "label": "Dispatch",
@@ -484,7 +492,7 @@
       "id": "deploy-keys",
       "name": "Deploy Keys",
       "icon": "repo",
-      "desc": "Manage repo SSH deploy keys",
+      "desc": "Manage repo SSH deploy keys and HTTPS deploy tokens",
       "status": "supported",
       "ops": [
         {
@@ -497,6 +505,10 @@
         },
         {
           "label": "Create",
+          "status": "yes"
+        },
+        {
+          "label": "Create Token",
           "status": "yes"
         },
         {
@@ -539,6 +551,31 @@
       ]
     },
     {
+      "id": "projects",
+      "name": "Projects",
+      "icon": "issue",
+      "desc": "Kanban boards of issues for repositories, organizations, and yourself",
+      "status": "supported",
+      "ops": [
+        {
+          "label": "Boards",
+          "status": "yes"
+        },
+        {
+          "label": "Columns",
+          "status": "yes"
+        },
+        {
+          "label": "Cards",
+          "status": "yes"
+        },
+        {
+          "label": "Org & personal",
+          "status": "yes"
+        }
+      ]
+    },
+    {
       "id": "admin",
       "name": "Admin",
       "icon": "admin",
@@ -555,6 +592,10 @@
         },
         {
           "label": "Runners",
+          "status": "yes"
+        },
+        {
+          "label": "Packages",
           "status": "yes"
         }
       ]

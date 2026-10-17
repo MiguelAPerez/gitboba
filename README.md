@@ -17,7 +17,7 @@ Browse and manage your self-hosted [Gitea](https://gitea.io) or [Forgejo](https:
 
 ## Requirements
 
-- iOS 26+ / macOS 26+
+- iOS / iPadOS 26+
 - A Gitea or Forgejo instance **or** Demo mode (no account)
 - An API token from your server (Settings → Applications → Generate Token) when not using Demo
 
