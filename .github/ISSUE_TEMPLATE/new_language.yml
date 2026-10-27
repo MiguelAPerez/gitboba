@@ -1,0 +1,69 @@
+name: New app language
+description: Request a new UI language or regional/script variant for GitBoba
+labels: [language-request]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        GitBoba adds a language when someone requests it **and** enough people **👍 upvote this issue**. We decide when that’s enough internally—there’s no fixed public number.
+
+        **Want this language?** React 👍 on this issue. Comments aren’t required.
+
+        Search [open language-request issues](https://github.com/MiguelAPerez/gitboba/issues?q=is%3Aissue+is%3Aopen+label%3Alanguage-request) first so we don’t duplicate an existing request.
+
+  - type: input
+    id: display-name
+    attributes:
+      label: Display name
+      description: How the language should appear to users (include region if relevant).
+      placeholder: e.g. Portuguese (Brazil), Chinese (Traditional)
+    validations:
+      required: true
+
+  - type: input
+    id: locale-code
+    attributes:
+      label: Locale code
+      description: BCP 47 / Xcode locale id (this is what we enable in the app).
+      placeholder: e.g. pt-BR, zh-Hant, de
+    validations:
+      required: true
+
+  - type: dropdown
+    id: variant-type
+    attributes:
+      label: Is this a variant of another language?
+      description: Regional/script variants get their own issue and their own upvotes.
+      options:
+        - "No — standalone language"
+        - Regional (e.g. pt-PT vs pt-BR)
+        - Script (e.g. zh-Hant vs zh-Hans)
+        - Orthography / other variant
+    validations:
+      required: true
+
+  - type: input
+    id: related-locale
+    attributes:
+      label: Related locale (if variant)
+      description: Leave blank if not a variant. Xcode / BCP 47 code for the language you’re variant of.
+      placeholder: e.g. zh-Hans, pt-BR, en
+    validations:
+      required: false
+
+  - type: input
+    id: related-issue
+    attributes:
+      label: Related issue (if any)
+      description: Link to an existing language-request issue for the related locale, if one exists.
+      placeholder: e.g. #42 or full URL
+    validations:
+      required: false
+
+  - type: textarea
+    id: maintainer-notes
+    attributes:
+      label: Notes (optional)
+      description: Variant-specific context for maintainers—terminology, Apple locale quirks, etc.
+    validations:
+      required: false
