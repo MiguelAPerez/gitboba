@@ -1,5 +1,8 @@
 # GitBoba
 
+> [!IMPORTANT]
+> App Review is backed up this season, so store updates may not land as quickly as we'd like. We're preparing a public beta so anyone who's interested can try new builds, play with changes early, and help us improve GitBoba with real-world feedback.
+
 A native Gitea and Forgejo client for iPhone and iPad.
 
 Browse and manage your self-hosted [Gitea](https://gitea.io) or [Forgejo](https://forgejo.org) server — including [Codeberg](https://codeberg.org) — or try **Demo mode** with sample repos, issues, pull requests, and Actions. Repos, pull requests, issues, Actions, and notifications in a clean SwiftUI app.
