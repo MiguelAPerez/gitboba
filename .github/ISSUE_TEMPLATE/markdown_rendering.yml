@@ -1,0 +1,98 @@
+name: Markdown rendering
+description: Report wrong or missing Markdown (formatting, code blocks, Mermaid, tables, links)
+title: "[Markdown] "
+labels: [bug, markdown]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for **rendering** problems — text that looks wrong in GitBoba compared to what you expect (including Mermaid diagrams).
+
+        For new Markdown capabilities (e.g. “please render X”), use **Feature Request** instead. We label Markdown-related issues with **`markdown`** so you can [browse them together](https://github.com/MiguelAPerez/gitboba/issues?q=is%3Aissue+label%3Amarkdown).
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where does it appear?
+      description: The screen or content type where you see the problem.
+      options:
+        - README / file preview
+        - Wiki page
+        - Issue (body or comment)
+        - Pull request (body, comment, or review)
+        - Release notes
+        - Notification or dashboard snippet
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Markdown source
+      description: Paste the Markdown (or the ```mermaid block) exactly as stored on the server. Redact secrets; keep structure.
+      placeholder: |
+        ```markdown
+        Paste the source here…
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What GitBoba shows
+      description: Describe what you see, or what is missing. Screenshots help.
+      placeholder: e.g. Mermaid shows as a gray code block; table columns overlap; link does not tap.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should happen (Gitea web UI, another app, or plain reading).
+    validations:
+      required: true
+
+  - type: input
+    id: repo-link
+    attributes:
+      label: Repo or page link (optional)
+      description: URL to the wiki page, issue, PR, or file — Demo mode is fine.
+      placeholder: https://… or “Demo → repo → …”
+    validations:
+      required: false
+
+  - type: input
+    id: gitboba-version
+    attributes:
+      label: GitBoba version
+      description: Settings → About, or the App Store version.
+      placeholder: e.g. 1.24.0
+    validations:
+      required: true
+
+  - type: input
+    id: ios-version
+    attributes:
+      label: iOS / iPadOS version
+      placeholder: e.g. iOS 26.0 on iPhone 17
+    validations:
+      required: true
+
+  - type: input
+    id: gitea-version
+    attributes:
+      label: Gitea / Forgejo version
+      description: Site Administration → Configuration, or **Demo mode**.
+      placeholder: e.g. 1.22.1 or Demo
+    validations:
+      required: true
+
+  - type: textarea
+    id: extras
+    attributes:
+      label: Screenshots or extra context
+    validations:
+      required: false
