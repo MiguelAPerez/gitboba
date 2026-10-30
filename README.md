@@ -32,4 +32,8 @@ GitBoba collects no data. All credentials are stored locally in the system Keych
 
 ## Support
 
-[contact@miguelaperez.dev](mailto:contact@miguelaperez.dev)
+Open an issue in the project tracker for bugs and feature requests. We aim to assign reports within **72 hours** and use status labels (`investigating`, `in-progress`, `upcoming-release`, `v2`) so you can follow progress.
+
+**[How we handle issues →](SUPPORT.md)**
+
+Questions or sensitive reports: [contact@miguelaperez.dev](mailto:contact@miguelaperez.dev)
