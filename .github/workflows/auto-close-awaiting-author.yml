@@ -1,5 +1,5 @@
 # Close issues labeled awaiting-author when the reporter does not reply within a grace period.
-# Maintainers: after asking the reporter to confirm a fix, add the awaiting-author label.
+# Maintainers: after sharing a fix, add awaiting-author; no author reply in ~4 days → closed as resolved.
 
 name: Auto-close awaiting author
 
@@ -37,9 +37,9 @@ jobs:
             }
             const graceMs = graceDays * 24 * 60 * 60 * 1000;
             const closeComment = [
-              `Closing for now—we asked for confirmation and did not hear back within **${graceDays} days**.`,
+              `Closing as **resolved**—we assume the fix worked after **${graceDays} days** with no reply on this thread.`,
               "",
-              "If the problem is still there, comment here and we can reopen, or open a new issue with details.",
+              "If you're still seeing the problem, comment here and we can reopen, or open a new issue anytime.",
             ].join("\n");
 
             try {
@@ -52,7 +52,7 @@ jobs:
                   name: labelName,
                   color: "FBCA04",
                   description:
-                    "Waiting for the reporter to confirm a fix; auto-closes after several days of no reply.",
+                    "Fix may be ready; no reply in ~4 days—we assume resolved and close.",
                 });
               } else {
                 throw error;
