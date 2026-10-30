@@ -1,10 +1,10 @@
 {
-  "generated": "2026-10-17",
+  "generated": "2026-10-30",
   "endpointCoverage": {
     "giteaVersion": "28.1.0",
-    "used": 382,
+    "used": 464,
     "total": 537,
-    "percent": 71.1
+    "percent": 86.4
   },
   "groups": [
     {
