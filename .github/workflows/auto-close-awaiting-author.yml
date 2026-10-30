@@ -1,0 +1,133 @@
+# Close issues labeled awaiting-author when the reporter does not reply within a grace period.
+# Maintainers: after asking the reporter to confirm a fix, add the awaiting-author label.
+
+name: Auto-close awaiting author
+
+on:
+  schedule:
+    # Daily ~1pm US Eastern (17:00 UTC)
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+    inputs:
+      grace_days:
+        description: Days to wait after awaiting-author before closing
+        required: false
+        default: "4"
+        type: string
+
+permissions:
+  issues: write
+
+jobs:
+  close-awaiting-author:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const labelName = "awaiting-author";
+            const graceDays = Number(
+              context.payload.inputs?.grace_days ?? "4"
+            );
+            if (!Number.isFinite(graceDays) || graceDays < 1) {
+              core.setFailed(`Invalid grace_days: ${graceDays}`);
+              return;
+            }
+            const graceMs = graceDays * 24 * 60 * 60 * 1000;
+            const closeComment = [
+              `Closing for now—we asked for confirmation and did not hear back within **${graceDays} days**.`,
+              "",
+              "If the problem is still there, comment here and we can reopen, or open a new issue with details.",
+            ].join("\n");
+
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: labelName });
+            } catch (error) {
+              if (error.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner,
+                  repo,
+                  name: labelName,
+                  color: "FBCA04",
+                  description:
+                    "Waiting for the reporter to confirm a fix; auto-closes after several days of no reply.",
+                });
+              } else {
+                throw error;
+              }
+            }
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              labels: labelName,
+              per_page: 100,
+            });
+
+            for (const issue of issues) {
+              if (issue.pull_request) continue;
+
+              const issueNumber = issue.number;
+              const author = issue.user?.login;
+              if (!author) continue;
+
+              const timeline = await github.paginate(
+                github.rest.issues.listEventsForTimeline,
+                { owner, repo, issue_number: issueNumber, per_page: 100 }
+              );
+
+              const labeledAt = timeline
+                .filter(
+                  (event) =>
+                    event.event === "labeled" &&
+                    event.label?.name === labelName
+                )
+                .map((event) => new Date(event.created_at).getTime())
+                .pop();
+
+              if (labeledAt === undefined) continue;
+
+              const { data: comments } = await github.rest.issues.listComments({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                since: new Date(labeledAt).toISOString(),
+                per_page: 100,
+              });
+
+              const authorReplied = comments.some(
+                (comment) => comment.user?.login === author
+              );
+              if (authorReplied) continue;
+
+              if (Date.now() - labeledAt < graceMs) continue;
+
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                body: closeComment,
+              });
+
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                state: "closed",
+                state_reason: "completed",
+              });
+
+              try {
+                await github.rest.issues.removeLabel({
+                  owner,
+                  repo,
+                  issue_number: issueNumber,
+                  name: labelName,
+                });
+              } catch {
+                // Label may already be gone.
+              }
+            }
