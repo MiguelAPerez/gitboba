@@ -32,7 +32,7 @@ GitBoba collects no data. All credentials are stored locally in the system Keych
 
 ## Support
 
-Open an issue in the project tracker for bugs and feature requests. We aim to assign reports within **72 hours** and use status labels (`investigating`, `in-progress`, `upcoming-release`, `v2`) so you can follow progress.
+Open an issue in the project tracker for bugs and feature requests. Markdown rendering problems (formatting, Mermaid, previews) have a [dedicated template](https://github.com/MiguelAPerez/gitboba/issues/new?template=markdown_rendering.yml); everything else starts from [New issue](https://github.com/MiguelAPerez/gitboba/issues/new/choose). We aim to assign reports within **72 hours** and use status labels (`investigating`, `in-progress`, `upcoming-release`, `v2`) so you can follow progress.
 
 **[How we handle issues →](SUPPORT.md)**
 
