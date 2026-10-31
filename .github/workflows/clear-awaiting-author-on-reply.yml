@@ -1,0 +1,34 @@
+# Remove awaiting-author when the issue author replies (keeps the auto-close timer accurate).
+
+name: Clear awaiting author on reply
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  clear-label:
+    if: github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const labelName = "awaiting-author";
+            const issue = context.payload.issue;
+            const comment = context.payload.comment;
+
+            if (comment.user?.login !== issue.user?.login) return;
+
+            const labels = issue.labels.map((label) => label.name);
+            if (!labels.includes(labelName)) return;
+
+            await github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              name: labelName,
+            });

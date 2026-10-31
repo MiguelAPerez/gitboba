@@ -18,6 +18,11 @@ Labels reflect **status**, not a guaranteed release date. App Store review can d
 | **in-progress** | We're actively working on a fix. |
 | **upcoming-release** | The fix is in a build that will go out in the next release (may still be in App Review). |
 | **v2** | Tracked for **Full Gitea Support** and paid **Supporter** features — not necessarily the next bugfix release. |
+| **awaiting-author** | A fix may be ready for you to try. **No reply in about 4 days** — we assume the problem is fixed and close the issue. |
+
+## When we think something is fixed
+
+We may comment when a fix is in a build or on the store and invite you to try it when you can. A quick “still broken” or “works, thanks” is helpful, but **no reply after a few days means we treat it as resolved** and close the issue. If the bug comes back later, comment on the closed thread (we can reopen) or open a new report.
 
 ## Area labels
 
