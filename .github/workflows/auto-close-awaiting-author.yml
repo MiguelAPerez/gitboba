@@ -1,5 +1,6 @@
 # Close issues labeled awaiting-author when the reporter does not reply within a grace period.
 # Maintainers: after sharing a fix, add awaiting-author; no author reply in ~4 days → closed as resolved.
+# An author reply clears the label on this same daily run (no per-comment workflow).
 
 name: Auto-close awaiting author
 
@@ -101,7 +102,19 @@ jobs:
               const authorReplied = comments.some(
                 (comment) => comment.user?.login === author
               );
-              if (authorReplied) continue;
+              if (authorReplied) {
+                try {
+                  await github.rest.issues.removeLabel({
+                    owner,
+                    repo,
+                    issue_number: issueNumber,
+                    name: labelName,
+                  });
+                } catch {
+                  // Label may already be gone.
+                }
+                continue;
+              }
 
               if (Date.now() - labeledAt < graceMs) continue;
 
