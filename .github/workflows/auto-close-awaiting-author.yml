@@ -1,6 +1,6 @@
 # Close issues labeled awaiting-author when the reporter does not reply within a grace period.
-# Maintainers: after sharing a fix, add awaiting-author; no author reply in ~4 days → closed as resolved.
-# An author reply clears the label on this same daily run (no per-comment workflow).
+# Maintainers: add awaiting-author after a fix ships; the next daily run posts a try-it notice, then
+# no author reply in ~n days → closed as resolved. An author reply clears the label on this run.
 
 name: Auto-close awaiting author
 
@@ -37,6 +37,14 @@ jobs:
               return;
             }
             const graceMs = graceDays * 24 * 60 * 60 * 1000;
+            const noticeMarker = "<!-- gitboba-awaiting-author-notice -->";
+            const releaseNotice = (days) =>
+              [
+                noticeMarker,
+                "A release has been pushed, please try out and report back.",
+                "",
+                `This will auto-close in **${days} days** if we don't hear from you.`,
+              ].join("\n");
             const closeComment = [
               `Closing as **resolved**—we assume the fix worked after **${graceDays} days** with no reply on this thread.`,
               "",
@@ -113,6 +121,20 @@ jobs:
                 } catch {
                   // Label may already be gone.
                 }
+                continue;
+              }
+
+              const noticePosted = comments.some((comment) =>
+                comment.body?.includes(noticeMarker)
+              );
+
+              if (!noticePosted && Date.now() - labeledAt < graceMs) {
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: issueNumber,
+                  body: releaseNotice(graceDays),
+                });
                 continue;
               }
 
