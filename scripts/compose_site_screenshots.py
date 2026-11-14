@@ -4,24 +4,19 @@
 from __future__ import annotations
 
 import importlib.util
-import os
 import sys
 from pathlib import Path
 
-try:
-    from PIL import Image
-except ImportError:
-    print("Install Pillow first.", file=sys.stderr)
-    sys.exit(1)
+from lib.repo import ROOT, app_repo
 
-ROOT = Path(__file__).resolve().parents[1]
-APP_REPO = Path(os.environ.get("GITBOBA_APP_REPO", Path.home() / "development/GitBobaApp"))
+APP_REPO = app_repo()
 BEZELS = APP_REPO / "scripts" / "add_bezels.py"
 RAW_DIR = APP_REPO / "screenshots"
 FRAMES = APP_REPO / "marketing" / "frames"
 OUT = ROOT / "images"
 PHONE = "1242x2688"
 
+# (raw screenshot name, output name, output width in px)
 EXPORTS: list[tuple[str, str, int]] = [
     ("home", "screenshot-home", 780),
     ("home", "screenshot-home-docs", 390),
@@ -29,6 +24,25 @@ EXPORTS: list[tuple[str, str, int]] = [
     ("actions", "screenshot-actions", 390),
     ("notifications", "screenshot-notifications", 390),
 ]
+
+
+def scaled_height(size: tuple[int, int], width: int) -> int:
+    """Height after resizing an image of `size` to `width`, keeping aspect ratio."""
+    w, h = size
+    return round(h * width / w)
+
+
+def export_jobs(
+    raw_dir: Path = RAW_DIR,
+    out_dir: Path = OUT,
+    exports: list[tuple[str, str, int]] = EXPORTS,
+    phone: str = PHONE,
+) -> list[tuple[Path, Path, int]]:
+    """(raw input, output file, width) for every export."""
+    return [
+        (raw_dir / f"{raw_name}-{phone}.png", out_dir / f"{out_name}.png", width)
+        for raw_name, out_name, width in exports
+    ]
 
 
 def _load_compose():
@@ -40,7 +54,9 @@ def _load_compose():
     return mod.compose_device_rgba, mod._pick_frame
 
 
-def compose_one(raw_path: Path, width: int) -> Image.Image:
+def compose_one(raw_path: Path, width: int):
+    from PIL import Image
+
     compose_device_rgba, pick_frame = _load_compose()
     shot = Image.open(raw_path).convert("RGBA")
     frame_path = pick_frame(FRAMES, shot.size, color_hint=None)
@@ -50,12 +66,18 @@ def compose_one(raw_path: Path, width: int) -> Image.Image:
     canvas = compose_device_rgba(shot, frame)
     if canvas is None:
         raise RuntimeError(f"compose_device_rgba failed for {raw_path.name}")
-    w, h = canvas.size
-    out_h = round(h * width / w)
-    return canvas.resize((width, out_h), Image.Resampling.LANCZOS)
+    return canvas.resize(
+        (width, scaled_height(canvas.size, width)), Image.Resampling.LANCZOS
+    )
 
 
 def main() -> int:
+    try:
+        import PIL  # noqa: F401
+    except ImportError:
+        print("Install Pillow first.", file=sys.stderr)
+        return 1
+
     if not RAW_DIR.is_dir():
         print(f"Missing {RAW_DIR} — run take_screenshots.sh in GitBobaApp.", file=sys.stderr)
         return 1
@@ -64,13 +86,11 @@ def main() -> int:
         return 1
 
     OUT.mkdir(parents=True, exist_ok=True)
-    for raw_name, out_name, width in EXPORTS:
-        raw = RAW_DIR / f"{raw_name}-{PHONE}.png"
+    for raw, dest, width in export_jobs():
         if not raw.is_file():
             print(f"Missing {raw}", file=sys.stderr)
             return 1
         img = compose_one(raw, width)
-        dest = OUT / f"{out_name}.png"
         img.save(dest, "PNG", optimize=True)
         print(f"  {dest.name} ({img.size[0]}×{img.size[1]}, RGBA)")
 
