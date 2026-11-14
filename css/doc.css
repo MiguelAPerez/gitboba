@@ -54,3 +54,27 @@
   border-bottom: 1px solid var(--border-soft);
 }
 .content--wide .intro { margin-bottom: 1.75rem; }
+
+.beta-join {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.25rem;
+  padding: 12px 22px;
+  background: var(--green);
+  color: #fff;
+  border-radius: 99px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.beta-join:hover { opacity: 0.88; text-decoration: none; }
+.beta-join:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+.beta-join-note {
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
