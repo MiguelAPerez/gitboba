@@ -1,6 +1,8 @@
 # Close issues labeled awaiting-author when the reporter does not reply within a grace period.
-# Maintainers: add awaiting-author after a fix ships; the next daily run posts a try-it notice, then
-# no author reply in ~n days → closed as resolved. An author reply clears the label on this run.
+# Maintainers: add awaiting-author after a fix ships. The next daily run posts one notice (or
+# updates it) asking the reporter to react with 👍 if the fix works. 👍 closes the issue; any other
+# author comment clears the label and leaves it open; silence closes after ~n days.
+# The rules live in scripts/awaiting-author.js.
 
 name: Auto-close awaiting author
 
@@ -23,42 +25,72 @@ jobs:
   close-awaiting-author:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/github-script@v7
         with:
           script: |
+            const {
+              LABEL_NAME,
+              NOTICE_MARKER,
+              parseGraceDays,
+              labeledAtFromTimeline,
+              decide,
+            } = require(`${process.env.GITHUB_WORKSPACE}/scripts/awaiting-author.js`);
+
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            const labelName = "awaiting-author";
-            const graceDays = Number(
+            const graceDays = parseGraceDays(
               context.payload.inputs?.grace_days ?? "4"
             );
-            if (!Number.isFinite(graceDays) || graceDays < 1) {
-              core.setFailed(`Invalid grace_days: ${graceDays}`);
+            if (graceDays == null) {
+              core.setFailed(
+                `Invalid grace_days: ${context.payload.inputs?.grace_days}`
+              );
               return;
             }
-            const graceMs = graceDays * 24 * 60 * 60 * 1000;
-            const noticeMarker = "<!-- gitboba-awaiting-author-notice -->";
-            const releaseNotice = (days) =>
-              [
-                noticeMarker,
-                "A release has been pushed, please try out and report back.",
-                "",
-                `This will auto-close in **${days} days** if we don't hear from you.`,
-              ].join("\n");
-            const closeComment = [
-              `Closing as **resolved**—we assume the fix worked after **${graceDays} days** with no reply on this thread.`,
-              "",
-              "If you're still seeing the problem, comment here and we can reopen, or open a new issue anytime.",
-            ].join("\n");
+
+            async function removeLabel(issueNumber) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner,
+                  repo,
+                  issue_number: issueNumber,
+                  name: LABEL_NAME,
+                });
+              } catch {
+                // Label may already be gone.
+              }
+            }
+
+            async function closeIssue(issueNumber, body) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                body,
+              });
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                state: "closed",
+                state_reason: "completed",
+              });
+              await removeLabel(issueNumber);
+            }
 
             try {
-              await github.rest.issues.getLabel({ owner, repo, name: labelName });
+              await github.rest.issues.getLabel({
+                owner,
+                repo,
+                name: LABEL_NAME,
+              });
             } catch (error) {
               if (error.status === 404) {
                 await github.rest.issues.createLabel({
                   owner,
                   repo,
-                  name: labelName,
+                  name: LABEL_NAME,
                   color: "FBCA04",
                   description:
                     "Fix may be ready; no reply in ~4 days—we assume resolved and close.",
@@ -72,7 +104,7 @@ jobs:
               owner,
               repo,
               state: "open",
-              labels: labelName,
+              labels: LABEL_NAME,
               per_page: 100,
             });
 
@@ -87,17 +119,8 @@ jobs:
                 github.rest.issues.listEventsForTimeline,
                 { owner, repo, issue_number: issueNumber, per_page: 100 }
               );
-
-              const labeledAt = timeline
-                .filter(
-                  (event) =>
-                    event.event === "labeled" &&
-                    event.label?.name === labelName
-                )
-                .map((event) => new Date(event.created_at).getTime())
-                .pop();
-
-              if (labeledAt === undefined) continue;
+              const labeledAt = labeledAtFromTimeline(timeline);
+              if (labeledAt == null) continue;
 
               const { data: comments } = await github.rest.issues.listComments({
                 owner,
@@ -107,62 +130,46 @@ jobs:
                 per_page: 100,
               });
 
-              const authorReplied = comments.some(
-                (comment) => comment.user?.login === author
+              const noticeComment = comments.find((comment) =>
+                comment.body?.includes(NOTICE_MARKER)
               );
-              if (authorReplied) {
-                try {
-                  await github.rest.issues.removeLabel({
+              const reactions = noticeComment
+                ? await github.paginate(github.rest.reactions.listForIssueComment, {
+                    owner,
+                    repo,
+                    comment_id: noticeComment.id,
+                    per_page: 100,
+                  })
+                : [];
+
+              const actions = decide({
+                author,
+                comments,
+                reactions,
+                labeledAt,
+                now: Date.now(),
+                graceDays,
+              });
+
+              for (const action of actions) {
+                if (action.type === "update-notice") {
+                  await github.rest.issues.updateComment({
+                    owner,
+                    repo,
+                    comment_id: action.commentId,
+                    body: action.body,
+                  });
+                } else if (action.type === "post-notice") {
+                  await github.rest.issues.createComment({
                     owner,
                     repo,
                     issue_number: issueNumber,
-                    name: labelName,
+                    body: action.body,
                   });
-                } catch {
-                  // Label may already be gone.
+                } else if (action.type === "remove-label") {
+                  await removeLabel(issueNumber);
+                } else if (action.type === "close") {
+                  await closeIssue(issueNumber, action.body);
                 }
-                continue;
-              }
-
-              const noticePosted = comments.some((comment) =>
-                comment.body?.includes(noticeMarker)
-              );
-
-              if (!noticePosted && Date.now() - labeledAt < graceMs) {
-                await github.rest.issues.createComment({
-                  owner,
-                  repo,
-                  issue_number: issueNumber,
-                  body: releaseNotice(graceDays),
-                });
-                continue;
-              }
-
-              if (Date.now() - labeledAt < graceMs) continue;
-
-              await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number: issueNumber,
-                body: closeComment,
-              });
-
-              await github.rest.issues.update({
-                owner,
-                repo,
-                issue_number: issueNumber,
-                state: "closed",
-                state_reason: "completed",
-              });
-
-              try {
-                await github.rest.issues.removeLabel({
-                  owner,
-                  repo,
-                  issue_number: issueNumber,
-                  name: labelName,
-                });
-              } catch {
-                // Label may already be gone.
               }
             }
