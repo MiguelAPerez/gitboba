@@ -18,4 +18,4 @@ if ! python3 -c "import PIL" 2>/dev/null; then
 fi
 
 python3 "$ROOT/scripts/compose_site_screenshots.py"
-python3 "$ROOT/scripts/generate-og-share.py" 2>/dev/null || true
+python3 "$ROOT/scripts/generate_og_share.py"

@@ -9,7 +9,7 @@ OUT="${1:-$ROOT/.lighthouse-latest.json}"
 
 if ! curl -sf -o /dev/null "$URL"; then
   echo "Dev server not reachable at $URL" >&2
-  echo "Start it: python3 scripts/dev-server.py --port $PORT" >&2
+  echo "Start it: python3 scripts/dev_server.py --port $PORT" >&2
   exit 1
 fi
 
@@ -23,21 +23,6 @@ npx --yes lighthouse "$URL" \
   --quiet \
   --chrome-flags="--headless --no-sandbox"
 
-python3 - "$OUT" <<'PY'
-import json, sys
-path = sys.argv[1]
-data = json.load(open(path))
-for name in ("performance", "accessibility"):
-    print(f"{name}: {int(data['categories'][name]['score'] * 100)}")
-for aid in (
-    "first-contentful-paint",
-    "largest-contentful-paint",
-    "total-blocking-time",
-    "cumulative-layout-shift",
-    "speed-index",
-):
-    audit = data["audits"][aid]
-    print(f"{aid}: {audit.get('displayValue')} (score {audit.get('score')})")
-PY
+python3 "$ROOT/scripts/lighthouse_summary.py" "$OUT"
 
 echo "Full report: $OUT"
