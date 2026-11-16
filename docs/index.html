@@ -38,6 +38,7 @@
       <nav class="docs-nav" aria-label="Documentation sections">
         <a href="#overview" class="docs-nav-item" data-page="overview">Overview</a>
         <a href="/docs/getting-started/" class="docs-nav-item">Getting Started</a>
+        <a href="#markdown" class="docs-nav-item" data-page="markdown">Markdown</a>
         <a href="#supporter" class="docs-nav-item" data-page="supporter">Supporter</a>
         <a href="#deep-links" class="docs-nav-item" data-page="deep-links">Deep Links</a>
         <div class="docs-nav-sub" id="deepLinksSub">
@@ -88,7 +89,7 @@
 
         <div class="section">
           <h2>In this documentation</h2>
-          <p>Use the sidebar to navigate between sections. <strong>Getting Started</strong> covers Gitea, Forgejo, Codeberg, and Demo setup. <strong>Supporter</strong> explains the optional one-time purchase. <strong>Deep Links</strong> explains how to open GitBoba from links on the web. <strong>API Compatibility</strong> tracks which Gitea/Forgejo API areas the app currently supports.</p>
+          <p>Use the sidebar to navigate between sections. <strong>Getting Started</strong> covers Gitea, Forgejo, Codeberg, and Demo setup. <strong>Markdown</strong> covers what GitBoba draws in READMEs and docs, Docusaurus included. <strong>Supporter</strong> explains the optional one-time purchase. <strong>Deep Links</strong> explains how to open GitBoba from links on the web. <strong>API Compatibility</strong> tracks which Gitea/Forgejo API areas the app currently supports.</p>
         </div>
       </article>
 
@@ -328,6 +329,83 @@ https://gitea.example.com/alice/my-repo/commit/deadbeef</code></pre>
           </span>
           <p>
             Missing a route or have a question? <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=feature_request.yml" target="_blank" rel="noopener noreferrer">Open a feature request</a> on GitHub.
+          </p>
+        </div>
+      </article>
+
+      <!-- MARKDOWN -->
+      <article class="docs-page" id="markdown" data-page="markdown">
+        <h1>Markdown</h1>
+        <p class="page-intro">
+          GitBoba draws Markdown the way your Gitea or Forgejo server does — READMEs, wiki pages, issues, pull requests, and comments — and also understands the Markdown of <strong>Docusaurus</strong> sites, so docs kept in a repository read the way they do on the web.
+        </p>
+
+        <div class="section" id="markdown-gitea">
+          <h2>What your server renders</h2>
+          <ul>
+            <li><strong>GitHub Flavored Markdown</strong> — tables, task lists, strikethrough, autolinks, and footnotes</li>
+            <li><strong>Alerts</strong> — <code>&gt; [!NOTE]</code>, <code>[!TIP]</code>, <code>[!IMPORTANT]</code>, <code>[!WARNING]</code>, and <code>[!CAUTION]</code></li>
+            <li><strong>Math</strong> — <code>$…$</code> inline and <code>$$…$$</code> blocks</li>
+            <li><strong>Mermaid</strong> — diagrams drawn natively, no web view</li>
+            <li><strong>HTML</strong> — <code>&lt;details&gt;</code>, aligned blocks, images, and the other tags READMEs use</li>
+            <li><strong>Front matter</strong> — folded into a table, as on Gitea</li>
+          </ul>
+        </div>
+
+        <div class="section" id="markdown-admonitions">
+          <h2>Docusaurus admonitions</h2>
+          <p>
+            <code>:::note</code>, <code>:::tip</code>, <code>:::info</code>, <code>:::warning</code>, and <code>:::danger</code> draw as callouts, like alerts. <code>:::caution</code> reads as a warning. A title goes after the type, or in brackets.
+          </p>
+          <div class="code-block">
+            <pre><code>:::tip Pull a small model first
+Start with a 1B model, then go bigger.
+:::
+
+::::info[Nested]
+:::warning
+Give the outer one more colons.
+:::
+::::</code></pre>
+          </div>
+          <p class="docs-note">
+            Admonitions work inside lists and quotes too. A type Docusaurus doesn't have shows its content without the markers.
+          </p>
+        </div>
+
+        <div class="section" id="markdown-tabs">
+          <h2>Tabs</h2>
+          <p>
+            <code>&lt;Tabs&gt;</code> and <code>&lt;TabItem&gt;</code> draw as a row of tabs above the one you're reading. Tap a tab to switch. The tab marked <code>default</code> (or named by <code>defaultValue</code>) shows first, and tabs that share a <code>groupId</code> switch together, so picking <em>Python</em> once shows Python everywhere on the page.
+          </p>
+          <div class="code-block">
+            <pre><code>&lt;Tabs groupId="language"&gt;
+  &lt;TabItem value="bash" label="Bash" default&gt;
+    ```bash
+    curl http://localhost:11434/api/tags
+    ```
+  &lt;/TabItem&gt;
+  &lt;TabItem value="python" label="Python"&gt;
+    ```python
+    requests.get("http://localhost:11434/api/tags")
+    ```
+  &lt;/TabItem&gt;
+&lt;/Tabs&gt;</code></pre>
+          </div>
+          <p class="docs-note">
+            With VoiceOver, each tab is a button that says whether it's selected and where it sits in the row.
+          </p>
+        </div>
+
+        <div class="section" id="markdown-docusaurus-extras">
+          <h2>The rest of a Docusaurus page</h2>
+          <ul>
+            <li><strong>Code titles</strong> — <code>```js title="src/app.js"</code> shows the file name above the code</li>
+            <li><strong>MDX imports</strong> — <code>import Tabs from '@theme/Tabs';</code> lines and <code>{/* comments */}</code> are hidden</li>
+            <li><strong>Front matter</strong> — <code>sidebar_position</code>, <code>title</code>, and other keys fold away like any front matter</li>
+          </ul>
+          <p class="docs-note">
+            Your server's own web pages still show this syntax as plain text — Gitea and Forgejo don't render Docusaurus. Something drawing wrong? Use the <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=markdown_rendering.yml">Markdown rendering</a> issue template.
           </p>
         </div>
       </article>
