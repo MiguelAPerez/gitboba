@@ -6,9 +6,9 @@
   <link rel="canonical" href="https://gitboba.app/privacy/">
   <meta name="robots" content="index, follow">
   <title>Privacy Policy — GitBoba</title>
-  <meta name="description" content="GitBoba collects no data. Credentials stay in the iOS Keychain; all traffic goes directly to your Gitea or Forgejo server (Demo mode uses no network).">
+  <meta name="description" content="GitBoba collects no data. Credentials stay in the iOS Keychain; traffic goes directly to your Gitea or Forgejo server, or to a model provider you choose for the optional On-device Agent (Demo mode uses no network).">
   <meta property="og:title" content="Privacy Policy — GitBoba">
-  <meta property="og:description" content="GitBoba collects no data. Credentials stay in the iOS Keychain; all traffic goes directly to your Gitea or Forgejo server.">
+  <meta property="og:description" content="GitBoba collects no data. Credentials stay in the iOS Keychain; traffic goes directly to your Gitea or Forgejo server, or to a model provider you choose for the optional On-device Agent.">
   <meta property="og:url" content="https://gitboba.app/privacy/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="GitBoba">
@@ -38,7 +38,7 @@
 
     <div class="eyebrow">Legal</div>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 17, 2026</p>
+    <p class="updated">Last updated: November 18, 2026</p>
 
     <p class="intro">
       GitBoba is a client app for self-hosted Gitea and Forgejo servers (and Demo mode on your device). It does not collect, transmit, or store any personal data on any server operated by the developer — ever.
@@ -46,16 +46,24 @@
 
     <div class="section">
       <h2>What we collect</h2>
-      <p>Nothing. GitBoba has no backend, no database, and no analytics pipeline. There is nowhere for your data to go except your own Gitea or Forgejo server when you use a real account.</p>
+      <p>Nothing. GitBoba has no backend, no database, and no analytics pipeline. There is nowhere for your data to go except your own Gitea or Forgejo server when you use a real account, and, only if you turn on the optional <a href="#agent">On-device Agent</a> with a model provider you choose, that provider.</p>
     </div>
 
     <div class="section">
       <h2>Your data stays on your device and your server</h2>
       <ul>
         <li><strong>Credentials</strong> — your server URL and API token are stored exclusively in the iOS/iPadOS Keychain on your device, using hardware-backed encryption.</li>
-        <li><strong>All network requests</strong> go directly from your device to your own Gitea or Forgejo server. Demo mode uses local sample data only. No data passes through any third-party or developer-operated server.</li>
+        <li><strong>All network requests</strong> go directly from your device to your own Gitea or Forgejo server, and, only if you use the optional <a href="#agent">On-device Agent</a>, to the model provider you choose. Demo mode uses local sample data only. No data passes through any developer-operated server.</li>
         <li><strong>No analytics, crash reporting, or tracking</strong> of any kind is included in the app.</li>
+        <li><strong>Logs</strong> — Settings → Logs can keep a log of what the app did, and optionally write it to a file. It stays on your device, is never backed up, and leaves only if you share it yourself. Passwords, tokens and keys are removed from every line.</li>
       </ul>
+    </div>
+
+    <div class="section" id="agent">
+      <h2>On-device Agent and third-party AI</h2>
+      <p>GitBoba's optional On-device Agent answers questions using a model server you choose. If you choose your own server on your network (such as Ollama), nothing leaves your network.</p>
+      <p>If you choose a hosted model, such as Anthropic's Claude with your own API key, or any server at a public address, GitBoba asks for your permission before the first message is sent. From then on, your messages and what the agent looks up for them (issue and pull request text, comments, file contents and images, within the read limits you set) are sent directly from your device to that provider, under its own terms and privacy policy.</p>
+      <p>GitBoba runs no server, receives none of this content, and never sends your Gitea or Forgejo token to a model provider. Your API key is stored in the Keychain and sent only to that provider. You can stop sharing with a provider at any time in Settings → On-device Agent.</p>
     </div>
 
     <div class="section" id="in-app-purchase">
