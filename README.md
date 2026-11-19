@@ -24,6 +24,13 @@ Browse and manage your self-hosted [Gitea](https://gitea.io) or [Forgejo](https:
 - A Gitea or Forgejo instance **or** Demo mode (no account)
 - An API token from your server (Settings → Applications → Generate Token) when not using Demo
 
+## Open source
+
+Two of the pieces built for GitBoba are public:
+
+- **[HighlightBoba](https://github.com/MiguelAPerez/HighlightBoba)** — the grammar-driven syntax highlighter behind GitBoba's code views. Swift, MIT licensed.
+- **[openstash](https://github.com/MiguelAPerez/openstash)** — a command-line tool that caches OpenAPI and Swagger specs. We use it to track GitBoba's coverage of the Gitea API from one server release to the next.
+
 ## Privacy
 
 GitBoba collects no data. All credentials are stored locally in the system Keychain. All network traffic goes directly to your own server.
