@@ -10,4 +10,4 @@
  * when they exist — this file is the only copy.
  */
 var GITBOBA_TESTFLIGHT_URL = 'https://testflight.apple.com/join/BTzqvDSh';
-var GITBOBA_TESTFLIGHT_URL_EU = '';
+var GITBOBA_TESTFLIGHT_URL_EU = 'https://testflight.apple.com/join/8Q9jStkg';
