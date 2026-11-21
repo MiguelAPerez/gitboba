@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://gitboba.app/beta/">
+  <meta name="robots" content="noindex, follow">
+  <title>Public beta — GitBoba</title>
+  <meta name="description" content="Install the GitBoba public beta on iPhone and iPad with TestFlight.">
+  <meta property="og:title" content="Public beta — GitBoba">
+  <meta property="og:description" content="Install the GitBoba public beta on iPhone and iPad with TestFlight.">
+  <meta property="og:url" content="https://gitboba.app/beta/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GitBoba">
+  <link rel="icon" type="image/png" href="/images/mac-128@2x.png">
+  <link rel="apple-touch-icon" href="/images/mac-128@2x.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/prose.css">
+  <link rel="stylesheet" href="/css/doc.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a href="/" class="nav-logo">
+      <img src="/images/mac-128@2x.png" alt="GitBoba icon">
+      GitBoba
+    </a>
+  </header>
+
+  <main class="content content--narrow">
+    <a href="/" class="back">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to home
+    </a>
+
+    <div class="eyebrow">TestFlight</div>
+    <h1>Public beta</h1>
+    <p class="updated">iPhone and iPad · iOS 26 or later</p>
+
+    <p class="intro">
+      Try the next version of GitBoba before it is on the App Store. Install Apple’s TestFlight app, then join from this page.
+    </p>
+
+    <div class="section">
+      <p>
+        <a class="beta-join" id="beta-join" href="https://testflight.apple.com/join/BTzqvDSh">Join the beta</a>
+      </p>
+      <p class="beta-join-note" id="beta-join-note" hidden>The public link is not posted yet. This button will open TestFlight once it is.</p>
+      <p class="beta-join-alt" id="beta-join-alt"><span id="beta-join-alt-label">In the EU?</span> <a id="beta-join-alt-link" href="https://testflight.apple.com/join/8Q9jStkg">Use the EU beta link</a></p>
+    </div>
+
+    <div class="section">
+      <h2>What to expect</h2>
+      <ul>
+        <li>Installing the beta replaces the App Store copy of GitBoba on that device. Install from the App Store again to go back.</li>
+        <li>Each build stays available for 90 days. TestFlight prompts you when a newer build is ready.</li>
+        <li>A Supporter purchase inside the beta is not charged. It does not unlock Supporter on the App Store version.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Feedback</h2>
+      <p>Open a <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=bug_report.yml">GitHub issue</a> with your iOS version, server type, and what you tried. Or email <a href="mailto:contact@miguelaperez.dev">contact@miguelaperez.dev</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/docs">Docs</a>
+      <a href="mailto:contact@miguelaperez.dev">Contact</a>
+    </div>
+    <p class="footer-legal">
+      GitBoba is not affiliated with or endorsed by Gitea, Forgejo, Codeberg, or Apple&nbsp;Inc. iPhone and iPad are trademarks of Apple&nbsp;Inc., registered in the U.S. and other countries. App Store is a service mark of Apple&nbsp;Inc. TestFlight is a service of Apple&nbsp;Inc.
+    </p>
+  </footer>
+
+  <script src="/js/testflight-url.js"></script>
+  <script src="/js/beta-link.js"></script>
+  <script>
+    GitBobaBetaLink.init(document, window.fetch && window.fetch.bind(window), {
+      main: typeof GITBOBA_TESTFLIGHT_URL === 'string' ? GITBOBA_TESTFLIGHT_URL : '',
+      eu: typeof GITBOBA_TESTFLIGHT_URL_EU === 'string' ? GITBOBA_TESTFLIGHT_URL_EU : ''
+    });
+  </script>
+
+</body>
+</html>
