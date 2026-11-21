@@ -7,7 +7,10 @@
  *
  * Leave both empty until the beta is open. The page keeps the Join button
  * visible and says the link is not posted yet. Paste the public links here
- * when they exist — this file is the only copy.
+ * when they exist.
+ *
+ * Keep the beta/index.html fallback in sync for visitors without JavaScript:
+ * #beta-join href (main link) and #beta-join-alt-link href (EU link).
  */
 var GITBOBA_TESTFLIGHT_URL = 'https://testflight.apple.com/join/BTzqvDSh';
 var GITBOBA_TESTFLIGHT_URL_EU = 'https://testflight.apple.com/join/8Q9jStkg';

@@ -13,6 +13,7 @@
   ];
 
   var TRACE_TIMEOUT_MS = 1500;
+  var TESTFLIGHT_APP_URL = 'https://apps.apple.com/app/testflight/id899247664';
 
   function countryFromTrace(text) {
     var match = /^loc=([A-Z]{2})\s*$/m.exec(typeof text === 'string' ? text : '');
@@ -64,10 +65,16 @@
     var altLabel = doc.getElementById('beta-join-alt-label');
     var altLink = doc.getElementById('beta-join-alt-link');
 
+    // beta/index.html ships with the live links for visitors without JavaScript,
+    // so this sets both states: live link, or the pre-launch fallback.
     if (links.join) {
       join.href = links.join.url;
       join.textContent = 'Join the beta';
       note.hidden = true;
+    } else {
+      join.href = TESTFLIGHT_APP_URL;
+      join.textContent = 'Get TestFlight, then join';
+      note.hidden = false;
     }
     if (links.alternate) {
       altLink.href = links.alternate.url;

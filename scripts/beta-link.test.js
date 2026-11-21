@@ -96,3 +96,15 @@ test('init skips the lookup when there is no EU link', async () => {
   assert.equal(doc.nodes['beta-join'].href, MAIN);
   assert.equal(doc.nodes['beta-join-alt'].hidden, true);
 });
+
+test('init puts back the pre-launch button when no link is set', async () => {
+  const doc = fakeDocument();
+  doc.nodes['beta-join'].href = MAIN;
+  doc.nodes['beta-join-note'].hidden = true;
+  doc.nodes['beta-join-alt'].hidden = false;
+  await beta.init(doc, undefined, { main: '', eu: '' });
+  assert.equal(doc.nodes['beta-join'].href, 'https://apps.apple.com/app/testflight/id899247664');
+  assert.equal(doc.nodes['beta-join'].textContent, 'Get TestFlight, then join');
+  assert.equal(doc.nodes['beta-join-note'].hidden, false);
+  assert.equal(doc.nodes['beta-join-alt'].hidden, true);
+});
