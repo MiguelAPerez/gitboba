@@ -397,16 +397,67 @@ Give the outer one more colons.
           </p>
         </div>
 
+        <div class="section" id="markdown-code">
+          <h2>Code highlights and line numbers</h2>
+          <p>
+            Lines marked in the fence, like <code>{1,4-6}</code>, or with a <code>highlight-next-line</code>, <code>highlight-start</code>, or <code>highlight-end</code> comment, draw with a tinted band and a bar at the left edge. The comments themselves don't show. <code>showLineNumbers</code> adds a column of line numbers, and <code>showLineNumbers=12</code> starts it at 12.
+          </p>
+          <div class="code-block">
+            <pre><code>```js title="src/app.js" {2} showLineNumbers
+import { run } from "./run";
+run();
+// highlight-next-line
+export default run;
+```</code></pre>
+          </div>
+          <p class="docs-note">
+            Copying the code copies only the code, never the numbers, and VoiceOver reads only the code. A title over a Mermaid block is left off: it draws as a diagram, not code.
+          </p>
+        </div>
+
+        <div class="section" id="markdown-front-matter">
+          <h2>Page front matter</h2>
+          <p>
+            When the front matter is a Docusaurus page's, GitBoba shows it the way the site does instead of as a table:
+          </p>
+          <ul>
+            <li><strong>Title</strong> — <code>title</code> becomes the page heading, unless the page starts with its own <code>#</code> heading or sets <code>hide_title: true</code></li>
+            <li><strong>Byline</strong> — the <code>date</code> and <code>authors</code> under the title</li>
+            <li><strong>Tags</strong> — <code>tags</code> listed at the end of the page</li>
+          </ul>
+          <p class="docs-note">
+            Other front matter still folds into a table, as on your server. Authors show as written in the page; names from a site's <code>authors.yml</code> aren't looked up.
+          </p>
+        </div>
+
+        <div class="section" id="markdown-headings">
+          <h2>Heading ids and the table of contents</h2>
+          <p>
+            <code>## Install {#install}</code> shows as <em>Install</em>, and links to <code>#install</code> jump to it. A <code>&lt;TOCInline /&gt;</code> is hidden: GitBoba already has an outline for every document, so a second table of contents on the page would only repeat it.
+          </p>
+        </div>
+
         <div class="section" id="markdown-docusaurus-extras">
           <h2>The rest of a Docusaurus page</h2>
           <ul>
             <li><strong>Code titles</strong> — <code>```js title="src/app.js"</code> shows the file name above the code</li>
             <li><strong>MDX imports</strong> — <code>import Tabs from '@theme/Tabs';</code> lines and <code>{/* comments */}</code> are hidden</li>
-            <li><strong>Front matter</strong> — <code>sidebar_position</code>, <code>title</code>, and other keys fold away like any front matter</li>
           </ul>
           <p class="docs-note">
             Your server's own web pages still show this syntax as plain text — Gitea and Forgejo don't render Docusaurus. Something drawing wrong? Use the <a href="https://github.com/MiguelAPerez/gitboba/issues/new?template=markdown_rendering.yml">Markdown rendering</a> issue template.
           </p>
+        </div>
+
+        <div class="section" id="markdown-not-supported">
+          <h2>Not supported</h2>
+          <p>A few things need the rest of the Docusaurus site, not just the page:</p>
+          <ul>
+            <li><strong>Site images</strong> — paths like <code>/img/logo.png</code> point into the site's <code>static</code> folder, which GitBoba doesn't know about</li>
+            <li><strong><code>&lt;DocCardList /&gt;</code></strong> and other React components</li>
+            <li><strong>Live code editors</strong> — <code>```jsx live</code> shows as plain code</li>
+            <li><strong>Links by slug</strong> — links to another doc's <code>slug</code> or <code>id</code> rather than its file path</li>
+            <li><strong><code>authors.yml</code></strong> — authors show as written in the page</li>
+          </ul>
         </div>
       </article>
 
